@@ -1,0 +1,64 @@
+@import "../../../assets/scss/partials/vars";
+.carousel {
+  padding: 4rem 1rem;
+  position: relative;
+
+  &__container {
+    height: 18rem;
+    border: 5px solid $secondary;
+    background-color: rgba($white, 0.8);
+    overflow: hidden;
+    position: relative;
+    &:hover {
+      & .carousel__btn--active {
+        display: block;
+      }
+    }
+  }
+  &__list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    transition: all $normal ease-in;
+  }
+
+  &__btn {
+    background-color: rgba($black, 0.2);
+    color: $white;
+    color: $secondary;
+    height: 100%;
+    font-size: 3rem;
+    position: absolute;
+    top: 0;
+    display: none;
+    transition: all $fast ease-in;
+    &:hover {
+      display: block;
+    }
+
+    &:active {
+      color: $primary;
+    }
+
+    &--left {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      left: 0;
+      &:active {
+        transform: translateX(-1rem);
+      }
+    }
+    &--right {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      right: 0;
+      &:active {
+        transform: translateX(1rem);
+      }
+    }
+    &--disabled{
+      display: none;
+    }
+  }
+}

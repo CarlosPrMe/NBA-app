@@ -1,0 +1,73 @@
+// Font size
+
+$fs-xl: 65px;
+$fs-l: 30px;
+$fs-md: 25px;
+$fs-base: 16px;
+$fs-sm: 13px;
+
+// Colors
+
+$success: #119e32;
+$danger: #be1e1e;
+$warning: #fd7e14;
+$primary: #0f1ddb;
+$secondary: #e7b50e;
+$tertiary: #fd7e14;
+$transparent: transparent;
+
+// Gray Colors
+
+$white: #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000;
+
+// Times
+
+$slow: 500ms;
+$normal: 250ms;
+$fast: 150ms;
+
+// Layers
+
+$modal: 999;
+$overtop: 99;
+$top: 25;
+$over: 1;
+$back: -1;
+
+// Breakpoint
+
+$mobile: 768px;
+$tablet: 992px;
+$desktop: 1200px;
+
+
+
+// Animations 
+
+@keyframes showIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes spinner {
+    from{
+      transform: rotate(0);
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }

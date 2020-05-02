@@ -1,0 +1,16 @@
+<div class="result">
+    <a class="result__link" (click)="showStats($event,game.id)">
+        <div class="result__block">
+            <img *ngIf="homeTeam" src="{{homeTeam.image_url}}"
+                alt="team image" class="result__media">
+            <span class="result__data">{{game.home_team.full_name}}</span>
+            <span class="result__data">{{game.home_team_score}}</span>
+        </div>
+        <div class="result__block">
+            <img *ngIf="visitorTeam" src="{{visitorTeam.image_url}}"
+                alt="team image" class="result__media">
+            <span class="result__data">{{game.visitor_team.full_name}}</span>
+            <span class="result__data">{{game.visitor_team_score}}</span>
+        </div>
+    </a>
+</div>

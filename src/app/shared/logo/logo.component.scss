@@ -1,0 +1,27 @@
+@import '../../../assets/scss/partials/vars';
+
+.logo {
+  left: 1rem;
+  padding-top: 1rem;
+  position: absolute;
+  text-align: center;
+  top: 0;
+
+  &__link {
+    display: flex;
+    color: $white;
+    text-decoration: none;
+  }
+
+  &__img {
+    border-radius: 100%;
+    max-width: 4.5rem;
+    height: auto;
+    width: 100%;
+  }
+
+  &__title {
+    display: inline-block;
+    padding: 0.5rem;
+  }
+}

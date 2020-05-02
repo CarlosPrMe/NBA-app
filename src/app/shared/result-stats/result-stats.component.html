@@ -1,0 +1,40 @@
+<div class="stats">
+    <div class="stats__container">
+        <div class="stats__block">
+            <h3 class="stats__title">{{homeTeamName}}
+                <span class="stats__logo">
+                    <img class="stats__image" src="{{homeTeamImage}}" alt="team image">
+                </span>
+            </h3>
+            <div class="stats__content">
+                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="homeTeamImage"
+                    *ngFor="let player of homeTeam"></app-stats>
+            </div>
+        </div>
+        <div class="stats__block">
+            <h3 class="stats__title">{{visitorTeamName}}
+                <img class="stats__logo" src="{{visitorTeamImage}}" alt="team image">
+            </h3>
+            <div class="stats__content">
+                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="visitorTeamImage"
+                    *ngFor="let player of visitorTeam">
+                </app-stats>
+            </div>
+        </div>
+    </div>
+    <a href="#" [routerLink]="['/stats',idStats]" class="btn btn--primary">Ir a detalles del encuentro</a>
+</div>
+
+<div *ngIf="playerStats" class="details">
+    <div class="details__content">
+        <button type="button" class="btn btn--primary" (click)="closeDetails($event)"><span
+                class="icon icon-cross"></span></button>
+
+        <div class="details__block">
+            <img class="details__avatar" src="{{playerStats.player.avatar}}" alt="player image">
+        </div>
+        <div class="details__block">
+
+        </div>
+    </div>
+</div>

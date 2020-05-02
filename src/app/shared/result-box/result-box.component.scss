@@ -1,0 +1,25 @@
+@import "../../../assets/scss/partials/vars";
+.result-box {
+  display: flex;
+  justify-content: space-between;
+
+  &__container {
+    padding: 1rem;
+    flex: 0 1 50%;
+  }
+  &__title {
+    padding: 1rem;
+  }
+  
+  &__content {
+    border: 2px solid $white;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 1rem;
+    min-height: 10rem;
+  }
+
+  app-result-data:nth-child(1n + 2) {
+    margin-top: 1.5rem;
+  }
+}

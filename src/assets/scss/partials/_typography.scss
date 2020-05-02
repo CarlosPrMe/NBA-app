@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2&family=Raleway&display=swap");
+
+$ff-title: "Baloo Bhaina 2", cursive;
+$ff-main: "Raleway", sans-serif;
+
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: $ff-title;
+}
+
+.h1 {
+  font-size: $fs-xl;
+}
+
+.h2 {
+  font-size: $fs-l;
+}
+
+.h3 {
+  font-size: $fs-md;
+}
+
+.h4 {
+  font-size: $fs-sm;
+}

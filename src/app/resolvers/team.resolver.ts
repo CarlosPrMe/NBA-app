@@ -1,0 +1,18 @@
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TeamModel } from '../models/team.model';
+import { TeamService } from '../services/team.service';
+
+@Injectable({ providedIn: 'root' })
+export class TeamResolver implements Resolve<TeamModel> {
+
+    constructor(private teamService: TeamService) { }
+
+    resolve(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+    ): Observable<any> | Promise<any> | any {
+        return this.teamService.getTeamById(route.paramMap.get('id'));
+    }
+}

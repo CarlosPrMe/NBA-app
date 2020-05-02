@@ -1,0 +1,6 @@
+<div class="card-carousel" *ngIf = "team">
+    <a href="#" class="card-carousel__link" [routerLink]="['/team',team.id_team]">
+        <span class="card-carousel__img" [appBgImage]="[team.image_url, team.team_color]"></span>
+        <span class="card-carousel__title h4">{{team.full_name}}</span>
+    </a>
+</div>

@@ -1,0 +1,11 @@
+
+.page {
+    background-image: url('../../../assets/img/wall.jpg');
+}
+
+.form {
+    &--register {
+        width: 500px;
+        margin: 0 auto;
+    }
+}

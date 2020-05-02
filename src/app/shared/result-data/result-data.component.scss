@@ -1,0 +1,80 @@
+@import "../../../assets/scss/partials/vars";
+
+:host {
+  & + & {
+    margin-top: 1.5rem;
+  }
+}
+
+.result {
+  background-color: $white;
+  border: 1px solid $white;
+  border-radius: 4px;
+  transition: all $normal ease;
+  &:hover {
+    border-color: $gray-600;
+    box-shadow: 0 0 1rem rgba($black, 0.5);
+
+    .result__media {
+      transform: scale(1.1);
+    }
+    .result__block {
+      .result__data {
+        transform: translateX(-.5rem);
+      }
+      &:last-of-type {
+        .result__data {
+          transform: translateX(.5rem);
+        }
+      }
+    }
+  }
+
+  &__link {
+    color: $black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    height: 3rem;
+    text-decoration: none;
+  }
+
+  &__block {
+    position: relative;
+    flex: 1 0 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    & + & {
+      flex-direction: row-reverse;
+      &::after {
+        content: "";
+        display: block;
+        height: 60%;
+        width: 2px;
+        background-color: $gray-500;
+        position: absolute;
+        left: 0;
+        top: 20%;
+      }
+    }
+  }
+
+  &__media {
+    display: inline-block;
+    height: 100%;
+    object-fit: contain;
+    max-width: 2rem;
+    transition: all $normal ease;
+  }
+
+  &__data {
+    display: inline-block;
+    transition: all $normal ease;
+    &:last-child {
+      font-size: $fs-md;
+    }
+  }
+}

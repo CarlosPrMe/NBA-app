@@ -1,0 +1,23 @@
+@import "../../../assets/scss/partials/vars";
+
+.spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background-color: rgba($black, 0.4);
+  z-index: $overtop;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  &--show {
+    display: flex;
+  }
+
+  &__icon {
+    font-size: 75px;
+    color: $secondary;
+    animation: spinner 1.5s linear infinite;
+  }
+}

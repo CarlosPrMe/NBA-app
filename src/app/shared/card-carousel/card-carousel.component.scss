@@ -1,0 +1,152 @@
+@import "../../../assets/scss/partials/vars";
+@import "../../../assets/scss/partials/typography";
+
+:host {
+  flex: 1 0 16.666667%;
+  height: 100%;
+}
+
+.card-carousel {
+  height: 100%;
+  &__link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+    padding: 0.5rem;
+  }
+
+  &__media {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+  }
+
+  &__img {
+    background-color: $white;
+    background-position: center;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba($black, 0.5);
+    display: inline-block;
+    flex: 1 0 75%;
+    margin-bottom: 0.5rem;
+    transition: transform $normal ease;
+
+    &:hover {
+      transform: scale(1.1);
+      & + .card-carousel__title {
+        transform: translateY(0.5rem);
+        font-size: 100%;
+      }
+    }
+  }
+  &__title {
+    color: $black;
+    color: rgba($color: #000000, $alpha: 1);
+    display: inline-block;
+    text-align: center;
+    transition: all $normal ease;
+  }
+}
+/* 
+
+COLORES NBA
+
+[
+  {id_team:1,
+    color:#cc092f
+  },
+  {id_team:2,
+    color:#007a30
+  },
+  {id_team:3,
+    color:#373330
+  },
+  {id_team:4,
+    color:#0a7c91
+  },
+  {id_team:5,
+    color:#bc032b
+  },
+  {id_team:6,
+    color:#6e253c
+  },
+  {id_team:7,
+    color:#1752b3
+  },
+  {id_team:8,
+    color:#0d213e
+  },
+  {id_team:9,
+    color:#0046ae
+  },
+  {id_team:10,
+    color:#fdb927
+  },
+  {id_team:11,
+    color:#c81c2b
+  },
+  {id_team:12,
+    color:#002d62
+  },
+  {id_team:13,
+    color:#0348af
+  },
+  {id_team:14,
+    color:#562d83
+  },
+  {id_team:15,
+    color:#809dc2
+  },
+  {id_team:16,
+    color:#98012e
+  },
+  {id_team:17,
+    color:#274e37
+  },
+  {id_team:18,
+    color:#002a5c
+  },
+  {id_team:19,
+    color:#ba985a
+  },
+  {id_team:20,
+    color:#f48328
+  },
+  {id_team:21,
+    color:#0072cf
+  },
+  {id_team:22,
+    color:#0473bc
+  },
+  {id_team:23,
+    color:#003da5
+  },
+  {id_team:24,
+    color:#e66226
+  },
+  {id_team:25,
+    color:#ab3037
+  },
+  {id_team:26,
+    color:#502d7f
+  },
+  {id_team:27,
+    color:#777471
+  },
+  {id_team:28,
+    color:#8c8d8e
+  },
+  {id_team:29,
+    color:#002144
+  },
+  {id_team:30,
+    color:#002144
+  },
+
+]
+
+*/

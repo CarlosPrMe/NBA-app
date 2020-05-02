@@ -1,0 +1,26 @@
+<div class="menu" *ngIf="user">
+    <a class="menu__user" href="#">
+        <img *ngIf="user.avatar" class="menu__avatar" src="{{user.avatar}}" alt="user avatar">
+        <span *ngIf="!user.avatar" class="menu__avatar icon icon-user"></span>
+        <span class="menu__user-name">{{user.name}} {{user.sur_name}}</span>
+    </a>
+
+    <ul class="menu__list">
+        <li class="menu__item">
+            <a href="#" class="menu__link">
+                <span>Equipo Favorito</span>
+            </a>
+        </li>
+        <li class="menu__item">
+            <a href="#" class="menu__link">
+                <span>Quinteto Favorito</span>
+            </a></li>
+        <li class="menu__item" (click)="closeSession($event)">
+            <a href="#" class="menu__link">
+                <span>Cerrar Sesión</span>
+            </a>
+        </li>
+    </ul>
+
+</div>
+<span *ngIf="!user" class="menu__placeholder"></span>

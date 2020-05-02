@@ -1,0 +1,94 @@
+@import "../../../assets/scss/partials/vars";
+
+.menu {
+  position: relative;
+  &:hover {
+    .menu__list {
+      transform: translateX(0);
+    }
+  }
+  &__user {
+    align-self: center;
+    color: $white;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    text-decoration: none;
+
+    &:hover {
+      .menu__user-name {
+        text-decoration: underline;
+      }
+      .menu__avatar {
+        transform: scale(1.05);
+      }
+      .menu__avatar.icon-user {
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__avatar {
+    border-radius: 100%;
+    margin-right: 0.5rem;
+    max-width: 2.5rem;
+    transition: transform $fast ease;
+    &.icon-user {
+      border-radius: 100%;
+      border: 1px solid $white;
+      padding: 0.5rem;
+    }
+  }
+
+  &__list {
+    background-color: $secondary;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 0 1rem rgba($black, 0.8);
+    position: absolute;
+    right: -1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    min-width: 13rem;
+    transition: transform $normal ease-in;
+    transform: translateX(100%);
+  }
+
+  &__item {
+    &:last-child .menu__link {
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
+
+  &__link {
+    color: $white;
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    padding: 1rem;
+    text-decoration: none;
+    transition: all $normal linear;
+    width: 100%;
+
+    span {
+      transition: all $normal linear;
+      display: inline-block;
+    }
+
+    &:hover {
+      background-color: darken($secondary, 10%);
+      & > span {
+        transform: translateX(2rem);
+      }
+    }
+  }
+  &__placeholder{
+    display: inline-block;
+    min-width: 1rem;
+    height: 100%;
+    opacity: 0;
+  }
+}

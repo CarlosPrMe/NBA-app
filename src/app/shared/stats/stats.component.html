@@ -1,0 +1,21 @@
+<div class="card" (click)="showDetails($event)" [ngClass]="{'card--disabled':noPlayed}">
+    <div class="card__container">
+        <div class="card__media-container">
+            <img class="card__media"
+                src="{{player.player.avatar}}"
+                alt="player image">
+        </div>
+        <div class="card__info">
+            <p class="card__data card__data--lg h4">Jugador: {{player.player.first_name}} {{player.player.last_name}}</p>
+            <p class="card__data h4">Puntos: {{player.pts}}</p>
+            <p class="card__data h4">Rebotes: {{player.dreb + player.oreb}}</p>
+            <p class="card__data h4">Asistencias: {{player.ast}}</p>
+            <p class="card__data h4">Minutos: {{player.min}}</p>
+        </div>
+        <img class="card__logo" src="{{bgImage}}" alt="team image">
+    </div>
+    <div *ngIf="noPlayed" class="card__notification">
+        <span *ngIf="noPlayed" class="icon icon-dribbble"></span>
+        <span class="card__text">Sin acción en el juego</span>
+    </div>
+</div>

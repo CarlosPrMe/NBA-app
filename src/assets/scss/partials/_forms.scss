@@ -1,0 +1,78 @@
+@import "../partials/vars";
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 0 1rem rgba($black, 0.4);
+  color: $white;
+  &__group,
+  &__control,
+  &__input {
+    display: block;
+    width: 100%;
+  }
+
+  &__group {
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    border: 1px solid $transparent;
+    border-radius: 4px;
+    height: 2.5rem;
+    font-size: $fs-base;
+    font-size: calc($fs-base + 4px);
+    padding: 0 1rem;
+    outline: none;
+    transition: all $normal linear;
+
+    &::placeholder {
+      color: $gray-500;
+    }
+
+    &:focus {
+      border: 1px solid $gray-700;
+    }
+  }
+
+  &__btn {
+    align-self: flex-end;
+
+    &:disabled {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+  }
+
+  &__link{
+    color: $white;
+    display: inline-block;
+    transition: all $slow ease;
+    &:hover{
+      background-color: rgba($white, .6);
+      color: $black;
+      transform: scale(1.02);
+    }
+  }
+
+  .error {
+    color: $white;
+
+    &__msg {
+      animation: showIn $normal ease-in;
+      animation-fill-mode: forwards;
+      background-color: rgba($danger, 0.4);
+      border-radius: 5px;
+      display: block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .icon{
+        margin-right: 1rem;
+    }
+  }
+}

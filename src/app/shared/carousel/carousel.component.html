@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="carousel" *ngIf="teamsWithLogo">
+        <div class="carousel__container">
+            <div class="carousel__list" #list>
+                <app-card-carousel *ngFor="let team of teamsWithLogo" [team]="team"></app-card-carousel>
+            </div>
+            <button *ngIf="positionCarousel > 0"  [ngClass]="{'carousel__btn--disabled': positionCarousel===0, 'carousel__btn--active':positionCarousel>0}" class="btn carousel__btn carousel__btn--left" type="button" (click)="moveCarousel($event)"data-direction="left">
+                <span class="icon icon-arrow-left-circle"></span>
+            </button>
+            <button *ngIf="positionCarousel < 4" [ngClass]="{'carousel__btn--disabled': positionCarousel===4, 'carousel__btn--active':positionCarousel < 4}" class="btn carousel__btn carousel__btn--right" type="button" (click)="moveCarousel($event)" data-direction="right">
+                <span class="icon icon-arrow-right-circle"></span>
+            </button>
+        </div>
+    </div>
+</div>

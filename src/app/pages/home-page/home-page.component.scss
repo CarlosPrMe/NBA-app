@@ -1,0 +1,12 @@
+@import '../../../assets/scss/partials/vars';
+
+main {
+    background-image: url('../../../assets/img/wood.jpg');
+    background-position: center top;
+    background-size: cover;
+    color: $white;
+    min-height: 100vh;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    background-attachment: fixed;
+}

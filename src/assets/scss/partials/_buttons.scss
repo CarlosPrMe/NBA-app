@@ -1,0 +1,45 @@
+@mixin btn(
+  $bg-color: $transparent,
+  $color: $black,
+  $shadow-color: $black,
+  $border: 0,
+  $border-radius: 4px,
+  $padding: 0.5rem 1rem
+) {
+  background-color: $bg-color;
+  border: $border;
+  border-radius: $border-radius;
+  box-shadow: 0 0 1rem rgba($shadow-color, 0.4),
+    inset 1px -6px 8px 1px rgba($black, 0.4);
+  color: $color;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  font-family: $ff-main;
+  font-size: $fs-base;
+  min-width: 4rem;
+  outline: 0;
+  padding: $padding;
+  text-align: center;
+  transition: all $fast linear;
+
+  &:hover {
+    background-color: lighten($bg-color, 18%);
+  }
+}
+
+a.btn,
+.btn {
+  @include btn();
+}
+
+a.btn,
+.btn {
+  &--primary {
+    @include btn($primary, $white, $black);
+  }
+
+  &--secondary {
+    @include btn($secondary, $white, $black);
+  }
+}

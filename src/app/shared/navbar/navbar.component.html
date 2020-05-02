@@ -1,0 +1,15 @@
+<nav class="nav">
+    <app-logo></app-logo>
+    <ul class="nav__list">
+        <li class="nav__item" *ngIf="!user">
+            <a [routerLink]="['/register']" routerLinkActive="nav__link--active" class="nav__link" href="#">Login</a>
+        </li>
+        <li class="nav__item">
+            <a [routerLink]="['/teams']" routerLinkActive="nav__link--active" class="nav__link" href="#">Listado de equipos</a>
+        </li>
+        <li class="nav__item">
+            <a [routerLink]="['/searcher']" routerLinkActive="nav__link--active" class="nav__link" href="#">Buscador</a>
+        </li>
+    </ul>
+    <app-menu [user]="user" (closeSessionUser)="onCloseSessionUser($event)"></app-menu>
+</nav>
