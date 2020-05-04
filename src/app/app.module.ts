@@ -25,6 +25,7 @@ import { ResultDataComponent } from './shared/result-data/result-data.component'
 import { StatsPageComponent } from './pages/stats-page/stats-page.component';
 import { ResultStatsComponent } from './shared/result-stats/result-stats.component';
 import { StatsComponent } from './shared/stats/stats.component';
+import { DatePipe } from './pipes/date.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { StatsComponent } from './shared/stats/stats.component';
     ResultDataComponent,
     StatsPageComponent,
     ResultStatsComponent,
-    StatsComponent
+    StatsComponent,
+    DatePipe
   ],
   imports: [
     BrowserModule,

@@ -15,22 +15,34 @@ export class ResultDataComponent implements OnInit {
   public images: Array<any>
   public homeTeam: any;
   public visitorTeam: any;
-  constructor(private teamService: TeamService) { }
+  private randomhours: Array<string>;
 
+  constructor(private teamService: TeamService) { }
   ngOnInit(): void {
+    this.randomhours = ['12:00', '17:00', '19:00', '21:00'];
     this.teamsId = new Array(this.game.home_team.id, this.game.visitor_team.id);
     this.teamService.getTeamImagesById(this.teamsId).subscribe(res => {
       this.images = res;
       this.homeTeam = this.images.find(t => t.id_team === this.game.home_team.id);
       this.visitorTeam = this.images.find(t => t.id_team === this.game.visitor_team.id);
+      let day = document.getElementsByClassName('result__date')[0];
+      let dateSeparated = day.textContent.split(' ');
+      this.game.hourDate = this._addImagerRandom(0, this.randomhours.length-1);
+      this.game.date = dateSeparated[0];
+      debugger
       if (this.isFirst) {
-        this.showStatsEvent.emit([this.game.id, { home_team: this.homeTeam, visitor_team: this.visitorTeam }]);
+        this.showStatsEvent.emit([this.game.id, { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam }]);
       }
     })
   }
 
-  showStats(event, game_id) {
+  public showStats(event, game_id) {
     event.preventDefault();
-    this.showStatsEvent.emit([game_id, { home_team: this.homeTeam, visitor_team: this.visitorTeam }])
+    this.showStatsEvent.emit([game_id, { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam }])
+  }
+
+    private _addImagerRandom(min, max) {
+    let num = Math.round(Math.random() * (max - min) + min);
+    return this.randomhours[num];
   }
 }

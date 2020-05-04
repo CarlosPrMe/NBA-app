@@ -34,9 +34,9 @@ export class TeamService {
     return this.http.post(`${this.url}team-image`, ids);
   }
 
-  getMatchYesterday(date, page = 0, per_page = 25): Observable<any> {
+  getMatchYesterday(dates: string, page: number = 0, per_page: number = 25): Observable<any> {
     let mis_headers = new HttpHeaders(this.rapid_headers);
-    return this.http.get(`https://free-nba.p.rapidapi.com/games?page=${page}&per_page=${per_page}&dates[]=${date}`, { headers: mis_headers });
+    return this.http.get(`https://free-nba.p.rapidapi.com/games?page=${page}&per_page=${per_page}${dates}`, { headers: mis_headers });
   }
 
   getStatsById(id): Observable<any> {

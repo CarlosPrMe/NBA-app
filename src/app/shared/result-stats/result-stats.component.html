@@ -1,10 +1,9 @@
 <div class="stats">
     <div class="stats__container">
+        <div class="stats__date" *ngIf="currentGame">Día del partido: <span>{{currentGame.date}} {{currentGame.hourDate}}hs</span></div>
         <div class="stats__block">
             <h3 class="stats__title">{{homeTeamName}}
-                <span class="stats__logo">
-                    <img class="stats__image" src="{{homeTeamImage}}" alt="team image">
-                </span>
+                <span class="stats__logo" style="background-image: url({{homeTeamImage}});"> </span>
             </h3>
             <div class="stats__content">
                 <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="homeTeamImage"
@@ -13,7 +12,7 @@
         </div>
         <div class="stats__block">
             <h3 class="stats__title">{{visitorTeamName}}
-                <img class="stats__logo" src="{{visitorTeamImage}}" alt="team image">
+                <span class="stats__logo" style="background-image: url({{visitorTeamImage}});"> </span>
             </h3>
             <div class="stats__content">
                 <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="visitorTeamImage"

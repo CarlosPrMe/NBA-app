@@ -36,7 +36,7 @@
     display: flex;
     justify-content: center;
     align-items: stretch;
-    height: 3rem;
+    flex-wrap: wrap;
     text-decoration: none;
   }
 
@@ -64,7 +64,6 @@
 
   &__media {
     display: inline-block;
-    height: 100%;
     object-fit: contain;
     max-width: 2rem;
     transition: all $normal ease;

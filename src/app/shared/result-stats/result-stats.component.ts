@@ -10,6 +10,7 @@ export class ResultStatsComponent implements OnInit, OnChanges {
   @Input() stats: Array<any>;
   @Input() idStats: string;
   @Input() game: any;
+  public currentGame:any;
   public homeTeam: Array<any>;
   public homeTeamId: number;
   public homeTeamName: string;
@@ -19,13 +20,15 @@ export class ResultStatsComponent implements OnInit, OnChanges {
   public visitorTeamName: string;
   public visitorTeamImage: string;
   public playerStats: any;
+  public gameDate: any;
   constructor() { }
   
   ngOnInit(): void {
-    
   }
   
   ngOnChanges(change: SimpleChanges) {
+    this.currentGame = change.game.currentValue.game;
+    this.gameDate = change.game.currentValue.game.date;
     this.homeTeamId = change.game.currentValue.home_team.id_team;
     this.visitorTeamId = change.game.currentValue.visitor_team.id_team;
     this.homeTeamName = change.game.currentValue.home_team.full_name;
