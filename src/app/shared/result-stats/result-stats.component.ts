@@ -45,7 +45,7 @@ export class ResultStatsComponent implements OnInit, OnChanges {
   clickout(event) {
     if (this.playerStats) {
       if (!this.detail?.nativeElement.contains(event.target)) {
-        this.closeDetails(event);
+        this.onCloseDetails(event);
       }
     }
   }
@@ -56,7 +56,7 @@ export class ResultStatsComponent implements OnInit, OnChanges {
     }, 50);
   }
 
-  public closeDetails(event) {
+  public onCloseDetails(event) {
     this.playerStats = null;
   }
 }

@@ -34,7 +34,6 @@ export class StatsComponent implements OnInit {
 
 
   public showDetails($event) {
-    console.log(this.player);
     this.detailsPlayer.emit(this.player);
   }
 

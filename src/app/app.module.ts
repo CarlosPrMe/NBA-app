@@ -26,6 +26,10 @@ import { StatsPageComponent } from './pages/stats-page/stats-page.component';
 import { ResultStatsComponent } from './shared/result-stats/result-stats.component';
 import { StatsComponent } from './shared/stats/stats.component';
 import { DatePipe } from './pipes/date.pipe';
+import { StatsDetailComponent } from './shared/stats-detail/stats-detail.component';
+import { HeightPipe } from './pipes/height.pipe';
+import { WeightPipe } from './pipes/weight.pipe';
+import { PositionPipe } from './pipes/position.pipe';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,11 @@ import { DatePipe } from './pipes/date.pipe';
     StatsPageComponent,
     ResultStatsComponent,
     StatsComponent,
-    DatePipe
+    DatePipe,
+    StatsDetailComponent,
+    HeightPipe,
+    WeightPipe,
+    PositionPipe
   ],
   imports: [
     BrowserModule,

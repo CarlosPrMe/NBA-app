@@ -1,0 +1,101 @@
+@import "../../../assets/scss/partials/vars";
+.details {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba($black, 0.6);
+  top: 0;
+  left: 0;
+  z-index: $top;
+
+  &__background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: .2;
+    width: 100%;
+  }
+  &__box {
+    position: fixed;
+    left: 25%;
+    top: 4.5rem;
+    width: 50%;
+    height: auto;
+    background-color: rgba($white, 0.8);
+    border-radius: 5px;
+    box-shadow: 0 0 2rem 1rem rgba($black, 0.6);
+    color: $black;
+    overflow-y: auto;
+    padding: 1rem;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    padding: 1rem 0;
+  }
+
+  &__block {
+    border-radius: 5px;
+    flex: 0 1 100%;
+    padding: 1rem;
+    min-height: 6rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    box-shadow: 0 0 1rem rgba($black, 0.3);
+    background-color: rgba($white, 0.8);
+
+    & + & {
+      margin-top: 1rem;
+    }
+  }
+
+  &__avatar {
+    border-radius: 100%;
+    box-shadow: 0 0 1rem rgba($black, 0.3);
+    display: inline-flex;
+    height: 10rem;
+    margin-right: 2rem;
+    overflow: hidden;
+    width: 10rem;
+
+    img {
+      height: 100%;
+      border-radius: 100%;
+    }
+  }
+
+  &__player {
+    padding: 0 1rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $primary;
+    transition: all $normal ease;
+    padding: 0.2rem;
+    &:hover {
+      color: $black;
+      text-decoration: underline;
+      background-color: rgba($secondary, 0.8);
+    }
+  }
+
+  &__data {
+    display: block;
+    flex: 1 0 33%;
+    padding: 0.2rem;
+    text-transform: capitalize;
+  }
+
+  .btn {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+  }
+}

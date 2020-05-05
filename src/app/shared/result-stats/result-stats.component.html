@@ -24,16 +24,4 @@
     <a href="#" [routerLink]="['/stats',idStats]" class="btn btn--primary">Ir a detalles del encuentro</a>
 </div>
 
-<div *ngIf="playerStats" class="details" #detail>
-    <div class="details__content">
-        <button type="button" class="btn btn--primary" (click)="closeDetails($event)"><span
-                class="icon icon-cross"></span></button>
-
-        <div class="details__block">
-            <img class="details__avatar" src="{{playerStats.player.avatar}}" alt="player image">
-        </div>
-        <div class="details__block">
-
-        </div>
-    </div>
-</div>
+<app-stats-detail *ngIf="playerStats" [player]="playerStats" (deleteDetails)="onCloseDetails($event)"></app-stats-detail>
