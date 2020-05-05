@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addToFavourites($event) {
+  public addToFavourites($event) {
     this.newFavourite.emit(this.team.id_team);
     console.log(this.team.id_team);
   }

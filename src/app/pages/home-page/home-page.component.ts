@@ -33,11 +33,11 @@ export class HomePageComponent implements OnInit {
     let month: number = today.getMonth() + 1;
     let year: number = today.getFullYear();
     let currentMonthPar: boolean = (month % 2) === 0 ? true : false;
-    let isBisiesto: number = (year % 4) === 0 ? 29 : 28;
+    let isLeapYear: number = (year % 4) === 0 ? 29 : 28;
     let diff: number = prevDays - day;
-    let diasRestantes: number = prevDays - diff;
-    let resta: number = 0;
-    let resta2: number = 0;
+    let remainingDays: number = prevDays - diff;
+    let subtraction: number = 0;
+    let subtractionAdditional: number = 0;
 
     for (let i = 0; i < prevDays; i++) {
       if (day >= prevDays) {
@@ -45,25 +45,25 @@ export class HomePageComponent implements OnInit {
         days.push(`${year - 2}-${this._addZero(month)}-${this._addZero(day - i)}`);
       } else {
 
-        if (diasRestantes) {
-          days.push(`${year - 2}-${this._addZero(month)}-${this._addZero(day - resta)}`);
-          diasRestantes--;
-          resta++
+        if (remainingDays) {
+          days.push(`${year - 2}-${this._addZero(month)}-${this._addZero(day - subtraction)}`);
+          remainingDays--;
+          subtraction++;
         }
         else {
           if (month === 1) {
-            days.push(`${year - 3}-${12}-${31 - resta2}`);
+            days.push(`${year - 3}-${12}-${31 - subtractionAdditional}`);
           }
           else if (currentMonthPar && month !== 2) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(30 - resta2) }`);
+            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(30 - subtractionAdditional) }`);
           }
           else if (currentMonthPar && month === 2) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(isBisiesto - resta2)}`);
+            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(isLeapYear - subtractionAdditional)}`);
           }
           else if (!currentMonthPar && month !== 1) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(31 - resta2)}`);
+            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(31 - subtractionAdditional)}`);
           }
-          resta2++;
+          subtractionAdditional++;
         }
       }
     }

@@ -20,7 +20,7 @@ export class ResultBoxComponent implements OnInit, OnChanges {
     this.games = change.games.currentValue;
   }
 
-  onShowStatsEvent(event) {
+  public onShowStatsEvent(event) {
     this.teamService.getStatsById(event[0]).subscribe(res => {
       this.statsDetailsData = res.data;
       this.idStatsDetails = event[0];

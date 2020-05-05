@@ -15,7 +15,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  closeSession(event) {
+  public closeSession(event) {
     event.preventDefault();
     this.closeSessionUser.emit(true);
   }

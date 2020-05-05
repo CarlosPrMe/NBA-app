@@ -19,7 +19,7 @@ export class CarouselComponent implements OnInit, AfterContentChecked {
     this.listLong = false;
     this.positionCarousel = 0;
     this.teamService.getLogos().subscribe(res => {
-      this.teamsWithLogo = res.sort(()=>Math.random() - 0.5);
+      this.teamsWithLogo = res.sort(() => Math.random() - 0.5);
     })
   }
 
@@ -29,10 +29,10 @@ export class CarouselComponent implements OnInit, AfterContentChecked {
     }
   }
 
-  moveCarousel(event): void {
+  public moveCarousel(event): void {
     let direction = event.currentTarget.dataset.direction;
     direction === 'right' ? this.positionCarousel++ : this.positionCarousel--;
     let currentPosition = this.listLong * this.positionCarousel;
-    this.list.nativeElement.style.transform = `translateX(-${currentPosition}px)`;    
+    this.list.nativeElement.style.transform = `translateX(-${currentPosition}px)`;
   }
 }

@@ -10,7 +10,7 @@ import { TeamModel } from 'src/app/models/team.model';
 })
 export class TeamPageComponent implements OnInit {
 
-  public id_team: string;
+  public idTeam: string;
   public team: TeamModel;
   constructor(private teamService: TeamService, private activate:ActivatedRoute) { }
 
