@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-result-stats',
@@ -7,10 +7,12 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 })
 export class ResultStatsComponent implements OnInit, OnChanges {
 
+  @ViewChild('detail') detail: ElementRef;
+
   @Input() stats: Array<any>;
   @Input() idStats: string;
   @Input() game: any;
-  public currentGame:any;
+  public currentGame: any;
   public homeTeam: Array<any>;
   public homeTeamId: number;
   public homeTeamName: string;
@@ -22,10 +24,9 @@ export class ResultStatsComponent implements OnInit, OnChanges {
   public playerStats: any;
   public gameDate: any;
   constructor() { }
-  
-  ngOnInit(): void {
-  }
-  
+
+  ngOnInit(): void { }
+
   ngOnChanges(change: SimpleChanges) {
     this.currentGame = change.game.currentValue.game;
     this.gameDate = change.game.currentValue.game.date;
@@ -39,11 +40,23 @@ export class ResultStatsComponent implements OnInit, OnChanges {
     this.visitorTeam = change.stats.currentValue.filter(player => player.team.id === this.visitorTeamId);
   }
 
-  onDetailsPlayer(event){
-    this.playerStats = event;
+
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (this.playerStats) {
+      if (!this.detail?.nativeElement.contains(event.target)) {
+        this.closeDetails(event);
+      }
+    }
   }
 
-  closeDetails($event){
+  onDetailsPlayer(event) {
+    setTimeout(() => {
+      this.playerStats = event;
+    }, 50);
+  }
+
+  public closeDetails(event) {
     this.playerStats = null;
   }
 }
