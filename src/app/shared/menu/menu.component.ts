@@ -8,7 +8,6 @@ import { UserModel } from 'src/app/models/user.model';
 })
 export class MenuComponent implements OnInit {
 
-  // public user:any;
   @Input() user: UserModel;
   @Output() closeSessionUser = new EventEmitter<any>();
   constructor() { }
