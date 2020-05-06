@@ -18,15 +18,16 @@
   &__box {
     position: fixed;
     left: 25%;
-    top: 4.5rem;
+    top: 3rem;
     width: 50%;
     height: auto;
+    min-height: 85vh;
     background-color: rgba($white, 0.8);
     border-radius: 5px;
     box-shadow: 0 0 2rem 1rem rgba($black, 0.6);
     color: $black;
     overflow-y: auto;
-    padding: 1rem;
+    padding: .5rem 1rem;
   }
 
   &__content {

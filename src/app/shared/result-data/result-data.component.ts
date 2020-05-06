@@ -16,6 +16,7 @@ export class ResultDataComponent implements OnInit {
   public homeTeam: any;
   public visitorTeam: any;
   private randomhours: Array<string>;
+  @Input() gameSelected:number;
 
   constructor(private teamService: TeamService) { }
   ngOnInit(): void {

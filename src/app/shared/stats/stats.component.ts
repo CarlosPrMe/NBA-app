@@ -11,11 +11,11 @@ export class StatsComponent implements OnInit {
   @Input() bgImage: any;
   @Output() detailsPlayer = new EventEmitter<any>();
   public noPlayed: boolean;
-  public avatares:Array<string>;
+  public avatars:Array<string>;
   constructor() { }
 
   ngOnInit(): void {
-    this.avatares = [
+    this.avatars = [
       'https://lh3.googleusercontent.com/-d-cldq0iIFQ/WpakxI3OXoI/AAAAAAAAOs0/v7lpT9KuFvMWyYUlcFBvonmUTFcfkbFhACHMYCw/avatar-santi%255B2%255D?imgmax=800',
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHWAoQ916iRw6xL3xgw8ebhq_XYl6yhiFeq1DMQuQRqLmOR7vv2g&s',
       'https://www.itcsystem.es/wp-content/uploads/2019/01/avatar-372-456324.png',
@@ -27,7 +27,7 @@ export class StatsComponent implements OnInit {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcatI3vf8wLOxUtNrTKIgFVYJgqg5bjFm90BMhg_5iISO976p&s'
     ]
     this.noPlayed = !this.player.min ? true : false;
-    this.player.player.avatar = this._addImagerRandom(0,this.avatares.length-1);
+    this.player.player.avatar = this._addImagerRandom(0,this.avatars.length-1);
     this.player.team.image_url = this.bgImage;
     this.player;
   }
@@ -39,7 +39,7 @@ export class StatsComponent implements OnInit {
 
   private _addImagerRandom(min, max){
     let num = Math.round(Math.random() * (max - min) + min);
-    return this.avatares[num];
+    return this.avatars[num];
   }
 
 }

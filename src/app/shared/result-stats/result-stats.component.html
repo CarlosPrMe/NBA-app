@@ -1,11 +1,26 @@
-<div class="stats">
-    <div class="stats__container">
-        <div class="stats__date" *ngIf="currentGame">Día del partido: <span>{{currentGame.date}} {{currentGame.hourDate}}hs</span></div>
+<div class="stats" #container>
+    <div class="stats__container" >
+        <div class="stats__date" *ngIf="currentGame">Día del partido: <span>{{currentGame.date}}
+                {{currentGame.hourDate}}hs</span>
+
+            <a href="#" [routerLink]="['/stats',idStats]" class="btn btn--primary stats__link">Ir a detalles del encuentro</a>
+            <form class="stats__form form" [formGroup]="myForm" (change)="sortTeams(myForm.value)">
+                <div class="form__group">
+                    <label for="" class="form__label">Ordenado por</label>
+                    <select formControlName="sort" name="sort" id="" class="form__input">
+                        <option *ngFor="let option of optionsFilter" class="{{option.class}}" value="{{option.value}}">
+                            {{option.text}}</option>
+                    </select>
+                </div>
+            </form>
+            <button type="button" class="btn btn--secondary" (click)="changeOrder($event, myForm.value)"><span
+                    class="icon icon-sort"></span></button>
+        </div>
         <div class="stats__block">
             <h3 class="stats__title">{{homeTeamName}}
                 <span class="stats__logo" style="background-image: url({{homeTeamImage}});"> </span>
             </h3>
-            <div class="stats__content">
+            <div class="stats__content" *ngIf="homeTeam">
                 <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="homeTeamImage"
                     *ngFor="let player of homeTeam"></app-stats>
             </div>
@@ -14,14 +29,23 @@
             <h3 class="stats__title">{{visitorTeamName}}
                 <span class="stats__logo" style="background-image: url({{visitorTeamImage}});"> </span>
             </h3>
-            <div class="stats__content">
+            <div class="stats__content" *ngIf="visitorTeam">
                 <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="visitorTeamImage"
                     *ngFor="let player of visitorTeam">
                 </app-stats>
             </div>
         </div>
     </div>
-    <a href="#" [routerLink]="['/stats',idStats]" class="btn btn--primary">Ir a detalles del encuentro</a>
+    <button (click)="showMore($event)" type="button" class="btn btn--primary stats__show-more">
+        <span *ngIf="!showComplete">
+            <span class="icon icon-circle-down"></span><span>Mostrar más</span>
+        </span>
+        <span *ngIf="showComplete">
+            <span class="icon icon-circle-up"></span><span>Mostrar menos</span>
+        </span>
+    </button>
+
 </div>
 
-<app-stats-detail *ngIf="playerStats" [player]="playerStats" (deleteDetails)="onCloseDetails($event)"></app-stats-detail>
+<app-stats-detail *ngIf="playerStats" [player]="playerStats" (deleteDetails)="onCloseDetails($event)">
+</app-stats-detail>

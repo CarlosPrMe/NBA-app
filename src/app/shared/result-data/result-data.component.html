@@ -1,4 +1,4 @@
-<div class="result">
+<div class="result" [ngClass]="{'result--selected': game.id === gameSelected}">
     <a class="result__link" (click)="showStats($event,game.id)">
         <div class="result__block">
             <img *ngIf="homeTeam" src="{{homeTeam.image_url}}"

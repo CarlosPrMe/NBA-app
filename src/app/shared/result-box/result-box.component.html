@@ -4,7 +4,7 @@
             <div class="result-box__container">
                 <h2 class="result-box__title h2">Últimos resultados</h2>
                 <div class="result-box__content">
-                    <app-result-data (showStatsEvent)="onShowStatsEvent($event)" [game]="game" [isFirst]="isFirst" *ngFor="let game of games; first as isFirst"></app-result-data>
+                    <app-result-data (showStatsEvent)="onShowStatsEvent($event)" [gameSelected]="gameSelected?.game?.id" [game]="game" [isFirst]="isFirst" *ngFor="let game of games; first as isFirst"></app-result-data>
                 </div>
             </div>
             <div *ngIf="statsDetailsData" class="result-box__container">

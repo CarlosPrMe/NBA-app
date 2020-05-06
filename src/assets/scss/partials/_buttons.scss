@@ -42,4 +42,9 @@ a.btn,
   &--secondary {
     @include btn($secondary, $white, $black);
   }
+
+  .icon {
+    transition: all $normal ease;
+    display: inline-block;
+  }
 }

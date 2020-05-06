@@ -11,6 +11,25 @@
   border: 1px solid $white;
   border-radius: 4px;
   transition: all $normal ease;
+  position: relative;
+  overflow: hidden;
+
+  &--selected {
+
+    &::before {
+      content: "";
+      background-color: $tertiary;
+      position: absolute;
+      display: block;
+      height: 2.5rem;
+      width: 2rem;
+      left: -1rem;
+      top: -1rem;
+      transform: rotate(45deg);
+      z-index: $over;
+    }
+  }
+
   &:hover {
     border-color: $gray-600;
     box-shadow: 0 0 1rem rgba($black, 0.5);
@@ -20,11 +39,11 @@
     }
     .result__block {
       .result__data {
-        transform: translateX(-.5rem);
+        transform: translateX(-0.5rem);
       }
       &:last-of-type {
         .result__data {
-          transform: translateX(.5rem);
+          transform: translateX(0.5rem);
         }
       }
     }
