@@ -1,0 +1,19 @@
+@import "../../../assets/scss/partials/vars";
+
+.container--flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.team-stat {
+  flex: 0 1 auto;
+  border: 1px solid rgba($primary, 0.4);
+  padding: 2rem;
+  background-color: rgba($black, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 0 2rem rgba($primary, 0.2);
+
+  &__title {
+      margin-bottom: .5rem;
+  }
+}

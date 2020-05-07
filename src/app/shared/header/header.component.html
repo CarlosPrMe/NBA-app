@@ -1,7 +1,27 @@
 <header class="header" *ngIf="team">
-    <img class="header__media" src="{{team.image_url}}" alt="team image">
-    <h1 class="header__title h1" colorTxt="{{team.team_color}}">{{team.full_name}}</h1>
-    <button type="button" class="header__add-favourites" colorTxt="{{team.team_color}}" (click)="addToFavourites($event)">
+    <img class="header__media" src="{{team?.image_url}}" alt="team image">
+    <h1 class="header__title h1" colorTxt="{{team?.team_color}}">{{team?.full_name}}</h1>
+    <button type="button" class="header__add-favourites" colorTxt="{{team?.team_color}}"
+        (click)="addToFavourites($event)">
         <span class="icon icon-plus"></span>
     </button>
+</header>
+
+<header class="header header--game" *ngIf="teams">
+    <div class="header__content">
+        <div class="header__block" *ngFor="let team of teams; first as isFirst"
+            style="background-color: rgba({{team.team_color}}, .15); border:2px solid rgba({{team.team_color}},.5)">
+            <div class="header__media-container">
+                <img class="header__logo" src="{{team.image_url}}" alt="team image">
+            </div>
+            <div class="header__data-container">
+                <h2 class="h2" colorTxt="{{team.team_color}}">{{team.full_name}}</h2>
+                <p class="header__txt"><span
+                        class="h2">{{ isFirst? game.home_team_score : game.visitor_team_score}}</span> pts</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <p class="header__date">Día del partido: <span class="h3">{{game.date | date}}</span></p>
+    </div>
 </header>

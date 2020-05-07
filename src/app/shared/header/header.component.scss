@@ -1,16 +1,25 @@
 @import "../../../assets/scss/partials/vars";
 .header {
-  height: 20rem;
+  min-height: 20rem;
   background-color: $white;
   box-shadow: 0 0 2rem rgba($black, 0.6);
+  margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   padding: 4rem 1rem 1rem;
   position: relative;
+
+  &--game {
+    background-color: rgba($primary, 0.05);
+  }
+
   &__media {
     width: auto;
     object-fit: cover;
     height: 100%;
+    max-height: 15rem;
   }
 
   &__title {
@@ -21,5 +30,58 @@
     position: absolute;
     right: 2rem;
     bottom: 1rem;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__block {
+    flex: 0 1 48%;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba($black, 0.5);
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    position: relative;
+
+    &:nth-child(2) {
+      flex-direction: row-reverse;
+
+      &::before {
+        content: "";
+        position: absolute;
+        display: block;
+        height: 4px;
+        width: 2rem;
+        border-radius: 5px;
+        left: -2.5rem;
+        top: calc(50% - 25px);
+        background-color: $black;
+      }
+
+      .header__data-container {
+        text-align: left;
+      }
+    }
+  }
+
+  &__media-container {
+    flex: 1 0 20%;
+  }
+
+  &__logo {
+    width: 100%;
+    max-width: 19rem;
+  }
+
+  &__data-container {
+    flex: 1 0 auto;
+    text-align: end;
+  }
+
+  &__date {
+    flex: 0 1 100%;
   }
 }

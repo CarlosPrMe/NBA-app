@@ -9,9 +9,10 @@ export class StatsComponent implements OnInit {
 
   @Input() player: any;
   @Input() bgImage: any;
+  @Input() pageStats: boolean;
   @Output() detailsPlayer = new EventEmitter<any>();
   public noPlayed: boolean;
-  public avatars:Array<string>;
+  public avatars: Array<string>;
   constructor() { }
 
   ngOnInit(): void {
@@ -27,17 +28,15 @@ export class StatsComponent implements OnInit {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcatI3vf8wLOxUtNrTKIgFVYJgqg5bjFm90BMhg_5iISO976p&s'
     ]
     this.noPlayed = !this.player.min ? true : false;
-    this.player.player.avatar = this._addImagerRandom(0,this.avatars.length-1);
+    this.player.player.avatar = this._addImagerRandom(0, this.avatars.length - 1);
     this.player.team.image_url = this.bgImage;
-    this.player;
   }
-
 
   public showDetails($event) {
     this.detailsPlayer.emit(this.player);
   }
 
-  private _addImagerRandom(min, max){
+  private _addImagerRandom(min, max) {
     let num = Math.round(Math.random() * (max - min) + min);
     return this.avatars[num];
   }

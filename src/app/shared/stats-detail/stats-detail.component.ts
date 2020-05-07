@@ -8,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class StatsDetailComponent implements OnInit {
 
   @Input() player: any;
-  @Output() deleteDetails = new EventEmitter<any>()
+  @Output() deleteDetails = new EventEmitter<any>();
 
   constructor() { }
 

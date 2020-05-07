@@ -18,8 +18,11 @@
     position: relative;
   }
   
-  &--disabled {
+  &--hidden {
     display: none;
+  }
+
+  &--disabled {
     background-color: rgba($white, 0.3);
     pointer-events: none;
     .card__container {

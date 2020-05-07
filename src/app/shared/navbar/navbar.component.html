@@ -2,13 +2,19 @@
     <app-logo></app-logo>
     <ul class="nav__list">
         <li class="nav__item" *ngIf="!user">
-            <a [routerLink]="['/register']" routerLinkActive="nav__link--active" class="nav__link" href="#">Login</a>
+            <a [routerLink]="['/register']" routerLinkActive="nav__link--active" class="nav__link" href="#">
+                <span class="icon icon-user"></span>
+                Login</a>
         </li>
         <li class="nav__item">
-            <a [routerLink]="['/teams']" routerLinkActive="nav__link--active" class="nav__link" href="#">Listado de equipos</a>
+            <a [routerLink]="['/teams']" routerLinkActive="nav__link--active" class="nav__link" href="#">
+                <span class="icon icon-profile"></span>
+                Listado de equipos</a>
         </li>
         <li class="nav__item">
-            <a [routerLink]="['/searcher']" routerLinkActive="nav__link--active" class="nav__link" href="#">Buscador</a>
+            <a [routerLink]="['/searcher']" routerLinkActive="nav__link--active" class="nav__link" href="#">
+                <span class="icon icon-dribbble"></span>
+                Buscador</a>
         </li>
     </ul>
     <app-menu [user]="user" (closeSessionUser)="onCloseSessionUser($event)"></app-menu>

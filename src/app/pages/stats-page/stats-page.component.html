@@ -1,1 +1,11 @@
-<p>stats-page works!</p>
+<app-header [game]="game" [teams]="teams"></app-header>
+
+<div class="" *ngIf="playersByTeam">
+    <div class="container container--flex">
+        <app-result-stats [stats]="stats" [idStats]="idStatsDetails" [game]="gameSelected" [pageStats]="pageStats">
+        </app-result-stats>
+    </div>
+</div>
+
+<app-stats-detail *ngIf="playerStats" [player]="playerStats" (deleteDetails)="onCloseDetails($event)">
+</app-stats-detail>

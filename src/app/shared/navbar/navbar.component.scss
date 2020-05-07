@@ -32,6 +32,10 @@
           darken($primary, 15%) 100%
         ),
         linear-gradient(to top, $transparent 57%, rgba($white, 0.3) 100%);
+
+      .icon {
+        color: $secondary;
+      }
     }
 
     &--active {
@@ -41,6 +45,10 @@
           darken($primary, 15%) 100%
         ),
         linear-gradient(to bottom, $transparent 57%, rgba($white, 0.3) 100%);
+
+        .icon {
+          color: $secondary;
+        }
     }
   }
 }

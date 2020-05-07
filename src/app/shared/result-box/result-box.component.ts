@@ -12,12 +12,14 @@ export class ResultBoxComponent implements OnInit, OnChanges {
   public gameSelected: any;
   public idStatsDetails: number;
   public statsDetailsData: Array<any>;
+  public pageStats: boolean;
 
   constructor(private teamService: TeamService) { }
 
   ngOnInit(): void { }
   ngOnChanges(change: SimpleChanges) {
     this.games = change.games.currentValue;
+    this.pageStats = false;
   }
 
   public onShowStatsEvent(event) {
