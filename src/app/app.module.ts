@@ -10,7 +10,7 @@ import { CarouselComponent } from './shared/carousel/carousel.component';
 import { LogoComponent } from './shared/logo/logo.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { CardCarouselComponent } from './shared/card-carousel/card-carousel.component';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BgImageDirective } from './directives/bg-image.directive';
 import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';

@@ -8,8 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class StatsComponent implements OnInit {
 
   @Input() player: any;
+  @Input() highlights: boolean;
   @Input() bgImage: any;
   @Input() pageStats: boolean;
+  @Input() index: number;
   @Output() detailsPlayer = new EventEmitter<any>();
   public noPlayed: boolean;
   public avatars: Array<string>;

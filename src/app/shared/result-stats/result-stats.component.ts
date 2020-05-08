@@ -72,7 +72,6 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   ngOnChanges(change: SimpleChanges) {
 
     if (!change.game.firstChange) {
-      // this.statsContainer.nativeElement.style.height = 'initial';
       this.statsContainer.nativeElement.classList.remove('stats--small', 'stats--dropdown');
       this.statsHeight = null;
       this.showComplete = false;

@@ -1,5 +1,18 @@
 <app-header [game]="game" [teams]="teams"></app-header>
 
+<div class="">
+    <div class="container">
+        <h2 class="h2" >Jugadores destacados</h2>
+        <div class="highlights" *ngIf="topPlayers.length">
+            <div class="highlights__block" *ngFor="let player of topPlayers; index as i">
+                <p class="highlights__title">Máximo {{textHighlights[i]}}</p>
+                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player.player" [bgImage]="player?.player?.team?.image_url"
+                [pageStats]="pageStats" [highlights]="highlights" [index]="i"></app-stats>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="" *ngIf="playersByTeam">
     <div class="container container--flex">
         <app-result-stats [stats]="stats" [idStats]="idStatsDetails" [game]="gameSelected" [pageStats]="pageStats">
