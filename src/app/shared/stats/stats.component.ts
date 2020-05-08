@@ -12,6 +12,7 @@ export class StatsComponent implements OnInit {
   @Input() bgImage: any;
   @Input() pageStats: boolean;
   @Input() index: number;
+  @Input() mvp: boolean;
   @Output() detailsPlayer = new EventEmitter<any>();
   public noPlayed: boolean;
   public avatars: Array<string>;
@@ -30,7 +31,7 @@ export class StatsComponent implements OnInit {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcatI3vf8wLOxUtNrTKIgFVYJgqg5bjFm90BMhg_5iISO976p&s'
     ]
     this.noPlayed = !this.player.min ? true : false;
-    this.player.player.avatar = this._addImagerRandom(0, this.avatars.length - 1);
+    !this.player.player.avatar ? this.player.player.avatar = this._addImagerRandom(0, this.avatars.length - 1) : null;
     this.player.team.image_url = this.bgImage;
   }
 

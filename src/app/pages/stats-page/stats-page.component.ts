@@ -27,7 +27,7 @@ export class StatsPageComponent implements OnInit {
   public topPlayers: Array<any>;
   private filterTopPlayer: Array<string>;
   public highlights: boolean;
-  public textHighlights:Array<string>;
+  public textHighlights: Array<string>;
 
   constructor(private activateRouter: ActivatedRoute, private teamService: TeamService) { }
 
@@ -52,7 +52,6 @@ export class StatsPageComponent implements OnInit {
       this.playersByTeam = [this.homeTeamPlayers, this.visitorTeamPlayers];
       this.gameSelected = { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam };
       this.topPlayers = this._getTopPlayers(this.stats, this.filterTopPlayer);
-      debugger
     })
   }
 
@@ -66,12 +65,14 @@ export class StatsPageComponent implements OnInit {
     this.playerStats = null;
   }
 
-   private _getTopPlayers(players: Array<any>, paramFilters: Array<string>): Array<any> {
+  private _getTopPlayers(players: Array<any>, paramFilters: Array<string>): Array<any> {
     let topPlayers: Array<any> = [];
-    paramFilters.forEach(param => {
+    let random = this._randomMVP(0, 3);
+    paramFilters.forEach((param, index) => {
       let player: any = {};
       let newArr = players.sort((a, b) => b[param] - a[param]);
       player.top = param;
+      player.mvp = index === random ? true : false;
       player.player = newArr[0];
       player.player.team.image_url = this._addImageUrlTopPlayer(player, this.teams);
       topPlayers.push(player);
@@ -82,5 +83,11 @@ export class StatsPageComponent implements OnInit {
   private _addImageUrlTopPlayer(player: any, teams: Array<any>): string {
     let team = teams.find(team => team.id_team === player.player.team.id);
     return team.image_url
+  }
+
+
+  private _randomMVP(min, max) {
+    let num = Math.round(Math.random() * (max - min) + min);
+    return num;
   }
 }

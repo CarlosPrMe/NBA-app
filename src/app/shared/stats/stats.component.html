@@ -1,17 +1,23 @@
-<div class="card" (click)="showDetails($event)" [ngClass]="{'card--hidden':noPlayed && !pageStats, 'card--disabled':noPlayed && pageStats, 'card--highlights':highlights}">
+<div class="card" (click)="showDetails($event)"
+    [ngClass]="{'card--hidden':noPlayed && !pageStats, 'card--disabled':noPlayed && pageStats, 'card--highlights':highlights}">
     <div class="card__container">
         <div class="card__media-container">
-            <img class="card__media"
-                src="{{player?.player?.avatar}}"
-                alt="player image">
+            <img class="card__media" src="{{player?.player?.avatar}}" alt="player image">
         </div>
         <div class="card__info">
-            <p class="card__data card__data--lg h4"><span *ngIf="!highlights">Jugador: </span> <span>{{player?.player?.first_name}} {{player?.player?.last_name}}</span></p>
-            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 0 }"><span *ngIf="!highlights">Puntos: </span> {{player?.pts}} <span *ngIf="highlights">puntos</span></p>
-            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 1 }"><span *ngIf="!highlights">Rebotes: </span> {{player?.dreb + player?.oreb}} <span *ngIf="highlights">rebotes</span></p>
-            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 2 }"><span *ngIf="!highlights">Asistencias: </span> {{player?.ast}} <span *ngIf="highlights">asistencias</span></p>
+            <p class="card__data card__data--lg h4"><span *ngIf="!highlights">Jugador: </span>
+                <span>{{player?.player?.first_name}} {{player?.player?.last_name}}</span></p>
+            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 0 }"><span
+                    *ngIf="!highlights">Puntos: </span> {{player?.pts}} <span *ngIf="highlights">puntos</span></p>
+            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 1 }"><span
+                    *ngIf="!highlights">Rebotes: </span> {{player?.dreb + player?.oreb}} <span
+                    *ngIf="highlights">rebotes</span></p>
+            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 2 }"><span
+                    *ngIf="!highlights">Asistencias: </span> {{player?.ast}} <span *ngIf="highlights">asistencias</span>
+            </p>
             <p class="card__data h4" *ngIf="!highlights">Minutos: {{player?.min}}</p>
-            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 3 }" *ngIf="highlights">{{player?.blk}} tapones</p>
+            <p class="card__data h4" [ngClass]="{'card__data--highlights' : index === 3 }" *ngIf="highlights">
+                {{player?.blk}} tapones</p>
         </div>
         <img class="card__logo" src="{{bgImage}}" alt="team image">
     </div>
@@ -19,4 +25,9 @@
         <span *ngIf="noPlayed" class="icon icon-dribbble"></span>
         <span class="card__text">Sin acción en el juego</span>
     </div>
+
+    <span class="card__detail" [ngClass]="{'card__detail--show':mvp}">
+        <span class="icon icon-trophy"></span>
+        MVP
+    </span>
 </div>
