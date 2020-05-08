@@ -16,7 +16,7 @@ export class ResultDataComponent implements OnInit {
   public homeTeam: any;
   public visitorTeam: any;
   private randomhours: Array<string>;
-  @Input() gameSelected:number;
+  @Input() gameSelected: number;
 
   constructor(private teamService: TeamService) { }
   ngOnInit(): void {
@@ -38,7 +38,9 @@ export class ResultDataComponent implements OnInit {
 
   public showStats(event, game_id) {
     event.preventDefault();
-    this.showStatsEvent.emit([game_id, { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam }])
+    if (this.gameSelected !== game_id) {
+      this.showStatsEvent.emit([game_id, { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam }])
+    }
   }
 
   private _addImagerRandom(min, max) {
