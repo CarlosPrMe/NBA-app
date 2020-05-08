@@ -1,9 +1,11 @@
 <div class="stats" [ngClass]="{'stats--page': pageStats}" #container>
-    <div class="stats__container" >
-        <div class="stats__date" *ngIf="currentGame"><span class="icon icon-address-card"></span> Día del partido: <span>{{currentGame.date | date}} </span>
+    <div class="stats__container">
+        <div class="stats__date" *ngIf="currentGame"><span class="icon icon-address-card"></span> Día del partido:
+            <span>{{currentGame.date | date}} </span>
             <span> {{currentGame?.hourDate}}hs</span>
 
-            <a href="#" *ngIf="!pageStats" [routerLink]="['/stats',idStats]" class="btn btn--primary stats__link">Ir a detalles del encuentro</a>
+            <a href="#" *ngIf="!pageStats" [routerLink]="['/stats',idStats]" class="btn btn--primary stats__link">Ir a
+                detalles del encuentro</a>
             <form class="stats__form form" [formGroup]="myForm" (change)="sortTeams(myForm.value)">
                 <div class="form__group">
                     <label for="" class="form__label">Ordenado por</label>
@@ -19,11 +21,13 @@
 
         <div class="stats__block" *ngFor="let team of teams">
             <h3 class="stats__title" [ngClass]="{'h2': pageStats}">{{team.full_name}}
-                <span class="stats__logo" style="background-image: url({{team?.image_url}});box-shadow:0 0 1rem rgba({{team?.team_color}}, 1);"> </span>
+                <span class="stats__logo"
+                    style="background-image: url({{team?.image_url}});box-shadow:0 0 1rem rgba({{team?.team_color}}, 1);">
+                </span>
             </h3>
             <div class="stats__content">
-                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="team?.image_url" [pageStats]="pageStats"
-                    *ngFor="let player of team.players"></app-stats>
+                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="team?.image_url"
+                    [pageStats]="pageStats" *ngFor="let player of team.players"></app-stats>
             </div>
         </div>
     </div>

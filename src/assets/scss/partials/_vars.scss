@@ -50,24 +50,28 @@ $mobile: 768px;
 $tablet: 992px;
 $desktop: 1200px;
 
-
-
-// Animations 
+// Animations
 
 @keyframes showIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
 
-  @keyframes spinner {
-    from{
-      transform: rotate(0);
-    }
-    to{
-      transform: rotate(360deg);
-    }
+@keyframes spinner {
+  from {
+    transform: rotate(0);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Vars to change
+
+:root {
+  --height-dropdown: "initial";
+}

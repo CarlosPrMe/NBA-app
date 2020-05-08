@@ -2,21 +2,25 @@
 
 .stats {
   display: flex;
-  width: 100;
   flex-direction: column;
   overflow: hidden;
   position: relative;
+  min-height: 25rem;
   transition: all $normal ease;
 
   &--small {
-    height: 25rem;
+    height: calc(var(--height-dropdown) / 4);
+  }
+
+  &--dropdown {
+    height: var(--height-dropdown);
   }
 
   &--page {
     overflow: visible;
     padding: 2rem 1.5rem;
     background-color: $gray-200;
-    box-shadow: inset 0 0 .5rem .5rem rgba($white, 0.8);
+    box-shadow: inset 0 0 0.5rem 0.5rem rgba($white, 0.8);
 
     .stats__container {
       justify-content: space-between;

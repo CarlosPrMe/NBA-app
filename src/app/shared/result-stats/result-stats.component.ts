@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
-import { FormBuilder, Form } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-result-stats',
@@ -70,6 +70,14 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   }
 
   ngOnChanges(change: SimpleChanges) {
+
+    if (!change.game.firstChange) {
+      // this.statsContainer.nativeElement.style.height = 'initial';
+      this.statsContainer.nativeElement.classList.remove('stats--small', 'stats--dropdown');
+      this.statsHeight = null;
+      this.showComplete = false;
+    }
+
     this.homeTeam = {};
     this.visitorTeam = {};
     this.currentGame = change.game.currentValue.game;
@@ -96,10 +104,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   }
 
   ngAfterViewChecked() {
-    if (this.statsContainer && !this.statsHeight && !this.pageStats) {
-      this.statsHeight = this.statsContainer.nativeElement.clientHeight;
-      this.statsContainer.nativeElement.classList.add('stats--small');
-    }
+    this._getHeightContent();
   }
 
 
@@ -148,7 +153,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
 
   public showMore(event) {
     this.showComplete = !this.showComplete;
-    this.showComplete ? this.statsContainer.nativeElement.style.height = `${this.statsHeight}px` : this.statsContainer.nativeElement.style.height = '25rem';
+    this.statsContainer.nativeElement.classList.toggle('stats--dropdown');
   }
 
   private playersNoAction(team: Array<any>): Array<any> {
@@ -158,5 +163,17 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
       player.min !== null ? playersAction.push(player) : playersNoAction.push(player)
     })
     return playersAction.concat(playersNoAction);
+  }
+
+  private _getHeightContent(): void {
+    if (this.statsContainer && !this.statsHeight && !this.pageStats) {
+      this.statsHeight = this.statsContainer.nativeElement.clientHeight;
+      this._changeValueHeight(this.statsHeight);
+      this.statsContainer.nativeElement.classList.add('stats--small');
+    }
+  }
+
+  private _changeValueHeight(value: number): void {
+    document.querySelector("html").style.setProperty('--height-dropdown', `${value}px`);
   }
 }
