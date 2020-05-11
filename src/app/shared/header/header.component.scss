@@ -16,6 +16,15 @@
     background-color: rgba($primary, 0.05);
   }
 
+  &--teams {
+    background-image: url('../../../assets/img/team_page02.jpg');
+    background-position: center 62%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-bottom: 6px solid $danger;
+    box-shadow: 0 0 2rem rgba($danger, 0.6);
+  }
+
   &__media {
     height: 100%;
     max-height: 15rem;

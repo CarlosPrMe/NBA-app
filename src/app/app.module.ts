@@ -30,6 +30,7 @@ import { StatsDetailComponent } from './shared/stats-detail/stats-detail.compone
 import { HeightPipe } from './pipes/height.pipe';
 import { WeightPipe } from './pipes/weight.pipe';
 import { PositionPipe } from './pipes/position.pipe';
+import { PlayerPageComponent } from './pages/player-page/player-page.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { PositionPipe } from './pipes/position.pipe';
     StatsDetailComponent,
     HeightPipe,
     WeightPipe,
-    PositionPipe
+    PositionPipe,
+    PlayerPageComponent
   ],
   imports: [
     BrowserModule,

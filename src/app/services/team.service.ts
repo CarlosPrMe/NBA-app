@@ -30,6 +30,7 @@ export class TeamService {
   getTeamById(id): Observable<any> {
     return this.http.get(`${this.url}team/${id}`);
   }
+
   getTeamImagesById(ids): Observable<any> {
     return this.http.post(`${this.url}team-image`, ids);
   }
@@ -42,5 +43,11 @@ export class TeamService {
   getStatsById(id): Observable<any> {
     let mis_headers = new HttpHeaders(this.rapid_headers);
     return this.http.get(`https://free-nba.p.rapidapi.com/stats?game_ids[]=${id}&page=0&per_page=30}`, { headers: mis_headers });
+  }
+
+  getGamesByTeam(id: number, year: string = '2018'): Observable<any> {
+    let mis_headers = new HttpHeaders(this.rapid_headers);
+    return this.http.get(`https://free-nba.p.rapidapi.com/games?Seasons[]=${year}team_ids[]=${id}&per_page=82"}`, { headers: mis_headers });
+
   }
 }

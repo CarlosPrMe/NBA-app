@@ -1,6 +1,6 @@
-<div *ngIf="player" class="details" #detail>
+<div *ngIf="player" class="details" >
     <img class="details__background" src="{{player.team.image_url}}" alt="">
-    <div class="details__box">
+    <div class="details__box" #detail>
         <div class="details__content">
             <button type="button" class="btn btn--primary" (click)="closeDetails($event)">
                 <span class="icon icon-cross"></span>
@@ -11,7 +11,7 @@
                     <img src="{{player.player.avatar}}" alt="player image">
                 </span>
                 <div class="details__player">
-                    <span class="details__data">Jugador: {{player.player.first_name}} {{player.player.last_name}}</span>
+                    <span class="details__data">Jugador: <a class="details__link" href="#" [routerLink]="['/player',player.player.id ]">{{player.player.first_name}} {{player.player.last_name}}</a></span>
                     <span class="details__data">Altura: {{player.player.height_feet | height}} m</span>
                     <span class="details__data">Peso: {{player.player.weight_pounds | weight}} kg</span>
                     <span class="details__data">Posición: {{player.player.position | position}}</span>

@@ -1,3 +1,35 @@
-<p>teams works!</p>
+<div class="wrapper">
+    <app-header [backgroundImg]='imageHeader'></app-header>
 
-<header></header>
+    <main class="main">
+
+        <div class="bg-dark">
+            <div class="container">
+                <div class="teams" *ngIf="westConference.length && eastConference.length">
+                    <h2 class="teams__title h2">Conferencia Oeste</h2>
+                    <h2 class="teams__title h2">Conferencia Este</h2>
+                    <div class="teams__block" *ngIf="westConference.length">
+                        <a *ngFor="let team of westConference; index as i" href="#" [routerLink]="['/team', team.id_team]" class="teams__media">
+                            <img class="teams__logo" src="{{team.image_url}}" alt="team image">
+                            <span class="teams__name">{{team.full_name}}</span>
+                            <span class="teams__data"> Pos: {{i + 1}}</span>
+                        </a>
+                    </div>
+                    <div class="teams__block" *ngIf="eastConference.length">
+                        <a *ngFor="let team of eastConference; index as i" href="#" [routerLink]="['/team', team.id_team]" class="teams__media">
+                            <img class="teams__logo" src="{{team.image_url}}" alt="team image">
+                            <span class="teams__name">{{team.full_name}}</span>
+                            <span class="teams__data"> Pos: {{i + 1}}</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="playoffs">
+                
+            </div>
+        </div>
+    </main>
+</div>

@@ -106,16 +106,6 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
     this._getHeightContent();
   }
 
-
-  @HostListener('document:click', ['$event'])
-  clickout(event) {
-    if (this.playerStats) {
-      if (!this.detail?.nativeElement.contains(event.target)) {
-        this.onCloseDetails(event);
-      }
-    }
-  }
-
   onDetailsPlayer(event) {
     setTimeout(() => {
       this.playerStats = event;

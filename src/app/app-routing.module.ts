@@ -6,40 +6,58 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 import { SearcherPageComponent } from './pages/searcher-page/searcher-page.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { TeamResolver } from './resolvers/team.resolver';
+import { TeamsResolver } from './resolvers/teams.resolver';
 import { StatsResolver } from './resolvers/stats.resolver';
 import { StatsPageComponent } from './pages/stats-page/stats-page.component';
+import { PlayerPageComponent } from './pages/player-page/player-page.component';
 
 const routes: Routes = [
   {
-    path:'home',
+    path: 'home',
     component: HomePageComponent
   },
   {
-    path:'register',
+    path: 'register',
     component: RegisterPageComponent
   },
   {
-    path:'searcher',
+    path: 'searcher',
     component: SearcherPageComponent
   },
   {
-    path:'teams',
-    component: TeamsComponent
+    path: 'teams',
+    component: TeamsComponent,
+    resolve: {
+      teams : TeamsResolver
+    }
   },
   {
-    path:'team/:id',
-    component:TeamPageComponent,
-    resolve:{
+    path: 'team/:id',
+    component: TeamPageComponent,
+    resolve: {
       team: TeamResolver
     }
   },
   {
-    path:'stats/:id',
-    component:StatsPageComponent,
-    resolve:{
+    path: 'stats/:id',
+    component: StatsPageComponent,
+    resolve: {
       stats: StatsResolver
     }
-  }
+  },
+  {
+    path: 'player/:id',
+    component: PlayerPageComponent,
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
+  },
 ];
 
 @NgModule({

@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   @Input() team: TeamModel;
   @Input() game: any;
   @Input() teams: Array<any>;
+  @Input() backgroundImg:string;
   @Output() newFavourite = new EventEmitter<any>();
 
   constructor() { }
