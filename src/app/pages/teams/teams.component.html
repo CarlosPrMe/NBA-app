@@ -10,18 +10,27 @@
                     <h2 class="teams__title h2">Conferencia Este</h2>
 
                     <div *ngFor="let conference of teamsSorted" class="teams__block">
-                        <a (click)="showDetails($event,team.id_team)" *ngFor="let team of conference; index as i"
-                            href="#" class="teams__media"
-                            [ngClass]="{'teams__media--clasified': i < 8}">
+                        <div (click)="showDetails($event,team.id_team)" *ngFor="let team of conference; index as i"
+                            class="teams__media" [ngClass]="{'teams__media--clasified': i < 8}">
                             <img class="teams__logo" src="{{team.image_url}}" alt="team image">
                             <span class="teams__name">{{team.full_name}}</span>
                             <span class="teams__data"> Pos: {{i + 1}}</span>
-                        </a>
-                        <div class="teams__details">
-                            <p>caca</p>
-                            <div class="match" *ngFor="let match of details">
-                                <p>{{match.home_team.full_name}}</p>
-                                <p>{{match.visitor_team.full_name}}</p>
+                            <span
+                                *ngIf="!matchesResume || matchesResume && team.id_team === currentDetailId && !resumeShow || matchesResume && team.id_team !== currentDetailId"
+                                class="teams__show-more h4">Click para ver útlimos resultados</span>
+                            <span *ngIf="matchesResume && team.id_team === currentDetailId && resumeShow"
+                                class="teams__show-more h4">Click para ocultar</span>
+                            <div class="teams__details" *ngIf="matchesResume && team.id_team === currentDetailId"
+                                [ngClass]="{'teams__details--show' :team.id_team === currentDetailId && resumeShow}">
+                                <h3 class="h4">Últimos 10 encuentros</h3>
+                                <a class="teams__link" href="#" [routerLink]="['/stats',game.id]"
+                                    *ngFor="let game of matchesResume">
+                                    <app-result-data [simpleData]="noDate" [game]="game"> </app-result-data>
+                                </a>
+                                <div class="teams__btns">
+                                    <button (click)="hideMatch" type="button" class="btn btn--primary h4"><span
+                                            class="icon icon-circle-up"></span></button>
+                                </div>
                             </div>
                         </div>
                     </div>

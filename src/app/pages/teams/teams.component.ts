@@ -19,12 +19,17 @@ export class TeamsComponent implements OnInit {
   public playoffs: Array<any>;
   public simulated: boolean;
   public winner: any;
-  public details: Array<any>;
-  private currentDetailId: number;
+  public matchesResume: Array<any>;
+  public resumeShow: boolean;
+  public currentDetailId: number;
+  public noDate: boolean;
+  private positionScroll: number;
 
   constructor(private activateRouter: ActivatedRoute, private teamService: TeamService) { }
 
   ngOnInit(): void {
+    this.noDate = true;
+    this.resumeShow = false;
     this.imageHeader = true;
     this.westConference = [];
     this.eastConference = [];
@@ -87,16 +92,33 @@ export class TeamsComponent implements OnInit {
   }
 
   public showDetails(event, id) {
-    event.preventDefault();
-    debugger
+    let content = document.getElementsByClassName('teams__details--show');
     if (id !== this.currentDetailId) {
       this.currentDetailId = id;
-      this.details = null;
+      this.matchesResume = null;
+      this.positionScroll = window.pageYOffset;
       this.teamService.getGamesByTeam(id).subscribe(res => {
-        this.details = res.data;
-        console.log(this.details);
+        this.matchesResume = res.data;
+        this.resumeShow = true;
       })
+    } else if (id === this.currentDetailId && content.length) {
+      content[0].classList.remove('teams__details--show');
+      this.resumeShow = false;
+      this._scroll(this.positionScroll);
+    } else if (id === this.currentDetailId) {
+      this.resumeShow = true;
     }
   }
 
+  public hideMatch() {
+    this.resumeShow = !this.resumeShow;
+  }
+
+  private _scroll(position) {
+    window.scroll({
+      top: position,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
 }

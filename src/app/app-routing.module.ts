@@ -10,6 +10,7 @@ import { TeamsResolver } from './resolvers/teams.resolver';
 import { StatsResolver } from './resolvers/stats.resolver';
 import { StatsPageComponent } from './pages/stats-page/stats-page.component';
 import { PlayerPageComponent } from './pages/player-page/player-page.component';
+import { GamesResolver } from './resolvers/games.resolver';
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
     path: 'team/:id',
     component: TeamPageComponent,
     resolve: {
-      team: TeamResolver
+      team: TeamResolver,
+      games: GamesResolver
     }
   },
   {

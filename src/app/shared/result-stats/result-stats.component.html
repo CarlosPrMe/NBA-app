@@ -22,7 +22,7 @@
         <div class="stats__block" *ngFor="let team of teams">
             <h3 class="stats__title" [ngClass]="{'h2': pageStats}">{{team.full_name}}
                 <span class="stats__logo"
-                    style="background-image: url({{team?.image_url}});box-shadow:0 0 1rem rgba({{team?.team_color}}, 1);">
+                    style="background-image: url({{team?.image_url}});box-shadow:0 0 1rem rgba({{team?.team_color}} , 1)">
                 </span>
             </h3>
             <div class="stats__content">

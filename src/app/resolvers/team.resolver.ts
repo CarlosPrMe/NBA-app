@@ -9,10 +9,7 @@ export class TeamResolver implements Resolve<TeamModel> {
 
     constructor(private teamService: TeamService) { }
 
-    resolve(
-        route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot
-    ): Observable<any> | Promise<any> | any {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
         return this.teamService.getTeamById(route.paramMap.get('id'));
     }
 }

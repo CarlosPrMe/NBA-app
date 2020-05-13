@@ -15,7 +15,6 @@
   overflow: hidden;
 
   &--selected {
-
     &::before {
       content: "";
       background-color: $tertiary;
@@ -27,6 +26,10 @@
       top: -1rem;
       transform: rotate(45deg);
     }
+  }
+
+  &--resalted {
+    border-color: $gray-500;
   }
 
   &:hover {
@@ -92,6 +95,13 @@
     transition: all $normal ease;
     &:last-child {
       font-size: $fs-md;
+    }
+
+    &--sm {
+      font-size: $fs-sm;
+      &:last-child {
+        font-size: $fs-base;
+      }
     }
   }
 }

@@ -10,6 +10,7 @@ export class ResultDataComponent implements OnInit {
 
   @Input() game: any;
   @Input() isFirst: boolean;
+  @Input() simpleData: boolean;
   @Output() showStatsEvent = new EventEmitter<any>();
   public teamsId: Array<number>;
   public images: Array<any>
@@ -27,9 +28,9 @@ export class ResultDataComponent implements OnInit {
       this.homeTeam = this.images.find(t => t.id_team === this.game.home_team.id);
       this.visitorTeam = this.images.find(t => t.id_team === this.game.visitor_team.id);
       let day = document.getElementsByClassName('result__date')[0];
-      let dateSeparated = day.textContent.split(' ');
+      let dateSeparated = day?.textContent?.split(' ');
       this.game.hourDate = this._addImagerRandom(0, this.randomhours.length - 1);
-      this.game.date = dateSeparated[0];
+      this.game.date = dateSeparated ? dateSeparated[0] : null;
       if (this.isFirst) {
         this.showStatsEvent.emit([this.game.id, { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam }]);
       }

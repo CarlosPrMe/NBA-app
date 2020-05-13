@@ -1,1 +1,24 @@
 <app-header [team]="team"></app-header>
+
+    <div class="container">
+        <div class="team-page">
+            <div class="team-page__container">
+                <h2 class="team-page__title h2">
+                    <img class="team-page__logo" src="{{team.image_url}}" alt="">
+                     Resultados de <span class="team-page__team-name" colorTxt="{{team?.team_color}}"> {{team.full_name}}</span> </h2>
+                <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.3);">
+                    <a class="team-page__link" href="#" [routerLink]="['/stats', game?.id]" *ngFor="let game of games">
+                        <app-result-data [game]="game"></app-result-data>
+                    </a>
+                </div>
+            </div>
+            <div class="team-page__container">
+                <h2 class="team-page__title h2">
+                    <img class="team-page__logo" src="{{team.image_url}}" alt="">
+                     Plantilla de <span class="team-page__team-name" colorTxt="{{team?.team_color}}"> {{team.full_name}}</span> </h2>
+                <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">
+                    <app-card [player]="player" *ngFor="let player of players"></app-card>
+                </div>
+            </div>
+        </div>
+    </div>

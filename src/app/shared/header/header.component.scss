@@ -17,7 +17,7 @@
   }
 
   &--teams {
-    background-image: url('../../../assets/img/team_page02.jpg');
+    background-image: url("../../../assets/img/team_page02.jpg");
     background-position: center 62%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -40,6 +40,16 @@
     position: absolute;
     bottom: 1rem;
     right: 2rem;
+    border: 1px solid $transparent;
+
+    &:hover {
+      border-color: $gray-700;
+
+      .icon {
+        transform: scale(1.05);
+        color: $gray-800;
+      }
+    }
   }
 
   &__content {

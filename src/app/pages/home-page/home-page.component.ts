@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from 'src/app/services/team.service';
-import { strict } from 'assert';
 
 @Component({
   selector: 'app-home-page',

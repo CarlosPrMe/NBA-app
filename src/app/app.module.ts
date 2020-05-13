@@ -31,6 +31,7 @@ import { HeightPipe } from './pipes/height.pipe';
 import { WeightPipe } from './pipes/weight.pipe';
 import { PositionPipe } from './pipes/position.pipe';
 import { PlayerPageComponent } from './pages/player-page/player-page.component';
+import { CardComponent } from './shared/card/card.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PlayerPageComponent } from './pages/player-page/player-page.component';
     HeightPipe,
     WeightPipe,
     PositionPipe,
-    PlayerPageComponent
+    PlayerPageComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
