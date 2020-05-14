@@ -1,12 +1,12 @@
 <a class="card" href="#" [routerLink]="['/player', player.id]">
-
+    <img class="card__background" src="{{teamImage}}" alt="team image">
     <span class="card__avatar">
         <img src="{{player?.avatar}}" alt="player image">
     </span>
     <div class="card__content">
-        <span class="card__data h4">Jugador: {{player.first_name}} {{player.last_name}}</span>
-        <span class="card__data h4">Altura: {{player.height_feet | height}} m</span>
-        <span class="card__data h4">Peso: {{player.weight_pounds | weight}} kg</span>
-        <span class="card__data h4">Posición: {{player.position | position}}</span>
+        <span class="card__data h4">Jugador: <strong>{{player.first_name}} {{player.last_name}}</strong></span>
+        <span class="card__data h4">Altura: <strong>{{player.height_feet | height}} m</strong></span>
+        <span class="card__data h4">Peso: <strong>{{player.weight_pounds | weight}} kg</strong></span>
+        <span class="card__data card__data--capitalice h4">Posición: <strong>{{player.position | position}}</strong></span>
     </div>
 </a>

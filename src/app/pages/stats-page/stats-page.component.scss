@@ -7,19 +7,19 @@
 
 .team-stat {
   flex: 0 1 auto;
-  border: 1px solid rgba($primary, 0.4);
+  border: 1px solid rgba($primary, .4);
   padding: 2rem;
-  background-color: rgba($black, 0.15);
+  background-color: rgba($black, .15);
   border-radius: 10px;
-  box-shadow: 0 0 2rem rgba($primary, 0.2);
+  box-shadow: 0 0 2rem rgba($primary, .2);
 
   &__title {
-    margin-bottom: 0.5rem;
+    margin-bottom: .5rem;
   }
 }
 
 .highlights {
-  background-color: rgba($white, 0.7);
+  background-color: rgba($white, .7);
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
@@ -38,6 +38,6 @@
     text-transform: uppercase;
     padding: .5rem;
     border-radius: 5px;
-    box-shadow: 0 0 1rem rgba($black, 0.15);
+    box-shadow: 0 0 1rem rgba($black, .15);
   }
 }

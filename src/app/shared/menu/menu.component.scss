@@ -12,7 +12,7 @@
     color: $white;
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 0;
+    padding: .5rem 0;
     text-decoration: none;
 
     &:hover {
@@ -30,13 +30,13 @@
 
   &__avatar {
     border-radius: 100%;
-    margin-right: 0.5rem;
+    margin-right: .5rem;
     max-width: 2.5rem;
     transition: transform $fast ease;
     &.icon-user {
       border-radius: 100%;
       border: 1px solid $white;
-      padding: 0.5rem;
+      padding: .5rem;
     }
   }
 
@@ -44,7 +44,7 @@
     background-color: $secondary;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-    box-shadow: 0 0 1rem rgba($black, 0.8);
+    box-shadow: 0 0 1rem rgba($black, .8);
     position: absolute;
     right: -1rem;
     display: flex;

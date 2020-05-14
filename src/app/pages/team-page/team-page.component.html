@@ -17,7 +17,7 @@
                     <img class="team-page__logo" src="{{team.image_url}}" alt="">
                      Plantilla de <span class="team-page__team-name" colorTxt="{{team?.team_color}}"> {{team.full_name}}</span> </h2>
                 <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">
-                    <app-card [player]="player" *ngFor="let player of players"></app-card>
+                    <app-card [teamImage]="team.image_url" [player]="player" *ngFor="let player of players"></app-card>
                 </div>
             </div>
         </div>

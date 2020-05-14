@@ -9,6 +9,7 @@ export class CardComponent implements OnInit {
 
 
   @Input() player: any;
+  @Input() teamImage: string;
   public avatars: Array<any>;
   constructor() { }
 
@@ -25,5 +26,4 @@ export class CardComponent implements OnInit {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRcatI3vf8wLOxUtNrTKIgFVYJgqg5bjFm90BMhg_5iISO976p&s'
     ]
   }
-
 }

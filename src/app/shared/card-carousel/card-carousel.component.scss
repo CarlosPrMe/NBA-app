@@ -14,7 +14,7 @@
     flex-direction: column;
     height: 100%;
     justify-content: space-between;
-    padding: 0.5rem;
+    padding: .5rem;
   }
 
   &__media {
@@ -28,17 +28,17 @@
     background-position: center;
     background-size: 80%;
     background-repeat: no-repeat;
-    box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba($black, 0.5);
+    box-shadow: inset 0 0 1rem rgba(0, 0, 0, .4);
+    border: 1px solid rgba($black, .5);
     display: inline-block;
     flex: 1 0 75%;
-    margin-bottom: 0.5rem;
+    margin-bottom: .5rem;
     transition: transform $normal ease;
 
     &:hover {
       transform: scale(1.1);
       & + .card-carousel__title {
-        transform: translateY(0.5rem);
+        transform: translateY(.5rem);
         font-size: 100%;
       }
     }

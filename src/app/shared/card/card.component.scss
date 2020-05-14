@@ -2,6 +2,7 @@
 
 :host {
     width: 48%;
+    margin-bottom: 1rem;
 }
 
 .card {
@@ -13,13 +14,27 @@
     padding: .5rem;
     box-shadow: 0 0 1rem rgba($black, .3);
     border-radius: 5px;
-    margin-bottom: 1rem;
     transition: all $normal ease;
-    
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+
+    &__background {
+        position: absolute;
+        width: 100%;
+        opacity: .2;
+        right: -7.5rem;
+        top: -3rem;
+        transition: all $normal ease;
+    }
+
     &:hover {
         border-color: $white;
         box-shadow: 0 0 1rem rgba($black, .5);
         background-color: rgba($white, .4);
+        .card__background {
+            opacity: .4;
+        }
     }
 
     &__avatar {
@@ -27,6 +42,7 @@
         align-self: center;
         border-radius: 100%;
         overflow: hidden;
+        z-index: $over;
         img {
             display: inline-block;
             max-width: 100%;
@@ -38,9 +54,14 @@
         flex: 0 1 50%;
         display: flex;
         flex-direction: column;
+        z-index: $over;
     }
 
     &__data {
-        padding: 0.3rem;
+        padding: .3rem;
+
+        &--capitalice {
+            text-transform: capitalize;
+        }
     }
 }

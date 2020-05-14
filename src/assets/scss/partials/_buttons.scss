@@ -4,13 +4,13 @@
   $shadow-color: $black,
   $border: 0,
   $border-radius: 4px,
-  $padding: 0.5rem 1rem
+  $padding: .5rem 1rem
 ) {
   background-color: $bg-color;
   border: $border;
   border-radius: $border-radius;
-  box-shadow: 0 0 1rem rgba($shadow-color, 0.4),
-    inset 1px -6px 8px 1px rgba($black, 0.4);
+  box-shadow: 0 0 1rem rgba($shadow-color, .4),
+    inset 1px -6px 8px 1px rgba($black, .4);
   color: $color;
   cursor: pointer;
   display: inline-block;

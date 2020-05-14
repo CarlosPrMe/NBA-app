@@ -23,11 +23,11 @@
   }
 
   &--disabled {
-    background-color: rgba($white, 0.3);
+    background-color: rgba($white, .3);
     pointer-events: none;
     .card__container {
       cursor: default;
-      opacity: 0.3;
+      opacity: .3;
     }
   }
 
@@ -49,7 +49,7 @@
       border-bottom-left-radius: 5px;
       border-top-left-radius: 5px;
       flex-basis: 100%;
-      padding: 0.3rem 0.5rem 0.2rem;
+      padding: .3rem .5rem .2rem;
       position: relative;
       z-index: $over;
 
@@ -61,7 +61,7 @@
     }
 
     .card__logo {
-      top: -0.5rem;
+      top: -.5rem;
       right: -5rem;
       width: 9rem;
     }
@@ -78,9 +78,9 @@
   &:not(.card--disabled):hover {
     cursor: pointer;
     .card__logo {
-      opacity: 0.8;
+      opacity: .8;
     }
-    box-shadow: 0 0 1rem rgba($black, 0.5);
+    box-shadow: 0 0 1rem rgba($black, .5);
   }
 
   &__media-container {
@@ -91,12 +91,12 @@
   &__media {
     border-radius: 100%;
     display: inline-block;
-    margin: 0.5rem;
+    margin: .5rem;
     max-width: 3rem;
   }
 
   &__info {
-    padding: 0.5rem;
+    padding: .5rem;
     flex: 1 0 75%;
     display: flex;
     flex-direction: row;
@@ -118,7 +118,7 @@
     }
 
     &--highlights {
-      background-color: rgba($primary, 0.5);
+      background-color: rgba($primary, .5);
     }
   }
 
@@ -127,7 +127,7 @@
     top: 0;
     right: -2.5rem;
     width: 5rem;
-    opacity: 0.2;
+    opacity: .2;
     transition: all $normal ease;
   }
 
@@ -150,7 +150,7 @@
 
   &__text {
     font-size: 1.2rem;
-    padding: 0.5rem;
+    padding: .5rem;
     text-shadow: 0 0 1rem $black;
   }
 
@@ -160,10 +160,10 @@
     left: 0;
     top: 0;
     border-bottom-right-radius: 5px;
-    padding: 0.5rem;
-    background-color: rgba($primary, 0.6);
+    padding: .5rem;
+    background-color: rgba($primary, .6);
     color: $white;
-    box-shadow: inset 0 0 0.5rem rgba($black, 0.65);
+    box-shadow: inset 0 0 .5rem rgba($black, .65);
 
     &--show {
       display: inline-block;

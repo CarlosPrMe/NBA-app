@@ -6,7 +6,7 @@
   &__container {
     height: 18rem;
     border: 5px solid $secondary;
-    background-color: rgba($white, 0.8);
+    background-color: rgba($white, .8);
     overflow: hidden;
     position: relative;
     &:hover {
@@ -19,12 +19,12 @@
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0.5rem 0;
+    padding: .5rem 0;
     transition: all $normal ease-in;
   }
 
   &__btn {
-    background-color: rgba($black, 0.2);
+    background-color: rgba($black, .2);
     color: $white;
     color: $secondary;
     height: 100%;
