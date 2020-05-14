@@ -1,0 +1,9 @@
+<div class="paginator" *ngIf="totalPages.length <= 10">
+    <a href="#" (click)="paginate($event, (i+1))" class="paginator__page"
+        *ngFor="let pages of totalPages; index as i" [ngClass]="{'paginator__page--current': data.current_page === i+1}">{{i + 1}}</a>
+</div>
+<div class="paginator" *ngIf="totalPages.length > 10">
+    <span (click)="paginate($event, (data.current_page - 1))" class="paginator__page icon icon-circle-left" [ngClass]="{'paginator__page--disabled': data.current_page === 1}"></span>
+    <span class="paginator__text">Página {{data.current_page}} de {{data.total_pages}}</span>
+    <span (click)="paginate($event, (data.current_page + 1))" class="paginator__page icon icon-circle-right" [ngClass]="{'paginator__page--disabled': data.current_page === data.total_pages}"></span>
+</div>

@@ -32,6 +32,8 @@ import { WeightPipe } from './pipes/weight.pipe';
 import { PositionPipe } from './pipes/position.pipe';
 import { PlayerPageComponent } from './pages/player-page/player-page.component';
 import { CardComponent } from './shared/card/card.component';
+import { PaginatorComponent } from './shared/paginator/paginator.component';
+import { FormFiltersComponent } from './shared/form-filters/form-filters.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { CardComponent } from './shared/card/card.component';
     WeightPipe,
     PositionPipe,
     PlayerPageComponent,
-    CardComponent
+    CardComponent,
+    PaginatorComponent,
+    FormFiltersComponent
   ],
   imports: [
     BrowserModule,
