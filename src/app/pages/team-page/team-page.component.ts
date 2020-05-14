@@ -19,9 +19,17 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
   public games: Array<any>;
   public meta: any;
   public avatars: Array<any>;
+  public pagesNum: Array<any>;
+  public smallTeamName: boolean;
+  private perPage: any;
+  public seasonsAvailable: any;
   constructor(private activate: ActivatedRoute, private teamService: TeamService, private userService: UserService) { }
 
   ngOnInit(): void {
+    this.perPage = 10;
+    this.smallTeamName = true;
+    this.pagesNum = [5, 10, 15];
+    this.seasonsAvailable = [2018, 2017, 2016, 2015, 2014];
     this.team = this.activate.snapshot.data.team;
     this.games = this.activate.snapshot.data.games.data;
     this.meta = this.activate.snapshot.data.games.meta;
@@ -45,14 +53,27 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
   }
 
   public onChangePage(event) {
-    this.teamService.getGamesByTeam(this.team.id_team, event).subscribe(res => {
+    this.teamService.getGamesByTeam(this.team.id_team, event, this.perPage).subscribe(res => {
       this.games = res.data;
       this.meta = res.meta;
-      window.scroll({
-        top: this.offsetTop - 50,
-        left: 0,
-        behavior: "smooth"
-      })
+      this._scroll();
+    })
+  }
+
+  public onChangeParamFilters(event) {
+    this.perPage = event.per_page;
+    this.teamService.getGamesByTeam(this.team.id_team, 1, event.per_page).subscribe(res => {
+      this.games = res.data;
+      this.meta = res.meta;
+      this._scroll();
+    })
+  }
+
+  private _scroll() {
+    window.scroll({
+      top: this.offsetTop - 50,
+      left: 0,
+      behavior: "smooth"
     })
   }
 }

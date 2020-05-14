@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from 'src/app/services/team.service';
+import { DatesService } from 'src/app/services/dates.service';
 
 @Component({
   selector: 'app-home-page',
@@ -8,7 +9,7 @@ import { TeamService } from 'src/app/services/team.service';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService, private datesService: DatesService) { }
   private dates: Array<string>;
   private datesToSend: string;
   public games: Array<any>;
@@ -16,85 +17,12 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.dates = [];
-    this.today = new Date();
-    this.dates = this._getLastDays(4, this.today);
+    this.dates = this.datesService.getLastDays()
     this.dates = this.dates.map(d => '&dates[]='.concat(d));
-    this.datesToSend = this._convertToString(this.dates);
+    this.datesToSend = this.datesService.convertToString(this.dates);
     this.teamService.getMatchYesterday(this.datesToSend).subscribe(res => {
-      this.games = this._getLastResuts(res.data, this.dates);
+      this.games = this.datesService.getLastResuts(res.data, this.dates);
     })
-  }
-
-  private _getLastDays(prevDays: number = 5, today: Date = new Date()): Array<string> {
-
-    let days: Array<string> = [];
-    let day: number = today.getDate();
-    let month: number = today.getMonth() + 1;
-    let year: number = today.getFullYear();
-    let currentMonthPar: boolean = (month % 2) === 0 ? true : false;
-    let isLeapYear: number = (year % 4) === 0 ? 29 : 28;
-    let diff: number = prevDays - day;
-    let remainingDays: number = prevDays - diff;
-    let subtraction: number = 0;
-    let subtractionAdditional: number = 0;
-
-    for (let i = 0; i < prevDays; i++) {
-      if (day >= prevDays) {
-        
-        days.push(`${year - 2}-${this._addZero(month)}-${this._addZero(day - i)}`);
-      } else {
-
-        if (remainingDays) {
-          days.push(`${year - 2}-${this._addZero(month)}-${this._addZero(day - subtraction)}`);
-          remainingDays--;
-          subtraction++;
-        }
-        else {
-          if (month === 1) {
-            days.push(`${year - 3}-${12}-${31 - subtractionAdditional}`);
-          }
-          else if (currentMonthPar && month !== 2) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(30 - subtractionAdditional) }`);
-          }
-          else if (currentMonthPar && month === 2) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(isLeapYear - subtractionAdditional)}`);
-          }
-          else if (!currentMonthPar && month !== 1) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(31 - subtractionAdditional)}`);
-          }
-          subtractionAdditional++;
-        }
-      }
-    }
-
-    return days;
-  }
-
-  private _convertToString(array: Array<string>): string {
-    let string = '';
-    array.forEach(element => {
-      string = string.concat(element);
-    })
-    return string;
-  }
-
-  private _getLastResuts(data: Array<any>, days: Array<string>): Array<any> {
-    let results: Array<any> = [];
-    for (let i = 0; i < days.length; i++) {
-      results = data.filter(m => m.date.split('T00:00:00.000Z')[0] === this.dates[i].split('&dates[]=')[1]);
-      results.length > 0 ? results : null;
-      if (results.length > 0) {
-        return results;
-      }
-    }
-  }
-
-  private _addZero(operation): string {
-    let str = '0';
-    if (operation < 10) {
-      return str.concat(operation);
-    }
-    return operation;
   }
 
 }

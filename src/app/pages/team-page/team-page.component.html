@@ -1,26 +1,30 @@
 <app-header [team]="team"></app-header>
 
-    <div class="container" #container>
-        <div class="team-page">
-            <div class="team-page__container">
-                <h2 class="team-page__title h2">
-                    <img class="team-page__logo" src="{{team.image_url}}" alt="">
-                     Resultados de <span class="team-page__team-name" colorTxt="{{team?.team_color}}"> {{team.full_name}}</span> </h2>
-                <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.3);">
-                    <app-form-filter></app-form-filter>
-                    <a class="team-page__link" href="#" [routerLink]="['/stats', game?.id]" *ngFor="let game of games">
-                        <app-result-data [game]="game"></app-result-data>
-                    </a>
-                    <app-paginator [data]="meta" (changePage)="onChangePage($event)"></app-paginator>
+<div class="container" #container>
+    <div class="team-page">
+        <div class="team-page__container">
+            <h2 class="team-page__title h2">
+                <img class="team-page__logo" src="{{team.image_url}}" alt="">
+                Resultados <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
+                    {{team.full_name}}</span> </h2>
+            <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.3);">
+                <div class="team-page__form">
+                    <app-form-filters (changeParamFilters)="onChangeParamFilters($event)" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable"></app-form-filters>
                 </div>
+                <a class="team-page__link" href="#" [routerLink]="['/stats', game?.id]" *ngFor="let game of games">
+                    <app-result-data [game]="game"></app-result-data>
+                </a>
+                <app-paginator [data]="meta" (changePage)="onChangePage($event)"></app-paginator>
             </div>
-            <div class="team-page__container">
-                <h2 class="team-page__title h2">
-                    <img class="team-page__logo" src="{{team.image_url}}" alt="">
-                     Plantilla de <span class="team-page__team-name" colorTxt="{{team?.team_color}}"> {{team.full_name}}</span> </h2>
-                <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">
-                    <app-card [teamImage]="team.image_url" [player]="player" *ngFor="let player of players"></app-card>
-                </div>
+        </div>
+        <div class="team-page__container">
+            <h2 class="team-page__title h2">
+                <img class="team-page__logo" src="{{team.image_url}}" alt="">
+                Plantilla de <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
+                    {{team.full_name}}</span> </h2>
+            <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">
+                <app-card [teamImage]="team.image_url" [player]="player" *ngFor="let player of players"></app-card>
             </div>
         </div>
     </div>
+</div>

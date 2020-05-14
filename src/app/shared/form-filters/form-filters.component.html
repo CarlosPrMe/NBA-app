@@ -1,0 +1,15 @@
+<form class="form" [formGroup]="myForm" (change)="changeFilters(myForm.value)">
+    <div class="form__group">
+        <label class="form__label" for="season">Temporada</label>
+        <select class="form__input" name="season" id="season" formControlName="season">
+            <option value="{{option}}" *ngFor="let option of optionsPerSeason">{{option}}</option>
+        </select>
+    </div>
+    <div class="form__group">
+        <label class="form__label" for="season">Por página</label>
+        <select class="form__input" name="per_page" formControlName="per_page">
+            <option value="{{option}}" *ngFor="let option of optionsPerPage">{{option}}</option>
+        </select>
+
+    </div>
+</form>
