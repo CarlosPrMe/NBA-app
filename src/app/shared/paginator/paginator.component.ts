@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChange
 export class PaginatorComponent implements OnInit, OnChanges {
 
   @Input() data: any;
+  @Input() disabled: boolean;
   @Output() changePage = new EventEmitter<any>();
   public totalPages: Array<any>;
 
@@ -16,7 +17,12 @@ export class PaginatorComponent implements OnInit, OnChanges {
   ngOnInit(): void { }
 
   ngOnChanges(change: SimpleChanges) {
-    this.totalPages = this._createPages(change.data.currentValue.total_pages);
+    if (change?.data?.currentValue) {
+      this.totalPages = this._createPages(change.data.currentValue.total_pages);
+    }
+    if (change?.disabled?.currentValue) {
+      this.disabled = change.disabled.currentValue;
+    }
   }
 
   public paginate(event, page) {

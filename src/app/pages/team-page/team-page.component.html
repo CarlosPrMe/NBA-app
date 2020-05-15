@@ -9,12 +9,13 @@
                     {{team.full_name}}</span> </h2>
             <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.3);">
                 <div class="team-page__form">
-                    <app-form-filters (changeParamFilters)="onChangeParamFilters($event)" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable"></app-form-filters>
+                    <app-form-filters (changeParamFilters)="onChangeParams($event)" [disabled]="formDisabled" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable"></app-form-filters>
                 </div>
                 <a class="team-page__link" href="#" [routerLink]="['/stats', game?.id]" *ngFor="let game of games">
                     <app-result-data [game]="game"></app-result-data>
                 </a>
-                <app-paginator [data]="meta" (changePage)="onChangePage($event)"></app-paginator>
+                <h3 class="h3" *ngIf="!games?.length" >No hay resultados</h3>
+                <app-paginator *ngIf="games?.length" [data]="meta" (changePage)="onChangeParams($event)" [disabled]="formDisabled" ></app-paginator>
             </div>
         </div>
         <div class="team-page__container">

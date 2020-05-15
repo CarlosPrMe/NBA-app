@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="myForm" (change)="changeFilters(myForm.value)">
+<form class="form" [formGroup]="myForm" (change)="changeFilters(myForm.value)" [ngClass]="{'form--disabled':disabled}">
     <div class="form__group">
         <label class="form__label" for="season">Temporada</label>
         <select class="form__input" name="season" id="season" formControlName="season">
@@ -10,6 +10,11 @@
         <select class="form__input" name="per_page" formControlName="per_page">
             <option value="{{option}}" *ngFor="let option of optionsPerPage">{{option}}</option>
         </select>
-
+    </div>
+    <div class="form__group">
+        <label class="form__label form__label--custom" for="postseason">Solo playoffs
+            <input formControlName="postseason" class="form__input--custom" type="checkbox" name="postseason" id="postseason" value="true">
+            <span class="icon icon-wink"></span>
+        </label>
     </div>
 </form>

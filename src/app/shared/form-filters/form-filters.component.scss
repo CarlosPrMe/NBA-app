@@ -1,20 +1,18 @@
 @import "../../../assets/scss/partials/vars";
 
 .form {
-    padding: 0.5rem;
+    padding: .5rem;
 
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: flex-start;
 
     &__group {
-        flex: 0 1 45%;
+        flex: 0 1 33%;
         padding: 0 .5rem;
     }
 
     &__label {
         color: $gray-800;
-        margin-bottom: 0.5rem;
-        font-size: $fs-sm;
-        display: block;
     }
 }

@@ -6,9 +6,14 @@
     justify-content: center;
     align-items: center;
 
+    &--disabled {
+        opacity: .4;
+        pointer-events: none;
+    }
+
     &__page {
-        padding: 0.25rem 0.5rem;
-        border: 1px solid $white;
+        padding: .25rem .5rem;
+        border: 1px solid $transparent;
         border-radius: 3px;
         background-color: $primary;
         color: $white;
@@ -18,27 +23,15 @@
         cursor: pointer;
         & + & {
             margin-left: 1rem;
-            &::after {
-                content: "";
-                position: absolute;
-                left: -0.7rem;
-                top: calc(50% - 3px);
-                height: 5px;
-                width: 5px;
-                border-radius: 100%;
-                background-color: rgba($white, 0.6);
-            }
         }
 
         &:hover {
-            background-color: lighten($primary, 20%);
             background-color: $secondary;
             border-color: $gray-900;
             color: $black;
         }
 
         &--current {
-            background-color: lighten($primary, 20%);
             background-color: $secondary;
             border-color: $gray-900;
             color: $black;
@@ -47,7 +40,7 @@
         }
 
         &--disabled {
-            opacity: 0.3;
+            opacity: .3;
             pointer-events: none;
             cursor: default;
         }
