@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
+import { PaginatorModel } from 'src/app/models/pagintor.model';
 
 @Component({
   selector: 'app-paginator',
@@ -7,10 +8,10 @@ import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChange
 })
 export class PaginatorComponent implements OnInit, OnChanges {
 
-  @Input() data: any;
+  @Input() data: PaginatorModel;
   @Input() disabled: boolean;
   @Output() changePage = new EventEmitter<any>();
-  public totalPages: Array<any>;
+  public totalPages: Array<number>;
 
   constructor() { }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { StatsModel } from 'src/app/models/stats.model';
 
 @Component({
   selector: 'app-stats-detail',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRe
 })
 export class StatsDetailComponent implements OnInit {
 
-  @Input() player: any;
+  @Input() player: StatsModel;
   @Output() deleteDetails = new EventEmitter<any>();
   @ViewChild('detail') detail: ElementRef;
 
@@ -29,5 +30,4 @@ export class StatsDetailComponent implements OnInit {
       }
     }
   }
-
 }

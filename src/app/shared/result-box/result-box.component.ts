@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { TeamService } from 'src/app/services/team.service';
+import { StatsModel } from 'src/app/models/stats.model';
+import { GameModel } from 'src/app/models/game.model';
 
 @Component({
   selector: 'app-result-box',
@@ -8,10 +10,10 @@ import { TeamService } from 'src/app/services/team.service';
 })
 export class ResultBoxComponent implements OnInit, OnChanges {
 
-  @Input() games: Array<any>
-  public gameSelected: any;
+  @Input() games: Array<GameModel>
+  public gameSelected: GameModel;
   public idStatsDetails: number;
-  public statsDetailsData: Array<any>;
+  public statsDetailsData: Array<StatsModel>;
   public pageStats: boolean;
 
   constructor(private teamService: TeamService) { }

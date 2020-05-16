@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TeamService } from 'src/app/services/team.service';
+import { TeamModel } from 'src/app/models/team.model';
+import { GameModel } from 'src/app/models/game.model';
 
 @Component({
   selector: 'app-teams',
@@ -10,16 +12,16 @@ import { TeamService } from 'src/app/services/team.service';
 export class TeamsComponent implements OnInit {
 
   public imageHeader: boolean;
-  public teams: Array<any>;
+  public teams: Array<TeamModel>;
   public teamsSorted: Array<any>;
-  public westConference: Array<any>;
-  public eastConference: Array<any>;
+  public westConference: Array<TeamModel>;
+  public eastConference: Array<TeamModel>;
   public playoffWest: Array<any>;
   public playoffEast: Array<any>;
   public playoffs: Array<any>;
   public simulated: boolean;
-  public winner: any;
-  public matchesResume: Array<any>;
+  public winner: TeamModel;
+  public matchesResume: Array<GameModel>;
   public resumeShow: boolean;
   public currentDetailId: number;
   public noDate: boolean;

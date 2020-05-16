@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { PlayerModel } from 'src/app/models/player.model';
 
 @Component({
   selector: 'app-card',
@@ -8,9 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CardComponent implements OnInit {
 
 
-  @Input() player: any;
+  @Input() player: PlayerModel;
   @Input() teamImage: string;
-  public avatars: Array<any>;
   constructor() { }
 
   ngOnInit(): void { }

@@ -8,9 +8,11 @@ import { TeamModel } from '../../models/team.model';
   styleUrls: ['./carousel.component.scss']
 })
 export class CarouselComponent implements OnInit, AfterContentChecked {
+  
   public teamsWithLogo: Array<TeamModel>;
+
   @ViewChild('list') list: ElementRef;
-  private listLong: any;
+  private listLong: boolean | number | any;
   public positionCarousel: number;
   constructor(private teamService: TeamService) {
   }

@@ -1,5 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, HostListener, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { GameModel } from 'src/app/models/game.model';
+import { PlayerModel } from 'src/app/models/player.model';
+import { TeamModel } from 'src/app/models/team.model';
 
 @Component({
   selector: 'app-result-stats',
@@ -13,13 +16,13 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
 
   @Input() stats: Array<any>;
   @Input() idStats: string;
-  @Input() game: any;
+  @Input() game: GameModel;
   @Input() pageStats: boolean;
-  public currentGame: any;
-  public homeTeamPlayers: Array<any>;
-  public homeTeam: any
-  public visitorTeamPlayers: Array<any>;
-  public visitorTeam: any;
+  public currentGame: GameModel;
+  public homeTeamPlayers: Array<PlayerModel>;
+  public homeTeam: TeamModel
+  public visitorTeamPlayers: Array<PlayerModel>;
+  public visitorTeam: TeamModel;
   public teams: Array<any>;
   public playerStats: any;
   public gameDate: any;
@@ -124,7 +127,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
     this.homeTeam.players = this.playersNoAction(this.homeTeam.players);
   }
 
-  private _sort(team: Array<any>): Array<any> {
+  private _sort(team: Array<PlayerModel>): Array<PlayerModel> {
     return team.sort((a, b) => {
       if (isNaN(b[this.sortBy])) {
         return parseFloat(b[this.sortBy]) - parseFloat(a[this.sortBy]);

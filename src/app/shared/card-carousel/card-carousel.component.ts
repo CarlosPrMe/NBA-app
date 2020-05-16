@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TeamModel } from 'src/app/models/team.model';
-import { BgImageDirective } from '../../directives/bg-image.directive';
 
 @Component({
   selector: 'app-card-carousel',

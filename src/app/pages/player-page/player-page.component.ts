@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { PlayerModel } from 'src/app/models/player.model';
 
 @Component({
   selector: 'app-player-page',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlayerPageComponent implements OnInit {
 
-  constructor() { }
+  public player: PlayerModel;
+  constructor(private activate: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.player = this.activate.snapshot.data.player;
   }
 
 }

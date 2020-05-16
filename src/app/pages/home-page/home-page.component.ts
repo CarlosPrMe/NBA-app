@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from 'src/app/services/team.service';
 import { DatesService } from 'src/app/services/dates.service';
+import { GameModel } from 'src/app/models/game.model';
 
 @Component({
   selector: 'app-home-page',
@@ -12,7 +13,7 @@ export class HomePageComponent implements OnInit {
   constructor(private teamService: TeamService, private datesService: DatesService) { }
   private dates: Array<string>;
   private datesToSend: string;
-  public games: Array<any>;
+  public games: Array<GameModel>;
   private today: Date;
 
   ngOnInit(): void {

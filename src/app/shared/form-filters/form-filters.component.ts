@@ -9,14 +9,16 @@ import { FormBuilder } from '@angular/forms';
 export class FormFiltersComponent implements OnInit, OnChanges {
 
   public myForm;
-  @Input() optionsPerPage: Array<any>;
-  @Input() optionsPerSeason: Array<any>;
+  @Input() optionsPerPage: Array<object>;
+  @Input() optionsPerSeason: Array<number>;
   @Input() disabled: boolean;
   @Output() changeParamFilters = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.optionsPerPage
+    this.optionsPerSeason
     this.myForm = this.fb.group({
       per_page: [this.optionsPerPage[1]],
       season: [this.optionsPerSeason[0]],

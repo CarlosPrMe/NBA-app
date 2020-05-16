@@ -8,11 +8,11 @@
             <span class="icon icon-fire"></span>
         </h2>
         <div class="highlights" *ngIf="topPlayers">
-            <div class="highlights__block" *ngFor="let player of topPlayers; index as i">
+            <div class="highlights__block" *ngFor="let stats of topPlayers; index as i">
                 <p class="highlights__title">Máximo {{textHighlights[i]}}</p>
-                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player.player"
-                    [bgImage]="player?.player?.team?.image_url" [pageStats]="pageStats" [highlights]="highlights"
-                    [index]="i" [mvp]="player.mvp"></app-stats>
+                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="stats.player"
+                    [bgImage]="stats?.player?.team?.image_url" [pageStats]="pageStats" [highlights]="highlights"
+                    [index]="i" [mvp]="stats.mvp"></app-stats>
             </div>
         </div>
     </div>

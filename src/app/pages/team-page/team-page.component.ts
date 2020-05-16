@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TeamModel } from 'src/app/models/team.model';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user-service.service';
+import { PlayerModel } from 'src/app/models/player.model';
+import { GameModel } from 'src/app/models/game.model';
 
 @Component({
   selector: 'app-team-page',
@@ -15,20 +17,19 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
   private offsetTop: number;
   public idTeam: string;
   public team: TeamModel;
-  public players: Array<any>;
-  public games: Array<any>;
+  public players: Array<PlayerModel>;
+  public games: Array<GameModel>;
   public meta: any;
-  public avatars: Array<any>;
-  public pagesNum: Array<any>;
+  public pagesNum: Array<number>;
   public smallTeamName: boolean;
-  private perPage: any;
+  private perPage: number;
   private current_page: number;
   private season: string;
   private postseasonFilter: boolean;
-  public seasonsAvailable: any;
+  public seasonsAvailable: Array<number>;
   public formDisabled: boolean;
   private filteredByPostseason: boolean;
-  private gamesPostseason: Array<any>;
+  private gamesPostseason: Array<GameModel>;
   constructor(private activate: ActivatedRoute, private teamService: TeamService, private userService: UserService) { }
 
   ngOnInit(): void {

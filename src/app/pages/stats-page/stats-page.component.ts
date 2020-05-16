@@ -1,6 +1,10 @@
 import { Component, OnInit, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TeamService } from 'src/app/services/team.service';
+import { TeamModel } from 'src/app/models/team.model';
+import { PlayerModel } from 'src/app/models/player.model';
+import { GameModel } from 'src/app/models/game.model';
+import { StatsModel } from 'src/app/models/stats.model';
 
 @Component({
   selector: 'app-stats-page',
@@ -14,17 +18,17 @@ export class StatsPageComponent implements OnInit {
   public idStatsDetails: string;
   public homeTeamId: number;
   public visitorTeamId: number;
-  public homeTeam: any;
-  public visitorTeam: any;
+  public homeTeam: TeamModel;
+  public visitorTeam: TeamModel;
   public playersByTeam: Array<any>;
-  public homeTeamPlayers: Array<any>;
-  public visitorTeamPlayers: Array<any>;
-  public game: any;
-  public gameSelected: any;
-  public teams: Array<any>;
+  public homeTeamPlayers: Array<StatsModel>;
+  public visitorTeamPlayers: Array<StatsModel>;
+  public game: GameModel;
+  public gameSelected: GameModel;
+  public teams: Array<TeamModel>;
   public playerStats: any;
   public pageStats: boolean;
-  public topPlayers: Array<any>;
+  public topPlayers: Array<PlayerModel>;
   private filterTopPlayer: Array<string>;
   public highlights: boolean;
   public textHighlights: Array<string>;

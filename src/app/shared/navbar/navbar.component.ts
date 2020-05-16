@@ -9,7 +9,7 @@ import { UserModel } from 'src/app/models/user.model';
 })
 export class NavbarComponent implements OnInit {
 
-  public user: any;
+  public user: UserModel;
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
