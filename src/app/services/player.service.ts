@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { PlayerModel } from '../models/player.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -17,8 +16,13 @@ export class PlayerService {
     }
   }
 
-  getPlayerById(id:number):Observable<any> {
-    let headers = new HttpHeaders(this.rapid_headers)
-    return this.http.get(`https://free-nba.p.rapidapi.com/players/${id}`, { headers: headers })
+  getPlayerById(id: number): Observable<any> {
+    let headers = new HttpHeaders(this.rapid_headers);
+    return this.http.get(`https://free-nba.p.rapidapi.com/players/${id}`, { headers: headers });
+  }
+
+  getStatsPlayerById(id: number, page: number = 0, per_page: number = 25, season: number = 2018): Observable<any> {
+    let headers = new HttpHeaders(this.rapid_headers);
+    return this.http.get(`https://free-nba.p.rapidapi.com/stats?page=${page}&per_page=${per_page}&player_ids[]=${id}&seasons[]=${season}`, { headers: headers });
   }
 }

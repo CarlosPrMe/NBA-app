@@ -1,3 +1,5 @@
+import { TeamModel } from './team.model';
+
 export interface PlayerModel {
     first_name?: string;
     height_feet?: number;
@@ -5,7 +7,7 @@ export interface PlayerModel {
     id?: number;
     last_name?: string;
     position?: string;
-    team?: object;
+    team?: TeamModel;
     name?: string;
     weight_pounds?:number
     avatar?:string

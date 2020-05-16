@@ -5,14 +5,4 @@
 @import './assets/scss/partials/buttons';
 @import './assets/scss/partials/forms';
 @import './assets/scss/partials/general';
-
-body {
-/*     background-image: url('./assets/img/wood.jpg');
-    background-position: center top;
-    background-size: cover;
-    color: $white;
-    background-attachment: fixed;
-    min-height: 100vh;
-    padding-top: 6rem;
-    padding-bottom: 4rem; */
-}
+@import './assets/scss/partials/utils';

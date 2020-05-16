@@ -12,6 +12,7 @@ import { StatsPageComponent } from './pages/stats-page/stats-page.component';
 import { PlayerPageComponent } from './pages/player-page/player-page.component';
 import { GamesResolver } from './resolvers/games.resolver';
 import { PlayerResolver } from './resolvers/player.resolver';
+import { StatsByPlayerResolver } from './resolvers/statsByPlayer.resolver';
 
 const routes: Routes = [
   {
@@ -53,7 +54,7 @@ const routes: Routes = [
     component: PlayerPageComponent,
     resolve:{
       player: PlayerResolver,
-      stats : StatsResolver
+      stats : StatsByPlayerResolver
     }
   },
   {

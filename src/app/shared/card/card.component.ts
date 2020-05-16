@@ -11,6 +11,7 @@ export class CardComponent implements OnInit {
 
   @Input() player: PlayerModel;
   @Input() teamImage: string;
+  @Input() textBig: boolean;
   constructor() { }
 
   ngOnInit(): void { }

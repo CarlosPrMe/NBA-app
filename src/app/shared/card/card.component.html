@@ -3,10 +3,10 @@
     <span class="card__avatar">
         <img src="{{player?.avatar}}" alt="player image">
     </span>
-    <div class="card__content">
-        <span class="card__data h4">Jugador: <strong>{{player.first_name}} {{player.last_name}}</strong></span>
-        <span class="card__data h4">Altura: <strong>{{player.height_feet | height}} m</strong></span>
-        <span class="card__data h4">Peso: <strong>{{player.weight_pounds | weight}} kg</strong></span>
-        <span class="card__data card__data--capitalice h4">Posición: <strong>{{player.position | position}}</strong></span>
+    <div class="card__content" [ngClass]="{'h3': textBig, 'h4':!textBig}">
+        <span class="card__data">Jugador: <strong>{{player.first_name}} {{player.last_name}}</strong></span>
+        <span class="card__data">Altura: <strong>{{player.height_feet | height}} m</strong></span>
+        <span class="card__data">Peso: <strong>{{player.weight_pounds | weight}} kg</strong></span>
+        <span class="card__data card__data--capitalice">Posición: <strong>{{player.position | position}}</strong></span>
     </div>
 </a>

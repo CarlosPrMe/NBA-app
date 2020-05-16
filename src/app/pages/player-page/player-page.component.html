@@ -1,1 +1,13 @@
-<p>player-page works!</p>
+<div class="container mg-top-page">
+    <app-card [teamImage]="team?.image_url" [player]="player" [textBig]="textBig"></app-card>
+
+
+    <div class="stats">
+        <h2 class="stats__title">Partidos de {{player?.first_name}} {{player?.last_name}}</h2>
+        <!-- <app-result-data [game]="stats.team" *ngFor="let stats of games"></app-result-data> -->
+        <div *ngIf="player?.avatar">
+            <app-stats [player]="stats" [avatar]="player?.avatar" [bgImage]="team?.image_url" *ngFor="let stats of gamesStats">
+            </app-stats>
+        </div>
+    </div>
+</div>
