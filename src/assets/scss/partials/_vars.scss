@@ -1,3 +1,5 @@
+@import './mixins';
+
 // Font size
 
 $fs-xl: 65px;
@@ -46,6 +48,7 @@ $back: -1;
 
 // Breakpoint
 
+$mobile-xs: 300px;
 $mobile: 768px;
 $tablet: 992px;
 $desktop: 1200px;
