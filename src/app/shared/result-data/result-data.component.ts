@@ -11,6 +11,7 @@ import { GameModel } from 'src/app/models/game.model';
 export class ResultDataComponent implements OnInit {
 
   @Input() game: GameModel;
+  @Input() gameSimple: GameModel;
   @Input() isFirst: boolean;
   @Input() simpleData: boolean;
   @Output() showStatsEvent = new EventEmitter<any>();
@@ -18,32 +19,49 @@ export class ResultDataComponent implements OnInit {
   public images: Array<any>
   public homeTeam: TeamModel;
   public visitorTeam: TeamModel;
+  public gameId: number;
   private randomhours: Array<string>;
   @Input() gameSelected: number;
 
   constructor(private teamService: TeamService) { }
   ngOnInit(): void {
+
+    this.gameId = this.gameSimple ? this.gameSimple.id : this.game.id
     this.randomhours = ['12:00', '17:00', '19:00', '21:00'];
-    this.teamsId = new Array(+this.game.home_team.id, +this.game.visitor_team.id);
+    this.teamsId = this.gameSimple ? [this.gameSimple.home_team_id, this.gameSimple.visitor_team_id] : new Array(+this.game.home_team.id, +this.game.visitor_team.id);
     this.teamService.getTeamImagesById(this.teamsId).subscribe(res => {
       this.images = res;
-      this.homeTeam = this.images.find(t => t.id_team === this.game.home_team.id);
-      this.visitorTeam = this.images.find(t => t.id_team === this.game.visitor_team.id);
+      this.homeTeam = this.images.find(t => {
+        if (this.game && t.id_team === this.game.home_team.id) {
+          return true;
+        } else if (this.gameSimple && t.id_team === this.gameSimple.home_team_id) {
+          return true
+        }
+      });
+      this.visitorTeam = this.images.find(t => {
+        if (this.game && t.id_team === this.game.visitor_team.id) {
+          return true
+        } else if (this.gameSimple && t.id_team === this.gameSimple.visitor_team_id) {
+          return true
+        }
+      });
       let day = document.getElementsByClassName('result__date')[0];
-      let dateSeparated = day?.textContent?.split(' ');
-      this.game.hourDate = this._addImagerRandom(0, this.randomhours.length - 1);
-      this.game.date = dateSeparated ? dateSeparated[0] : null;
-      if (this.isFirst) {
-        this.showStatsEvent.emit([this.game.id, { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam }]);
+      if (day) {
+        let dateSeparated = day?.textContent?.split(' ');
+        this.game.hourDate = this._addImagerRandom(0, this.randomhours.length - 1);
+        this.game.date = dateSeparated ? dateSeparated[0] : null;
       }
-    })
+      if (this.isFirst) {
+        this.showStatsEvent.emit([ this.gameId, { game: this.game ? this.game : this.gameSimple, home_team: this.homeTeam, visitor_team: this.visitorTeam }]);
+      }
+    });
   }
+
 
   public showStats(event, game_id) {
     event.preventDefault();
     if (this.gameSelected !== game_id) {
-      this.showStatsEvent.emit([game_id, { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam }])
-    }
+      this.showStatsEvent.emit([game_id, { game: this.game ? this.game : this.gameSimple, home_team: this.homeTeam, visitor_team: this.visitorTeam }]) }
   }
 
   private _addImagerRandom(min, max) {

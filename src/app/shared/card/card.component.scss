@@ -1,68 +1,78 @@
 @import "../../../assets/scss/partials/vars";
 
 :host {
-    width: 48%;
-    margin-bottom: 1rem;
-    display: block;
+  margin-bottom: 1rem;
 }
 
 .card {
-    text-decoration: none;
-    border: 1px solid $gray-700;
-    color: $gray-800;
-    display: flex;
-    background-color: $white;
-    padding: .5rem;
-    box-shadow: 0 0 1rem rgba($black, .3);
-    border-radius: 5px;
+  text-decoration: none;
+  border: 1px solid $gray-700;
+  color: $gray-800;
+  display: flex;
+  background-color: $white;
+  padding: 0.5rem;
+  box-shadow: 0 0 1rem rgba($black, 0.3);
+  border-radius: 5px;
+  transition: all $normal ease;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    width: 100%;
+    opacity: 0.2;
+    right: -7.5rem;
+    top: -3rem;
     transition: all $normal ease;
-    height: 100%;
-    position: relative;
+  }
+
+  &:hover {
+    border-color: $white;
+    box-shadow: 0 0 1rem rgba($black, 0.5);
+    background-color: rgba($white, 0.4);
+
+    .card__background {
+      opacity: 0.4;
+    }
+  }
+
+  &__avatar {
+    flex: 0 1 40%;
+    align-self: center;
     overflow: hidden;
+    z-index: $over;
 
-    &__background {
-        position: absolute;
-        width: 100%;
-        opacity: .2;
-        right: -7.5rem;
-        top: -3rem;
-        transition: all $normal ease;
+    img {
+      display: inline-block;
+      max-width: 100%;
+      border-radius: 100%;
     }
+  }
 
-    &:hover {
-        border-color: $white;
-        box-shadow: 0 0 1rem rgba($black, .5);
-        background-color: rgba($white, .4);
-        .card__background {
-            opacity: .4;
-        }
+  &__content {
+    flex: 0 1 50%;
+    display: flex;
+    flex-direction: column;
+    z-index: $over;
+    justify-content: center;
+    font-size: $fs-base + 4px;
+
+    @include desktop() {
+      font-size: $fs-md;
     }
+  }
 
-    &__avatar {
-        flex: 0 1 40%;
-        align-self: center;
-        overflow: hidden;
-        z-index: $over;
-        img {
-            display: inline-block;
-            max-width: 100%;
-            border-radius: 100%;
-        }
+  &__data {
+    padding: .3rem;
+
+    &--capitalice {
+      text-transform: capitalize;
     }
+  }
 
-    &__content {
-        flex: 0 1 50%;
-        display: flex;
-        flex-direction: column;
-        z-index: $over;
-        justify-content: center;
-    }
-
-    &__data {
-        padding: .3rem;
-
-        &--capitalice {
-            text-transform: capitalize;
-        }
-    }
+  &__details {
+    display: inline-block;
+    padding: .3rem 1rem;
+  }
 }

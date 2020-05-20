@@ -1,5 +1,5 @@
 <div *ngIf="player" class="details" >
-    <img class="details__background" src="{{player.team.image_url}}" alt="">
+    <img class="details__background" src="{{player?.team?.image_url}}" alt="">
     <div class="details__box" #detail>
         <div class="details__content">
             <button type="button" class="btn btn--primary" (click)="closeDetails($event)">
@@ -8,38 +8,38 @@
             <h3 class="details__title h2">{{player?.team?.full_name}}</h3>
             <div class="details__block">
                 <span class="details__avatar">
-                    <img src="{{player.player.avatar}}" alt="player image">
+                    <img src="{{player?.player?.avatar}}" alt="player image">
                 </span>
                 <div class="details__player">
                     <span class="details__data">Jugador: <a class="details__link" href="#" [routerLink]="['/player',player.player.id ]">{{player.player.first_name}} {{player.player.last_name}}</a></span>
-                    <span class="details__data">Altura: {{player.player.height_feet | height}} m</span>
-                    <span class="details__data">Peso: {{player.player.weight_pounds | weight}} kg</span>
-                    <span class="details__data">Posición: {{player.player.position | position}}</span>
+                    <span class="details__data">Altura: {{player?.player?.height_feet | height}} m</span>
+                    <span class="details__data">Peso: {{player?.player?.weight_pounds | weight}} kg</span>
+                    <span class="details__data">Posición: {{player?.player?.position | position}}</span>
                     <span class="details__data">Equipo actual:
                         <a class="details__link" href="#"
-                            [routerLink]="['/team',player.team.id]">{{player.team.full_name}}</a>
+                            [routerLink]="['/team',player?.team?.id]">{{player?.team?.full_name}}</a>
                     </span>
                 </div>
             </div>
             <div class="details__block">
-                <span class="details__data">Puntos: {{player.pts}}</span>
-                <span class="details__data">Tapones: {{player.blk}}</span>
-                <span class="details__data">Minutos: {{player.min}}</span>
-                <span class="details__data">Asistencias: {{player.ast}}</span>
-                <span class="details__data">Rebotes totales: {{player.reb}}</span>
-                <span class="details__data">Rebotes ofensivos: {{player.oreb}}</span>
-                <span class="details__data">Rebotes defensivos: {{player.dreb}}</span>
-                <span class="details__data">Robos: {{player.stl}}</span>
-                <span class="details__data">Faltas cometidas: {{player.pf}}</span>
-                <span class="details__data">Lazamientos de 3 intentados: {{player.fg3a}}</span>
-                <span class="details__data">Lazamientos de 3 anotados: {{player.fg3m}}</span>
-                <span class="details__data">Porcentaje tiros de 3: {{player.fg3_pct}}</span>
-                <span class="details__data">Lazamientos de 2 intentados: {{player.fga}}</span>
-                <span class="details__data">Lazamientos de 2 anotados: {{player.fgm}}</span>
-                <span class="details__data">Porcentaje tiros de 2: {{player.fg_pct}}</span>
-                <span class="details__data">Tiros libres intentados: {{player.fta}}</span>
-                <span class="details__data">Tiros libres anotados: {{player.ftm}}</span>
-                <span class="details__data">Porcentaje tiros de 2: {{player.ft_pct}}</span>
+                <span class="details__data">Puntos: {{player?.pts}}</span>
+                <span class="details__data">Tapones: {{player?.blk}}</span>
+                <span class="details__data">Minutos: {{player?.min}}</span>
+                <span class="details__data">Asistencias: {{player?.ast}}</span>
+                <span class="details__data">Rebotes totales: {{player?.reb}}</span>
+                <span class="details__data">Rebotes ofensivos: {{player?.oreb}}</span>
+                <span class="details__data">Rebotes defensivos: {{player?.dreb}}</span>
+                <span class="details__data">Robos: {{player?.stl}}</span>
+                <span class="details__data">Faltas cometidas: {{player?.pf}}</span>
+                <span class="details__data">Lazamientos de 3 intentados: {{player?.fg3a}}</span>
+                <span class="details__data">Lazamientos de 3 anotados: {{player?.fg3m}}</span>
+                <span class="details__data">Porcentaje tiros de 3: {{player?.fg3_pct}}</span>
+                <span class="details__data">Lazamientos de 2 intentados: {{player?.fga}}</span>
+                <span class="details__data">Lazamientos de 2 anotados: {{player?.fgm}}</span>
+                <span class="details__data">Porcentaje tiros de 2: {{player?.fg_pct}}</span>
+                <span class="details__data">Tiros libres intentados: {{player?.fta}}</span>
+                <span class="details__data">Tiros libres anotados: {{player?.ftm}}</span>
+                <span class="details__data">Porcentaje tiros de 2: {{player?.ft_pct}}</span>
             </div>
         </div>
     </div>

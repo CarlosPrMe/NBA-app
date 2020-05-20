@@ -1,12 +1,36 @@
-<a class="card" href="#" [routerLink]="['/player', player.id]">
-    <img class="card__background" src="{{teamImage}}" alt="team image">
-    <span class="card__avatar">
-        <img src="{{player?.avatar}}" alt="player image">
-    </span>
-    <div class="card__content" [ngClass]="{'h3': textBig, 'h4':!textBig}">
-        <span class="card__data">Jugador: <strong>{{player.first_name}} {{player.last_name}}</strong></span>
-        <span class="card__data">Altura: <strong>{{player.height_feet | height}} m</strong></span>
-        <span class="card__data">Peso: <strong>{{player.weight_pounds | weight}} kg</strong></span>
-        <span class="card__data card__data--capitalice">Posición: <strong>{{player.position | position}}</strong></span>
-    </div>
+<a *ngIf="player" class="card" href="#" [routerLink]="['/player', player.id]">
+  <img class="card__background" src="{{teamImage}}" alt="team image">
+  <span class="card__avatar">
+    <img src="{{player?.avatar}}" alt="player image">
+  </span>
+  <div class="card__content" [ngClass]="{'h4':!textBig}">
+    <span class="card__data">Jugador: <strong>{{player.first_name}} {{player.last_name}}</strong></span>
+    <span class="card__data">Altura: <strong>{{player.height_feet | height}} m</strong></span>
+    <span class="card__data">Peso: <strong>{{player.weight_pounds | weight}} kg</strong></span>
+    <span class="card__data card__data--capitalice">Posición: <strong>{{player.position | position}}</strong></span>
+  </div>
 </a>
+
+<div *ngIf="stats" class="card">
+  <img class="card__background" src="{{teamImage}}" alt="team image">
+  <div class="row">
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Puntos: {{stats.pts}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Tapones: {{stats.blk}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Minutos: {{stats.min}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Asistencias: {{stats.ast}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Rebotes totales: {{stats.reb}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Rebotes ofensivos: {{stats.oreb}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Rebotes defensivos: {{stats.dreb}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Robos: {{stats.stl}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Faltas cometidas: {{stats.pf}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Lazamientos de 3 intentados: {{stats.fg3a}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Lazamientos de 3 anotados: {{stats.fg3m}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Porcentaje tiros de 3: {{stats.fg3_pct}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Lazamientos de 2 intentados: {{stats.fga}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Lazamientos de 2 anotados: {{stats.fgm}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Porcentaje tiros de 2: {{stats.fg_pct}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Tiros libres intentados: {{stats.fta}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Tiros libres anotados: {{stats.ftm}}</span>
+    <span class="col-xs-6 col-sm-4 col-lg-3 card__details">Porcentaje tiros de 2: {{stats.ft_pct}}</span>
+  </div>
+</div>

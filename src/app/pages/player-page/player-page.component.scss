@@ -1,0 +1,16 @@
+@import '../../../assets/scss/partials/vars';
+
+.stats {
+  background-color: $gray-200;
+  border: 1px solid $gray-700;
+  border-radius: 5px;
+  padding: 1rem;
+
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  app-result-data{
+    margin-bottom: 1rem;
+  }
+}

@@ -1,16 +1,17 @@
-<div class="result" [ngClass]="{'result--selected': game.id === gameSelected, 'result--resalted':simpleData}">
-    <a class="result__link" (click)="showStats($event,game.id)">
-        <div class="result__block">
-            <img *ngIf="homeTeam" src="{{homeTeam.image_url}}" alt="team image" class="result__media">
-            <span class="result__data" [ngClass]="{'result__data--sm':simpleData}">{{game.home_team.full_name}}</span>
-            <span class="result__data" [ngClass]="{'result__data--sm':simpleData}">{{game.home_team_score}}</span>
-        </div>
-        <div class="result__block">
-            <img *ngIf="visitorTeam" src="{{visitorTeam.image_url}}" alt="team image" class="result__media">
-            <span class="result__data"
-                [ngClass]="{'result__data--sm':simpleData}">{{game.visitor_team.full_name}}</span>
-            <span class="result__data" [ngClass]="{'result__data--sm':simpleData}">{{game.visitor_team_score}}</span>
-        </div>
-        <span *ngIf="!simpleData" class="result__date h4">{{game?.date | date}} {{game?.hourDate}}hs</span>
-    </a>
+<div class="result" [ngClass]="{'result--selected': gameId === gameSelected, 'result--resalted':simpleData}">
+  <a *ngIf="game || gameSimple" class="result__link" (click)="showStats($event,gameId)">
+    <div class="result__block">
+      <img *ngIf="homeTeam" src="{{homeTeam.image_url}}" alt="team image" class="result__media">
+      <span class="result__data" [ngClass]="{'result__data--sm':simpleData}">{{homeTeam?.full_name}}</span>
+      <span class="result__data"
+        [ngClass]="{'result__data--sm':simpleData}">{{game?.home_team_score}}{{gameSimple?.home_team_score}}</span>
+    </div>
+    <div class="result__block">
+      <img *ngIf="visitorTeam" src="{{visitorTeam.image_url}}" alt="team image" class="result__media">
+      <span class="result__data" [ngClass]="{'result__data--sm':simpleData}">{{visitorTeam?.full_name}}</span>
+      <span class="result__data"
+        [ngClass]="{'result__data--sm':simpleData}">{{game?.visitor_team_score}}{{gameSimple?.visitor_team_score}}</span>
+    </div>
+    <span *ngIf="!simpleData" class="result__date h4">{{game?.date | date}} {{game?.hourDate}}hs</span>
+  </a>
 </div>
