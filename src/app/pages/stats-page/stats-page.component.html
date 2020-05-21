@@ -1,13 +1,13 @@
 <app-header [game]="game" [teams]="teams"></app-header>
 
 <div class="">
-    <div class="container">
+    <div class="container" *ngIf="topPlayers">
         <h2 class="h2">
             <span class="icon icon-fire"></span>
             Jugadores destacados
             <span class="icon icon-fire"></span>
         </h2>
-        <div class="highlights" *ngIf="topPlayers">
+        <div class="highlights">
             <div class="highlights__block" *ngFor="let stats of topPlayers; index as i">
                 <p class="highlights__title">Máximo {{textHighlights[i]}}</p>
                 <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="stats.player"

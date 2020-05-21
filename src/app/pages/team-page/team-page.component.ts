@@ -64,18 +64,10 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
     if (!this.offsetTop) this.offsetTop = this.container.nativeElement.offsetTop;
   }
 
-  private _createSeasonsList(limitYear) {
-    let myArr = [];
-    for (let i = 2018; i > limitYear; i--) {
-      myArr.push(i)
-    }
-    return myArr;
-  }
-
   public onChangeParams(event) {
     this.formDisabled = true;
 
-    // Check type of input from filters 
+    // Check type of input from filters
 
     if (isNaN(event)) {
       this.perPage = event.per_page;
@@ -121,6 +113,14 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
       this._scroll();
 
     }
+  }
+
+  private _createSeasonsList(limitYear) {
+    let myArr = [];
+    for (let i = 2018; i > limitYear; i--) {
+      myArr.push(i)
+    }
+    return myArr;
   }
 
   private _scroll() {

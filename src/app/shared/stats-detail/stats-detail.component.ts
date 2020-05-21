@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, ElementRef, ViewChild } from '@angular/core';
 import { StatsModel } from 'src/app/models/stats.model';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-stats-detail',
@@ -12,9 +13,11 @@ export class StatsDetailComponent implements OnInit {
   @Output() deleteDetails = new EventEmitter<any>();
   @ViewChild('detail') detail: ElementRef;
 
-  constructor() { }
+  constructor(private playerService: PlayerService) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this._playerSelected(this.player)
+  }
 
 
   public closeDetails(event) {
@@ -26,8 +29,14 @@ export class StatsDetailComponent implements OnInit {
     if (this.player) {
       if (!this.detail?.nativeElement.contains(event.target)) {
         this.closeDetails(event);
-        this.player = null
+        this.player = null;
+        this._playerSelected(this.player);
       }
     }
   }
+
+  private _playerSelected(playerValue){
+    this.playerService.playerSelected.next(playerValue);
+  }
+
 }

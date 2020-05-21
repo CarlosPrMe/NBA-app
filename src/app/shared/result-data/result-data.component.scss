@@ -93,6 +93,7 @@
   &__data {
     display: inline-block;
     transition: all $normal ease;
+    text-align: center;
     &:last-child {
       font-size: $fs-md;
     }

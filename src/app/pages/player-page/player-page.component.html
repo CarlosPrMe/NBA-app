@@ -1,19 +1,27 @@
 <div class="container mg-top-page">
   <div class="row">
-    <app-card class="col-xs-12 col-md-5 col-lg-6" [teamImage]="team?.image_url" [player]="player" [textBig]="textBig"></app-card>
-    <app-card class="col-xs-12 col-md-7 col-lg-6" [teamImage]="team?.image_url" [stats]="currentStats"></app-card>
+    <app-card class="col-xs-12 col-md-5 col-lg-6" [teamImage]="team?.image_url" [player]="player" [textBig]="textBig">
+    </app-card>
+    <app-card *ngIf="games?.length" [gameId]="currentGame" class="col-xs-12 col-md-7 col-lg-6" [teamImage]="team?.image_url"
+      [stats]="currentStats"></app-card>
   </div>
 
-
-    <div class="stats">
-        <h2 class="stats__title">Partidos de {{player?.first_name}} {{player?.last_name}}</h2>
-        <div class="row">
-          <app-result-data class="col-xs-12 col-sm-6 col-lg-4" (showStatsEvent)="onShowStatsEvent($event)" [isFirst]="isFirst" [gameSimple]="stats" [simpleData]="simpleData" [gameSelected]="currentGame" *ngFor="let stats of games;first as isFirst"></app-result-data>
-        </div>
-        <div class="row">
-          <app-paginator class="col-sx-12" *ngIf="games?.length" [data]="meta" [disabled]="formDisabled" ></app-paginator>
-          <!-- <app-paginator *ngIf="games?.length" [data]="meta" (changePage)="onChangeParams($event)" [disabled]="formDisabled" ></app-paginator> -->
-        </div>
+  <div class="stats" #stats>
+    <div class="row">
+    <h2 class="stats__title stats__title--color h3 col-sm-6">Partidos de {{player?.first_name}} {{player?.last_name}}</h2>
+      <div class="col-sm-6">
+        <app-form-filters (changeParamFilters)="onChangeParams($event)" [disabled]="formDisabled" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable"></app-form-filters>
+      </div>
     </div>
+    <div class="row">
+      <h3 class="stats__title h3" *ngIf="!games?.length" >No hay resultados</h3>
+      <app-result-data class="col-xs-12 col-sm-6" (showStatsEvent)="onShowStatsEvent($event)" [isFirst]="isFirst"
+        [gameSimple]="stats" [simpleData]="simpleData" [gameSelected]="currentGame"
+        *ngFor="let stats of games;first as isFirst"></app-result-data>
+    </div>
+    <div class="row">
+      <app-paginator class="col-sx-12" *ngIf="games?.length" [data]="meta" (changePage)="onChangeParams($event)" [disabled]="formDisabled"></app-paginator>
+    </div>
+  </div>
 
 </div>

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlayerService {
+  public playerSelected = new BehaviorSubject(null);
   private rapid_headers: any
   private url: string = environment.localUrl;
   constructor(private http: HttpClient) {
@@ -21,7 +22,7 @@ export class PlayerService {
     return this.http.get(`https://free-nba.p.rapidapi.com/players/${id}`, { headers: headers });
   }
 
-  getStatsPlayerById(id: number, page: number = 0, per_page: number = 10, season: number = 2018): Observable<any> {
+  getStatsPlayerById(id: number, page: number = 0, per_page: number = 10, season: string = '2018'): Observable<any> {
     let headers = new HttpHeaders(this.rapid_headers);
     return this.http.get(`https://free-nba.p.rapidapi.com/stats?page=${page}&per_page=${per_page}&player_ids[]=${id}&seasons[]=${season}`, { headers: headers });
   }

@@ -1,4 +1,4 @@
-@import '../../../assets/scss/partials/vars';
+@import "../../../assets/scss/partials/vars";
 
 .stats {
   background-color: $gray-200;
@@ -8,9 +8,23 @@
 
   &__title {
     margin-bottom: 1rem;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+    &--color {
+      background-color: rgba($white, 0.6);
+      box-shadow: inset 0 0 1rem rgba($black, 0.4);
+    }
   }
 
-  app-result-data{
+  app-result-data {
+    margin-bottom: 1rem;
+  }
+
+  app-form-filters {
+    display: block;
     margin-bottom: 1rem;
   }
 }

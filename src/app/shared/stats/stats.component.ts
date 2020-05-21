@@ -21,8 +21,11 @@ export class StatsComponent implements OnInit {
 
   ngOnInit(): void {
     this.noPlayed = !this.player.min ? true : false;
-    this.player.player.avatar = this.avatar;
-    !this.player.player.avatar ? this.player.player.avatar = this.userService.setAvatar() : null;
+    if(!this.player.player.avatar && this.avatar){
+      this.player.player.avatar = this.avatar;
+    }else if(!this.player.player.avatar && !this.avatar){
+      this.player.player.avatar = this.userService.setAvatar();
+    }
     this.player.team.image_url = this.bgImage;
   }
 

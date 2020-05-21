@@ -56,11 +56,6 @@
     flex-direction: column;
     z-index: $over;
     justify-content: center;
-    font-size: $fs-base + 4px;
-
-    @include desktop() {
-      font-size: $fs-md;
-    }
   }
 
   &__data {
@@ -75,4 +70,12 @@
     display: inline-block;
     padding: .3rem 1rem;
   }
+
+  &__link {
+    display: block;
+    margin: 1rem 0;
+    text-decoration: none;
+    width: 100%;
+  }
+
 }

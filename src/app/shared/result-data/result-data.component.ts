@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { TeamService } from 'src/app/services/team.service';
 import { TeamModel } from 'src/app/models/team.model';
 import { GameModel } from 'src/app/models/game.model';
@@ -8,7 +8,7 @@ import { GameModel } from 'src/app/models/game.model';
   templateUrl: './result-data.component.html',
   styleUrls: ['./result-data.component.scss']
 })
-export class ResultDataComponent implements OnInit {
+export class ResultDataComponent implements OnInit, OnChanges {
 
   @Input() game: GameModel;
   @Input() gameSimple: GameModel;
@@ -25,7 +25,26 @@ export class ResultDataComponent implements OnInit {
 
   constructor(private teamService: TeamService) { }
   ngOnInit(): void {
+    this._configureTeams();
+  }
 
+  ngOnChanges(change: SimpleChanges) {
+
+    if (change?.gameSimple?.currentValue) {
+      this.gameSimple = change.gameSimple.currentValue;
+      this._configureTeams();
+    }
+  }
+
+
+  public showStats(event, game_id) {
+    event.preventDefault();
+    if (this.gameSelected !== game_id) {
+      this.showStatsEvent.emit([game_id, { game: this.game ? this.game : this.gameSimple, home_team: this.homeTeam, visitor_team: this.visitorTeam }])
+    }
+  }
+
+  private _configureTeams() {
     this.gameId = this.gameSimple ? this.gameSimple.id : this.game.id
     this.randomhours = ['12:00', '17:00', '19:00', '21:00'];
     this.teamsId = this.gameSimple ? [this.gameSimple.home_team_id, this.gameSimple.visitor_team_id] : new Array(+this.game.home_team.id, +this.game.visitor_team.id);
@@ -52,16 +71,9 @@ export class ResultDataComponent implements OnInit {
         this.game.date = dateSeparated ? dateSeparated[0] : null;
       }
       if (this.isFirst) {
-        this.showStatsEvent.emit([ this.gameId, { game: this.game ? this.game : this.gameSimple, home_team: this.homeTeam, visitor_team: this.visitorTeam }]);
+        this.showStatsEvent.emit([this.gameId, { game: this.game ? this.game : this.gameSimple, home_team: this.homeTeam, visitor_team: this.visitorTeam }]);
       }
     });
-  }
-
-
-  public showStats(event, game_id) {
-    event.preventDefault();
-    if (this.gameSelected !== game_id) {
-      this.showStatsEvent.emit([game_id, { game: this.game ? this.game : this.gameSimple, home_team: this.homeTeam, visitor_team: this.visitorTeam }]) }
   }
 
   private _addImagerRandom(min, max) {
