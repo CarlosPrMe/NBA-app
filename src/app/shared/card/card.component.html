@@ -4,7 +4,7 @@
     <img src="{{player?.avatar}}" alt="player image">
   </span>
   <div class="card__content" [ngClass]="{'h4':!textBig, 'h3':textBig}">
-    <span class="card__data">Jugador: <strong>{{player.first_name}} {{player.last_name}}</strong></span>
+    <span class="card__data">Nombre: <strong>{{player.first_name}} {{player.last_name}}</strong></span>
     <span class="card__data">Altura: <strong>{{player.height_feet | height}} m</strong></span>
     <span class="card__data">Peso: <strong>{{player.weight_pounds | weight}} kg</strong></span>
     <span class="card__data card__data--capitalice">Posición: <strong>{{player.position | position}}</strong></span>

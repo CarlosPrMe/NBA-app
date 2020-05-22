@@ -21,3 +21,39 @@
     @content;
   }
 }
+
+@mixin customScrollBar(
+  $mainColor: $primary,
+  $secColor: $secondary,
+  $auxColor: $white,
+  $width: 8px,
+  $height: 8px,
+  $borderRad: 4px
+) {
+  &::-webkit-scrollbar {
+    width: $width; /* Tamaño del scroll en vertical */
+    height: $height; /* Tamaño del scroll en horizontal */
+    // display: none; /* Ocultar scroll */
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $mainColor;
+    border-radius: $borderRad;
+  }
+
+  /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: $secColor;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Cambiamos el fondo cuando esté en active */
+  // &::-webkit-scrollbar-thumb:active {
+  //   background-color: #999999;
+  // }
+
+  &::-webkit-scrollbar-track {
+    background: $auxColor;
+    border-radius: $borderRad;
+    margin: 1rem;
+  }
+}
