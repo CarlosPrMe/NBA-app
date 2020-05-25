@@ -1,0 +1,49 @@
+<div class="searcher" [ngClass]="{'searcher--show':sercherState}" #searcher>
+    <div class="container">
+        <h3 class="h3">Buscador</h3>
+        <form class="form" [formGroup]="myForm">
+            <div class="row">
+                <div class="col-xs-6 form__group">
+                    <div class="form__control">
+                        <input formControlName="text" type="text" class="form__input" placeholder="culo">
+                        <div class="predictive-results" *ngIf="results.length > 0">
+                            <ul class="predictive-results__list">
+                                <li class="h4" *ngFor="let player of results">
+                                    <a (click)="resetSearch($event, player.id)" class="predictive-results__link" href="#" [routerLink]="['/player',player?.id]">{{player.first_name}} {{player.last_name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="row">
+                        <div class="col-xs-4 form__group">
+                            <div class="form__control">
+                                <input formControlName="date" type="date" class="form__input" placeholder="2019-06-01" min="1978-01-01"
+                                    max="2019-06-01">
+                            </div>
+                        </div>
+                        <div class="col-xs-8 form__group">
+                            <div class="row">
+                                <div class="col-xs-4 form__group">
+                                    <label class="form__label" for="player">
+                                        <input formControlName="type" type="radio" name="type" value="player" id="player">Player
+                                    </label>
+                                </div>
+                                <div class="col-xs-4 form__group">
+                                    <label class="form__label" for="team">
+                                        <input formControlName="type" type="radio" name="type" value="team" id="team">Equipo
+                                    </label>
+                                </div>
+                                <div class="col-xs-4 form__control">
+                                    <button (click)="submit(myForm.value)" type="button" class="btn btn--primary"> <span
+                                            class="icon icon-cancel-circle"></span> Buscar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

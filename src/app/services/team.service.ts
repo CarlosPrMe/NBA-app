@@ -45,12 +45,12 @@ export class TeamService {
     return this.http.get(`https://free-nba.p.rapidapi.com/stats?game_ids[]=${id}&page=0&per_page=30}`, { headers: mis_headers });
   }
 
-  getGamesByTeam(id: number, page: number = 0, perPage: number = 10, year: string = '2018'): Observable<any> {
+  getGamesByTeam(id: number, page: number = 0, perPage: number = 10, year: string = '2019'): Observable<any> {
     let mis_headers = new HttpHeaders(this.rapid_headers);
     return this.http.get(`https://free-nba.p.rapidapi.com/games?seasons[]=${year}&team_ids[]=${id}&page=${page}&per_page=${perPage}"}`, { headers: mis_headers });
   }
 
-  // getManyGamesById(ids:Array<number>, page: number = 0, perPage: number = 10, year: string = '2018'):Observable<any>{
+  // getManyGamesById(ids:Array<number>, page: number = 0, perPage: number = 10, year: string = '2019'):Observable<any>{
   //   let mis_headers = new HttpHeaders(this.rapid_headers);
   //   return this.http.get(`https://free-nba.p.rapidapi.com/games?seasons[]=${year}&${this._setManyIds(ids)}&page=${page}per_page=${perPage}"}`, { headers: mis_headers });
   // }

@@ -37,7 +37,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
     this.filteredByPostseason = false;
     this.perPage = 10;
     this.current_page = 1;
-    this.season = '2018';
+    this.season = '2019';
     this.postseasonFilter = false;
     this.smallTeamName = true;
     this.pagesNum = [5, 10, 15];
@@ -117,7 +117,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
 
   private _createSeasonsList(limitYear) {
     let myArr = [];
-    for (let i = 2018; i > limitYear; i--) {
+    for (let i = 2019; i > limitYear; i--) {
       myArr.push(i)
     }
     return myArr;

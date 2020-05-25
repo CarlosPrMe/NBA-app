@@ -1,0 +1,62 @@
+@import "../../../assets/scss/partials/vars";
+
+.searcher {
+    box-shadow: 0 0 1rem rgba($black, 0.8);
+    height: 200px;
+    position: fixed;
+    top: 52px;
+    width: 100vw;
+    background-color: rgba($gray-200, 0.9);
+    color: $gray-900;
+    transition: all $normal ease;
+    transform: translateY(calc(-100% - 52px));
+    z-index: $over + 1;
+
+    &--show {
+        transform: translateY(0);
+    }
+
+    .form {
+        display: block;
+
+        &__label {
+            color: $black;
+            cursor: pointer;
+            padding: 0.5rem;
+
+            & + & {
+                margin-left: 1rem;
+            }
+        }
+
+        &__group {
+            .form__group {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.predictive-results {
+    background-color: $white;
+    border-top: transparent;
+    position: absolute;
+    width: 100%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow-y: auto;
+    max-height: 240px;
+    @include customScrollBar($primary, $primary, $gray-400, 8px, 8px, 4px, 0);
+
+    &__link {
+        color: $gray-900;
+        display: block;
+        text-decoration: none;
+        padding: 1rem 0.5rem;
+        transition: all $normal ease;
+
+        &:hover {
+            background-color: rgba($primary, 0.3);
+        }
+    }
+}

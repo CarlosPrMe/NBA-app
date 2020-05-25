@@ -1,128 +1,133 @@
 <div *ngIf="registered; then userInApp else registerUser"></div>
 <ng-template #registerUser>
-    <div class="container page page--center">
-        <form [formGroup]="myForm" class="form form--register bg-dark" #form>
-            <h2 class="form__title h2">Registro Usuario</h2>
-            <div class="form__group">
-                <div class="form__control">
-                    <input formControlName="name" type="text" class="form__input" placeholder="Nombre" required
-                        minlength="minLengthName">
-                </div>
-                <div class="error" *ngIf="myForm.controls.name.dirty && !myForm.controls.name.valid">
-                    <div class="error__msg">
-                        <span class="icon icon-fire"></span>
-                        <span
-                            *ngIf="myForm.controls.name.value.length > 0 && myForm.controls.name.value.length < minLengthName "
-                            class="error__text">Mínimo {{minLengthName}} caracteres</span>
-                        <span *ngIf="myForm.controls.name.errors.required" class="error__text">El campo es
-                            obligatorio</span>
+    <div class="page page--center">
+        <div class="container">
+            <form [formGroup]="myForm" class="form form--register bg-dark" #form>
+                <h2 class="form__title h2">Registro Usuario</h2>
+                <div class="form__group">
+                    <div class="form__control">
+                        <input formControlName="name" type="text" class="form__input" placeholder="Nombre" required
+                            minlength="minLengthName">
+                    </div>
+                    <div class="error" *ngIf="myForm.controls.name.dirty && !myForm.controls.name.valid">
+                        <div class="error__msg">
+                            <span class="icon icon-fire"></span>
+                            <span
+                                *ngIf="myForm.controls.name.value.length > 0 && myForm.controls.name.value.length < minLengthName "
+                                class="error__text">Mínimo {{minLengthName}} caracteres</span>
+                            <span *ngIf="myForm.controls.name.errors.required" class="error__text">El campo es
+                                obligatorio</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form__group">
-                <div class="form__control">
-                    <input formControlName="sur_name" type="text" class="form__input" placeholder="Apellidos" required>
-                </div>
-                <div class="error" *ngIf="myForm.controls.sur_name.dirty && !myForm.controls.sur_name.valid">
-                    <div class="error__msg">
-                        <span class="icon icon-fire"></span>
-                        <span *ngIf="myForm.controls.sur_name.errors.required" class="error__text">El campo es
-                            obligatorio</span>
+                <div class="form__group">
+                    <div class="form__control">
+                        <input formControlName="sur_name" type="text" class="form__input" placeholder="Apellidos" required>
+                    </div>
+                    <div class="error" *ngIf="myForm.controls.sur_name.dirty && !myForm.controls.sur_name.valid">
+                        <div class="error__msg">
+                            <span class="icon icon-fire"></span>
+                            <span *ngIf="myForm.controls.sur_name.errors.required" class="error__text">El campo es
+                                obligatorio</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form__group">
-                <div class="form__control">
-                    <input formControlName="avatar" type="text" class="form__input" placeholder="Url Imagen">
-                </div>
-                <div class="error" *ngIf="myForm.controls.avatar.value.length > 0 && myForm.controls.avatar.errors.urlCustom">
-                    <div class="error__msg">
-                        <span class="icon icon-fire"></span>
-                        <span class="error__text">El formato es incorrecto</span>
+                <div class="form__group">
+                    <div class="form__control">
+                        <input formControlName="avatar" type="text" class="form__input" placeholder="Url Imagen">
+                    </div>
+                    <div class="error" *ngIf="myForm.controls.avatar.value.length > 0 && myForm.controls.avatar.errors.urlCustom">
+                        <div class="error__msg">
+                            <span class="icon icon-fire"></span>
+                            <span class="error__text">El formato es incorrecto</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form__group">
-                <div class="form__control">
-                    <input formControlName="email" type="email" class="form__input" placeholder="Email" required>
-                </div>
-                <div class="error" *ngIf="myForm.controls.email.dirty&& !myForm.controls.email.valid">
-                    <div class="error__msg">
-                        <span class="icon icon-fire"></span>
-                        <span *ngIf="myForm.controls.email.errors.required && myForm.controls.email.value.length === 0"
-                            class="error__text">El campo es
-                            obligatorio</span>
-                        <span *ngIf="myForm.controls.email.value.length > 0 && myForm.controls.email.errors.emailCustom"
-                            class="error__text">Formato incorrecto</span>
+                <div class="form__group">
+                    <div class="form__control">
+                        <input formControlName="email" type="email" class="form__input" placeholder="Email" required>
+                    </div>
+                    <div class="error" *ngIf="myForm.controls.email.dirty&& !myForm.controls.email.valid">
+                        <div class="error__msg">
+                            <span class="icon icon-fire"></span>
+                            <span *ngIf="myForm.controls.email.errors.required && myForm.controls.email.value.length === 0"
+                                class="error__text">El campo es
+                                obligatorio</span>
+                            <span *ngIf="myForm.controls.email.value.length > 0 && myForm.controls.email.errors.emailCustom"
+                                class="error__text">Formato incorrecto</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form__group">
-                <div class="form__control">
-                    <input formControlName="password" type="password" class="form__input" placeholder="Contraseña"
-                        required minlength="minLengthPass">
-                </div>
-                <div class="error" *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid">
-                    <div class="error__msg">
-                        <span class="icon icon-fire"></span>
-                        <span
-                            *ngIf="myForm.controls.password.value.length > 0 && myForm.controls.password.value.length < minLengthPass "
-                            class="error__text">Mínimo {{minLengthPass}} caracteres</span>
-                        <span *ngIf="myForm.controls.password.errors.required" class="error__text">El campo es
-                            obligatorio</span>
+                <div class="form__group">
+                    <div class="form__control">
+                        <input formControlName="password" type="password" class="form__input" placeholder="Contraseña"
+                            required minlength="minLengthPass">
+                    </div>
+                    <div class="error" *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid">
+                        <div class="error__msg">
+                            <span class="icon icon-fire"></span>
+                            <span
+                                *ngIf="myForm.controls.password.value.length > 0 && myForm.controls.password.value.length < minLengthPass "
+                                class="error__text">Mínimo {{minLengthPass}} caracteres</span>
+                            <span *ngIf="myForm.controls.password.errors.required" class="error__text">El campo es
+                                obligatorio</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form__group">
-                <input formControlName="terms" type="checkbox" value="true" id="terms" required>
-                <label class="form__label" for="terms">Aceptar terminos</label>
-            </div>
-            <button type="button" class="btn form__link h5" (click)="register()">¿Ya eres usuario? Haz Login</button>
-            <button class="btn btn--primary form__btn" type="button" (click)="submit(myForm)" (keyup.enter)="submit(myForm)"
-                [disabled]="myForm.status === 'INVALID'">Enviar</button>
+                <div class="form__group">
+                    <input formControlName="terms" type="checkbox" value="true" id="terms" required>
+                    <label class="form__label" for="terms">Aceptar terminos</label>
+                </div>
+                <button type="button" class="btn form__link h5" (click)="register()">¿Ya eres usuario? Haz Login</button>
+                <button class="btn btn--primary form__btn" type="button" (click)="submit(myForm)" (keyup.enter)="submit(myForm)"
+                    [disabled]="myForm.status === 'INVALID'">Enviar</button>
+    
+            </form>
+        </div>
 
-        </form>
     </div>
 </ng-template>
 
 <ng-template #userInApp>
-    <div class="container page page--center">
-        <form [formGroup]="myForm" class="form form--register bg-dark">
-            <h2 class="form__title h2">Acceso Usuario</h2>
-            <div class="form__group">
-                <div class="form__control">
-                    <input formControlName="email" type="email" class="form__input" placeholder="Email" required>
-                </div>
-                <!-- <div class="error" *ngIf="myForm.controls.email.dirty&& !myForm.controls.email.valid">
-                    <div class="error__msg">
-                        <span class="icon icon-fire"></span>
-                        <span *ngIf="myForm.controls.email.errors.required && myForm.controls.email.value.length === 0"
-                            class="error__text">El campo es
-                            obligatorio</span>
-                        <span *ngIf="myForm.controls.email.value.length > 0 && myForm.controls.email.errors.emailCustom"
-                            class="error__text">Formato incorrecto</span>
+    <div class="page page--center">
+        <div class="container">
+            <form [formGroup]="myForm" class="form form--register bg-dark">
+                <h2 class="form__title h2">Acceso Usuario</h2>
+                <div class="form__group">
+                    <div class="form__control">
+                        <input formControlName="email" type="email" class="form__input" placeholder="Email" required>
                     </div>
-                </div> -->
-            </div>
-            <div class="form__group">
-                <div class="form__control">
-                    <input formControlName="password" type="password" class="form__input" placeholder="Contraseña"
-                        required minlength="minLengthPass">
+                    <!-- <div class="error" *ngIf="myForm.controls.email.dirty&& !myForm.controls.email.valid">
+                        <div class="error__msg">
+                            <span class="icon icon-fire"></span>
+                            <span *ngIf="myForm.controls.email.errors.required && myForm.controls.email.value.length === 0"
+                                class="error__text">El campo es
+                                obligatorio</span>
+                            <span *ngIf="myForm.controls.email.value.length > 0 && myForm.controls.email.errors.emailCustom"
+                                class="error__text">Formato incorrecto</span>
+                        </div>
+                    </div> -->
                 </div>
-                <!-- <div class="error" *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid">
-                    <div class="error__msg">
-                        <span class="icon icon-fire"></span>
-                        <span
-                            *ngIf="myForm.controls.password.value.length > 0 && myForm.controls.password.value.length < minLengthPass "
-                            class="error__text">Mínimo {{minLengthPass}} caracteres</span>
-                        <span *ngIf="myForm.controls.password.errors.required" class="error__text">El campo es
-                            obligatorio</span>
+                <div class="form__group">
+                    <div class="form__control">
+                        <input formControlName="password" type="password" class="form__input" placeholder="Contraseña"
+                            required minlength="minLengthPass">
                     </div>
-                </div> -->
-            </div>
-            <button type="button" class="btn form__link h5" (click)="register()">¿Aún no eres usuario? Regístrate</button>
-            <button class="btn btn--primary form__btn" type="button" (click)="login($event, myForm)" (keyup.enter)="login($event, myForm)"
-                [disabled]="myForm.status === 'INVALID'">Entrar</button>
-        </form>
+                    <!-- <div class="error" *ngIf="myForm.controls.password.dirty && !myForm.controls.password.valid">
+                        <div class="error__msg">
+                            <span class="icon icon-fire"></span>
+                            <span
+                                *ngIf="myForm.controls.password.value.length > 0 && myForm.controls.password.value.length < minLengthPass "
+                                class="error__text">Mínimo {{minLengthPass}} caracteres</span>
+                            <span *ngIf="myForm.controls.password.errors.required" class="error__text">El campo es
+                                obligatorio</span>
+                        </div>
+                    </div> -->
+                </div>
+                <button type="button" class="btn form__link h5" (click)="register()">¿Aún no eres usuario? Regístrate</button>
+                <button class="btn btn--primary form__btn" type="button" (click)="login($event, myForm)" (keyup.enter)="login($event, myForm)"
+                    [disabled]="myForm.status === 'INVALID'">Entrar</button>
+            </form>
+        </div>
     </div>
 </ng-template>

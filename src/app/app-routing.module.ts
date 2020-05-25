@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { SearcherPageComponent } from './pages/searcher-page/searcher-page.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { TeamResolver } from './resolvers/team.resolver';
 import { TeamsResolver } from './resolvers/teams.resolver';
@@ -22,10 +21,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterPageComponent
-  },
-  {
-    path: 'searcher',
-    component: SearcherPageComponent
   },
   {
     path: 'teams',

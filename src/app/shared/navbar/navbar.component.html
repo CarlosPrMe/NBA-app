@@ -11,10 +11,10 @@
                 <span class="icon icon-profile"></span>
                 Clasificaciones</a>
         </li>
-        <li class="nav__item">
-            <a [routerLink]="['/searcher']" routerLinkActive="nav__link--active" class="nav__link" href="#">
+        <li (click)="showSearcher($event)" class="nav__item nav__item--btn" [ngClass]="{'nav__link--active':searcherOpen}">
+            <button type="btn" class="btn nav__link nav__link--btn">
                 <span class="icon icon-dribbble"></span>
-                Buscador</a>
+                Buscador</button>
         </li>
     </ul>
     <app-menu [user]="user" (closeSessionUser)="onCloseSessionUser($event)"></app-menu>

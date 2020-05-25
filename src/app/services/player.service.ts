@@ -22,7 +22,7 @@ export class PlayerService {
     return this.http.get(`https://free-nba.p.rapidapi.com/players/${id}`, { headers: headers });
   }
 
-  getStatsPlayerById(id: number, page: number = 0, per_page: number = 10, season: string = '2018'): Observable<any> {
+  getStatsPlayerById(id: number, page: number = 0, per_page: number = 10, season: string = '2019'): Observable<any> {
     let headers = new HttpHeaders(this.rapid_headers);
     return this.http.get(`https://free-nba.p.rapidapi.com/stats?page=${page}&per_page=${per_page}&player_ids[]=${id}&seasons[]=${season}`, { headers: headers });
   }

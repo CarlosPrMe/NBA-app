@@ -1,10 +1,13 @@
-@import './assets/scss/partials/vars';
-@import './assets/scss/partials/typography';
-@import './assets/scss/partials/reset';
-@import './app/lib/fonts/theme/icons';
-@import './assets/scss/partials/buttons';
-@import './assets/scss/partials/forms';
-@import './assets/scss/partials/general';
-@import './assets/scss/partials/grid';
-@import './assets/scss/partials/utils';
+@import "./assets/scss/partials/vars";
+@import "./assets/scss/partials/typography";
+@import "./assets/scss/partials/reset";
+@import "./app/lib/fonts/theme/icons";
+@import "./assets/scss/partials/buttons";
+@import "./assets/scss/partials/forms";
+@import "./assets/scss/partials/general";
+@import "./assets/scss/partials/grid";
+@import "./assets/scss/partials/utils";
 
+body {
+    @include customScrollBar($primary, $primary, $gray-200, .8rem, .8rem, .5rem, 0);
+}

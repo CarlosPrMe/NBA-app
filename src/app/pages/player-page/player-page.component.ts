@@ -51,7 +51,7 @@ export class PlayerPageComponent implements OnInit {
     this.filteredByPostseason = false;
     this.perPage = 10;
     this.current_page = 1;
-    this.season = '2018';
+    this.season = '2019';
     this.postseasonFilter = false;
     this.pagesNum = [5, 10, 15];
     this.seasonsAvailable = this._createSeasonsList(1999);
@@ -60,15 +60,34 @@ export class PlayerPageComponent implements OnInit {
     if (this.playerService.playerSelected.value) {
       this.player = this.playerService.playerSelected.value.player;
       this.player.team = this.playerService.playerSelected.value.team ? this.playerService.playerSelected.value.team : this.activate.snapshot.data.player.team;
-    } else {
+    }
+    else {
       this.player = this.activate.snapshot.data.player;
       this.player.avatar = this.userService.setAvatar();
     }
+
     this.gamesStats = this.activate.snapshot.data.stats.data;
     this.meta = this.activate.snapshot.data.stats.meta;
     this.games = this._getGamesFromStats(this.gamesStats);
     this.teamService.getTeamById(this.player.team.id).subscribe(res => {
       this.team = res;
+    })
+debugger
+    this.activate.params.subscribe(res => {
+      this.playerService.getPlayerById(res.id).subscribe(player => {
+        if (this.player.id !== player.id || !this.player) {
+          this.player = player;
+          !this.player.avatar ? this.player.avatar = this.userService.setAvatar() : null;
+          this.teamService.getTeamById(this.player.team.id).subscribe(team => {
+            this.team = team;
+          })
+          this.playerService.getStatsPlayerById(player.id).subscribe(data => {
+            this.gamesStats = data.data;
+            this.meta = data.meta;
+            this.games = this._getGamesFromStats(this.gamesStats);
+          })
+        }
+      })
     })
   }
 
@@ -143,7 +162,7 @@ export class PlayerPageComponent implements OnInit {
 
   private _createSeasonsList(limitYear) {
     let myArr = [];
-    for (let i = 2018; i > limitYear; i--) {
+    for (let i = 2019; i > limitYear; i--) {
       myArr.push(i)
     }
     return myArr;

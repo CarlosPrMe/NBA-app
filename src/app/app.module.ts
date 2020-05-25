@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -15,7 +14,6 @@ import { BgImageDirective } from './directives/bg-image.directive';
 import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
-import { SearcherPageComponent } from './pages/searcher-page/searcher-page.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { HeaderComponent } from './shared/header/header.component';
@@ -34,6 +32,7 @@ import { PlayerPageComponent } from './pages/player-page/player-page.component';
 import { CardComponent } from './shared/card/card.component';
 import { PaginatorComponent } from './shared/paginator/paginator.component';
 import { FormFiltersComponent } from './shared/form-filters/form-filters.component';
+import { SearcherComponent } from './shared/searcher/searcher.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +46,6 @@ import { FormFiltersComponent } from './shared/form-filters/form-filters.compone
     TeamPageComponent,
     HomePageComponent,
     RegisterPageComponent,
-    SearcherPageComponent,
     SpinnerComponent,
     TeamsComponent,
     HeaderComponent,
@@ -65,7 +63,8 @@ import { FormFiltersComponent } from './shared/form-filters/form-filters.compone
     PlayerPageComponent,
     CardComponent,
     PaginatorComponent,
-    FormFiltersComponent
+    FormFiltersComponent,
+    SearcherComponent
   ],
   imports: [
     BrowserModule,

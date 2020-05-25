@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user-service.service';
 import { UserModel } from 'src/app/models/user.model';
+import { SearcherService } from 'src/app/services/searcher.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,13 +11,18 @@ import { UserModel } from 'src/app/models/user.model';
 export class NavbarComponent implements OnInit {
 
   public user: UserModel;
-  constructor(private userService: UserService) { }
+  public searcherOpen: boolean;
+  constructor(private userService: UserService, private searcherService: SearcherService) { }
 
   ngOnInit(): void {
-    this.userService.user.subscribe((res:UserModel) =>{
-      if(res){
+    this.searcherService.searcherShow.subscribe(res=> {
+      this.searcherOpen = res;
+    })
+
+    this.userService.user.subscribe((res: UserModel) => {
+      if (res) {
         this.user = res;
-      }else{
+      } else {
         // this.user = {
         //   name: "Perico",
         //   sur_name: "Perez",
@@ -29,7 +35,11 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  onCloseSessionUser(event){
+  onCloseSessionUser(event) {
     console.log('DEsde el navbar', event);
+  }
+
+  showSearcher($event) {
+    this.searcherService.searcherShow.next(!this.searcherOpen)
   }
 }
