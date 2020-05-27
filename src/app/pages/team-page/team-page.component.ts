@@ -1,17 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TeamModel } from 'src/app/models/team.model';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user-service.service';
 import { PlayerModel } from 'src/app/models/player.model';
 import { GameModel } from 'src/app/models/game.model';
+import { SearcherService } from 'src/app/services/searcher.service';
 
 @Component({
   selector: 'app-team-page',
   templateUrl: './team-page.component.html',
   styleUrls: ['./team-page.component.scss']
 })
-export class TeamPageComponent implements OnInit, AfterViewChecked {
+export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   @ViewChild('container') container: ElementRef;
   private offsetTop: number;
@@ -24,20 +25,23 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
   public smallTeamName: boolean;
   private perPage: number;
   private current_page: number;
-  private season: string;
+  public season: string;
   private postseasonFilter: boolean;
   public seasonsAvailable: Array<number>;
   public formDisabled: boolean;
   private filteredByPostseason: boolean;
   private gamesPostseason: Array<GameModel>;
-  constructor(private activate: ActivatedRoute, private teamService: TeamService, private userService: UserService) { }
+  constructor(private activate: ActivatedRoute, private teamService: TeamService,
+    private userService: UserService, private searcherService: SearcherService) { }
 
   ngOnInit(): void {
     this.formDisabled = false;
     this.filteredByPostseason = false;
     this.perPage = 10;
     this.current_page = 1;
-    this.season = '2019';
+    this.searcherService.currentSeason.subscribe(data => {
+      this.season = data;
+    })
     this.postseasonFilter = false;
     this.smallTeamName = true;
     this.pagesNum = [5, 10, 15];
@@ -45,23 +49,30 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
     this.team = this.activate.snapshot.data.team;
     this.games = this.activate.snapshot.data.games.data;
     this.meta = this.activate.snapshot.data.games.meta;
-
-    if (!this.players) {
-      this.teamService.getStatsById(this.games[0].id).subscribe(res => {
-        this.players = res.data.filter(p => {
-          if (p.team.id === this.team.id_team) {
-            return p.player;
-          }
-        }).map(p => {
-          !p.avatar ? p.player.avatar = this.userService.setAvatar() : null;
-          return p.player
+    this._checkPlayers();
+    this.activate.params.subscribe(res => {
+      let currentTeamId = +res.id;
+      if (currentTeamId !== this.team.id_team) {
+        this.players = null;
+        this.team = null;
+        this.teamService.getTeamById(currentTeamId).subscribe(team => {
+          this.team = team;
+          this.teamService.getGamesByTeam(currentTeamId, this.current_page, this.perPage, this.season).subscribe(data => {
+            this.games = data.data;
+            this.meta = data.meta;
+            this._checkPlayers();
+          })
         })
-      })
-    }
+      }
+    })
   }
 
   ngAfterViewChecked() {
     if (!this.offsetTop) this.offsetTop = this.container.nativeElement.offsetTop;
+  }
+
+  ngOnDestroy() {
+    this.searcherService.currentSeason.next(null);
   }
 
   public onChangeParams(event) {
@@ -115,6 +126,21 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  private _checkPlayers() {
+    if (!this.players) {
+      this.teamService.getStatsById(this.games[0].id).subscribe(res => {
+        this.players = res.data.filter(p => {
+          if (p.team.id === this.team.id_team) {
+            return p.player;
+          }
+        }).map(p => {
+          !p.avatar ? p.player.avatar = this.userService.setAvatar() : null;
+          return p.player
+        })
+      })
+    }
+  }
+
   private _createSeasonsList(limitYear) {
     let myArr = [];
     for (let i = 2019; i > limitYear; i--) {
@@ -136,7 +162,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked {
   }
 
   private _getPagesPostSeason(games: Array<any>, numPage: number, perPage: number): Array<any> {
-    let myArr = games.slice((numPage - 1) * perPage, (perPage*numPage));
+    let myArr = games.slice((numPage - 1) * perPage, (perPage * numPage));
     return myArr;
   }
 

@@ -8,6 +8,7 @@ import { TeamService } from 'src/app/services/team.service';
 import { PaginatorModel } from 'src/app/models/pagintor.model';
 import { GameModel } from 'src/app/models/game.model';
 import { PlayerService } from '../../services/player.service';
+import { SearcherService } from 'src/app/services/searcher.service';
 
 @Component({
   selector: 'app-player-page',
@@ -39,11 +40,8 @@ export class PlayerPageComponent implements OnInit {
 
   @ViewChild('stats') containerGames: ElementRef;
 
-  private distanceContainer: number;
-
-
   constructor(private activate: ActivatedRoute, private userService: UserService,
-    private teamService: TeamService, private playerService: PlayerService) { }
+    private teamService: TeamService, private playerService: PlayerService, private searcherService: SearcherService) { }
 
   ngOnInit(): void {
     this.simpleData = true;
@@ -51,7 +49,9 @@ export class PlayerPageComponent implements OnInit {
     this.filteredByPostseason = false;
     this.perPage = 10;
     this.current_page = 1;
-    this.season = '2019';
+    this.searcherService.currentSeason.subscribe(data => {
+      this.season = data;
+    })
     this.postseasonFilter = false;
     this.pagesNum = [5, 10, 15];
     this.seasonsAvailable = this._createSeasonsList(1999);
@@ -59,7 +59,7 @@ export class PlayerPageComponent implements OnInit {
 
     if (this.playerService.playerSelected.value) {
       this.player = this.playerService.playerSelected.value.player;
-      this.player.team = this.playerService.playerSelected.value.team ? this.playerService.playerSelected.value.team : this.activate.snapshot.data.player.team;
+      this.player.team = this.playerService.playerSelected.value.team || this.activate.snapshot.data.player.team;
     }
     else {
       this.player = this.activate.snapshot.data.player;
@@ -72,7 +72,6 @@ export class PlayerPageComponent implements OnInit {
     this.teamService.getTeamById(this.player.team.id).subscribe(res => {
       this.team = res;
     })
-debugger
     this.activate.params.subscribe(res => {
       this.playerService.getPlayerById(res.id).subscribe(player => {
         if (this.player.id !== player.id || !this.player) {

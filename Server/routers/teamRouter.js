@@ -17,10 +17,20 @@ class TeamRouter {
     team.id ? res.status(200).send(team) : res.status(400);
   }
 
+  static async getTeamByName(req, res){
+    let team = req.body.team_name;
+    console.log('team', team);
+    
+    let foundTeam = await TeamModel.find({ full_name: new RegExp(`${team}`, 'gi') });
+    console.log('foundTeam',foundTeam);
+    
+    foundTeam ? res.status(200).send(foundTeam) : res.status(400)
+  }
+
   static async addTeam(req, res) {
     let team = req.body;
     let newTeam = await new TeamModel(team).save();
-    newTeam.id ? res.status(200).send(newTeam) : res(400);
+    newTeam.id ? res.status(200).send(newTeam) : res.status(400);
   }
 
   static async getTeamImagesByIds(req, res) {
@@ -45,5 +55,6 @@ class TeamRouter {
 router.get("/teams", TeamRouter.getTeams);
 router.get("/team/:id_team", TeamRouter.getTeamById);
 router.post("/team-image", jsonParser, TeamRouter.getTeamImagesByIds);
+router.post("/team-name", jsonParser, TeamRouter.getTeamByName);
 router.post("/team-add", jsonParser, TeamRouter.addTeam);
 module.exports = router;

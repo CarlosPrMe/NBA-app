@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,22 +12,29 @@ export class FormFiltersComponent implements OnInit, OnChanges {
   @Input() optionsPerPage: Array<object>;
   @Input() optionsPerSeason: Array<number>;
   @Input() disabled: boolean;
+  @Input() currentSeason: string;
   @Output() changeParamFilters = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.optionsPerPage
-    this.optionsPerSeason
+    let paintSeason = this.currentSeason || this.optionsPerSeason[0]
     this.myForm = this.fb.group({
       per_page: [this.optionsPerPage[1]],
-      season: [this.optionsPerSeason[0]],
+      season: [paintSeason],
       postseason: ['']
     })
   }
 
   ngOnChanges(change: SimpleChanges) {
-    this.disabled = change.disabled.currentValue;
+    const { disabled, currentSeason } = change;
+    this.disabled = disabled?.currentValue;
+    this.currentSeason
+    debugger
+    if (!this.currentSeason && !currentSeason?.firstChange) {
+      let paintSeason = currentSeason?.currentValue || this.optionsPerSeason[0]
+      this.myForm.get('season').setValue(paintSeason)
+    }
   }
 
   public changeFilters(form) {

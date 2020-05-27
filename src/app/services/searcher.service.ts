@@ -13,6 +13,7 @@ export class SearcherService {
   private rapid_headers: any
   private url: string = environment.localUrl;
   public searcherShow: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  public currentSeason: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor(private httpClient: HttpClient) {
     this.rapid_headers = {
