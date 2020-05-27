@@ -17,13 +17,9 @@ class TeamRouter {
     team.id ? res.status(200).send(team) : res.status(400);
   }
 
-  static async getTeamByName(req, res){
+  static async getTeamByName(req, res) {
     let team = req.body.team_name;
-    console.log('team', team);
-    
     let foundTeam = await TeamModel.find({ full_name: new RegExp(`${team}`, 'gi') });
-    console.log('foundTeam',foundTeam);
-    
     foundTeam ? res.status(200).send(foundTeam) : res.status(400)
   }
 

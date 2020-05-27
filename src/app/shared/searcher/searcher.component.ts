@@ -70,7 +70,6 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
 
   public resetSearch(event, param, origin) {
     event.preventDefault();
-    debugger
     this.playerService.playerSelected.next(null);
     this.searcherService.currentSeason.next(null);
     this._setData();
@@ -111,7 +110,6 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
     if (form.stats) {
       if (!form.seasonStats) {
         this._createForm();
-        debugger
         this.searcherService.currentSeason.next(form.season);
         this.router.navigate(['team', +form.teamSelected]);
       } else {

@@ -29,8 +29,6 @@ export class FormFiltersComponent implements OnInit, OnChanges {
   ngOnChanges(change: SimpleChanges) {
     const { disabled, currentSeason } = change;
     this.disabled = disabled?.currentValue;
-    this.currentSeason
-    debugger
     if (!this.currentSeason && !currentSeason?.firstChange) {
       let paintSeason = currentSeason?.currentValue || this.optionsPerSeason[0]
       this.myForm.get('season').setValue(paintSeason)

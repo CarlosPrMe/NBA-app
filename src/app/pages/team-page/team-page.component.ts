@@ -128,14 +128,17 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   private _checkPlayers() {
     if (!this.players) {
-      this.teamService.getStatsById(this.games[0].id).subscribe(res => {
-        this.players = res.data.filter(p => {
-          if (p.team.id === this.team.id_team) {
-            return p.player;
-          }
-        }).map(p => {
-          !p.avatar ? p.player.avatar = this.userService.setAvatar() : null;
-          return p.player
+      this.teamService.getGamesByTeam(this.team.id_team, 0, 10, '2019').subscribe(res => {
+        let id = res.data[0].id;
+        this.teamService.getStatsById(id).subscribe(data => {
+          this.players = data.data.filter(p => {
+            if (p.team.id === this.team.id_team) {
+              return p.player;
+            }
+          }).map(p => {
+            !p.avatar ? p.player.avatar = this.userService.setAvatar() : null;
+            return p.player
+          })
         })
       })
     }
