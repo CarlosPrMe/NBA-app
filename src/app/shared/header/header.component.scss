@@ -1,7 +1,7 @@
 @import "../../../assets/scss/partials/vars";
 .header {
   background-color: $white;
-  box-shadow: 0 0 2rem rgba($black, .6);
+  box-shadow: 0 0 2rem rgba($black, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +13,8 @@
   position: relative;
 
   &--game {
-    background-color: rgba($primary, .05);
+    background-color: rgba($primary, 0.05);
+    max-height: none;
   }
 
   &--teams {
@@ -22,7 +23,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-bottom: 6px solid $danger;
-    box-shadow: 0 0 2rem rgba($danger, .6);
+    box-shadow: 0 0 2rem rgba($danger, 0.6);
   }
 
   &__media {
@@ -52,39 +53,41 @@
     }
   }
 
-  &__content {
-    display: flex;
-    justify-content: space-between;
-  }
-
   &__block {
-    flex: 0 1 48%;
-    border-radius: 1rem;
-    box-shadow: 0 0 1rem rgba($black, .5);
-    display: flex;
-    align-items: center;
-    padding: 1rem;
-    position: relative;
-
+    margin: 1rem 0;
     &:nth-child(2) {
-      flex-direction: row-reverse;
+      .header__team {
+        flex-direction: row-reverse;
 
-      &::before {
-        content: "";
-        position: absolute;
-        display: block;
-        height: 4px;
-        width: 2rem;
-        border-radius: 5px;
-        left: -2.5rem;
-        top: calc(50% - 25px);
-        background-color: $black;
-      }
+        // @include desktop {
+        //   &::before {
+        //     content: "";
+        //     position: absolute;
+        //     display: block;
+        //     height: 4px;
+        //     width: 2.5rem;
+        //     border-radius: 5px;
+        //     left: -2rem;
+        //     top: calc(50% - 25px);
+        //     background-color: $gray-800;
+        //   }
+        // }
 
-      .header__data-container {
-        text-align: left;
+        .header__data-container {
+          text-align: left;
+        }
       }
     }
+  }
+
+  &__team {
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba($black, 0.5);
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 1rem;
+    position: relative;
   }
 
   &__media-container {
@@ -102,6 +105,13 @@
   }
 
   &__date {
-    flex: 0 1 100%;
+    background-color: rgba($primary, 0.8);
+    border-radius: 5px;
+    border: 2px solid $white;
+    box-shadow: 0 0 1rem rgba($black, 0.4);
+    color: $white;
+    margin: 0 auto;
+    padding: 0.5rem 1rem;
+    width: max-content;
   }
 }

@@ -7,8 +7,13 @@
   &--center {
     align-items: center;
   }
+
   &--end {
     align-items: flex-end;
+  }
+  
+  &--between{
+    justify-content: space-between;
   }
 }
 
