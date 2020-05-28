@@ -115,6 +115,14 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
       } else {
         this.teamService.getGamesByTeam(form.teamSelected, 1, 120, null, form.date).subscribe(data => {
           debugger
+          let idGame = data?.data[0]?.id || null;
+          if (idGame) {
+            this.router.navigate(['stats', idGame]);
+          } else {
+            alert('No hay partidos para esa fecha elegida');
+          }
+          this._setData();
+          this._createForm();
         })
       }
 

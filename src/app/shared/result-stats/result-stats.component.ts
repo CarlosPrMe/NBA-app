@@ -74,31 +74,41 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
 
   ngOnChanges(change: SimpleChanges) {
 
-    if (!change.game.firstChange) {
+    if (!change?.game?.firstChange) {
       this.statsContainer.nativeElement.classList.remove('stats--small', 'stats--dropdown');
       this.statsHeight = null;
       this.showComplete = false;
     }
 
-    this.homeTeam = {};
-    this.visitorTeam = {};
-    this.currentGame = change.game.currentValue.game;
-    this.gameDate = change.game.currentValue.game.date;
-    this.homeTeam.id_team = change.game.currentValue.home_team.id_team;
-    this.homeTeam.team_color = change.game.currentValue.home_team.team_color;
-    this.homeTeam.full_name = change.game.currentValue.home_team.full_name;
-    this.homeTeam.image_url = change.game.currentValue.home_team.image_url;
+    if (change?.game?.firstChange) {
+      this.homeTeam = {};
+      this.visitorTeam = {};
+    }
 
-    this.visitorTeam.id_team = change.game.currentValue.visitor_team.id_team;
-    this.visitorTeam.team_color = change.game.currentValue.visitor_team.team_color;
-    this.visitorTeam.full_name = change.game.currentValue.visitor_team.full_name;
-    this.visitorTeam.image_url = change.game.currentValue.visitor_team.image_url;
+    if (change.game?.currentValue?.game) {
+      this.currentGame = change.game.currentValue.game;
+      this.gameDate = change.game.currentValue.game.date;
+    }
 
+    if (change.game?.currentValue?.home_team) {
+      this.homeTeam.id_team = change.game.currentValue.home_team.id_team;
+      this.homeTeam.team_color = change.game.currentValue.home_team.team_color;
+      this.homeTeam.full_name = change.game.currentValue.home_team.full_name;
+      this.homeTeam.image_url = change.game.currentValue.home_team.image_url;
+    }
 
-    this.homeTeam.players = change.stats.currentValue.filter(player => player.team.id === this.homeTeam.id_team);
-    this.visitorTeam.players = change.stats.currentValue.filter(player => player.team.id === this.visitorTeam.id_team);
+    if (change.game?.currentValue?.home_team) {
+      this.visitorTeam.id_team = change.game.currentValue.visitor_team.id_team;
+      this.visitorTeam.team_color = change.game.currentValue.visitor_team.team_color;
+      this.visitorTeam.full_name = change.game.currentValue.visitor_team.full_name;
+      this.visitorTeam.image_url = change.game.currentValue.visitor_team.image_url;
+    }
 
-    this.teams = [this.homeTeam, this.visitorTeam];
+    if (change.stats?.currentValue && change.stats.firstChange) {
+      this.homeTeam.players = change.stats.currentValue.filter(player => player.team.id === this.homeTeam.id_team);
+      this.visitorTeam.players = change.stats.currentValue.filter(player => player.team.id === this.visitorTeam.id_team);
+      this.teams = [this.homeTeam, this.visitorTeam];
+    }
 
     if (this.myForm?.value) {
       this.sortTeams(this.myForm.value);

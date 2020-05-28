@@ -7,7 +7,7 @@
             Jugadores destacados
             <span class="icon icon-fire"></span>
         </h2>
-        <div class="highlights">
+        <div class="highlights" *ngIf="topPlayers?.length">
             <div class="highlights__block" *ngFor="let stats of topPlayers; index as i">
                 <p class="highlights__title">Máximo {{textHighlights[i]}}</p>
                 <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="stats.player"
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="" *ngIf="playersByTeam">
+<div class="" *ngIf="playersByTeam?.length">
     <div class="container">
         <h2 class="h2"> <span class="icon icon-stats-bars"></span>
             Estadísticas

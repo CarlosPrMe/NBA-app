@@ -46,16 +46,19 @@ export class StatsPageComponent implements OnInit {
     this.game = this.stats[0].game;
     this.homeTeamId = this.game.home_team_id;
     this.visitorTeamId = this.game.visitor_team_id;
+    this._getData()
 
-    this.teamService.getTeamImagesById([this.homeTeamId, this.visitorTeamId]).subscribe(data => {
-      this.homeTeam = data.find(team => team.id_team === this.homeTeamId);
-      this.visitorTeam = data.find(team => team.id_team === this.visitorTeamId);
-      this.teams = [this.homeTeam, this.visitorTeam];
-      this.homeTeamPlayers = this.stats.filter(p => p.team.id === this.homeTeamId);
-      this.visitorTeamPlayers = this.stats.filter(p => p.team.id === this.visitorTeamId);
-      this.playersByTeam = [this.homeTeamPlayers, this.visitorTeamPlayers];
-      this.gameSelected = { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam };
-      this.topPlayers = this._getTopPlayers(this.stats, this.filterTopPlayer);
+    this.activateRouter.params.subscribe(res => {
+      this.idStatsDetails = res.id;
+      this.playersByTeam = [];
+      this.topPlayers = [];
+      this.teamService.getStatsById(res.id).subscribe(data => {
+        this.stats = data.data;
+        this.game = this.stats[0].game;
+        this.homeTeamId = this.game.home_team_id;
+        this.visitorTeamId = this.game.visitor_team_id;
+        this._getData();
+      })
     })
   }
 
@@ -93,5 +96,18 @@ export class StatsPageComponent implements OnInit {
   private _randomMVP(min, max) {
     let num = Math.round(Math.random() * (max - min) + min);
     return num;
+  }
+
+  private _getData() {
+    this.teamService.getTeamImagesById([this.homeTeamId, this.visitorTeamId]).subscribe(data => {
+      this.homeTeam = data.find(team => team.id_team === this.homeTeamId);
+      this.visitorTeam = data.find(team => team.id_team === this.visitorTeamId);
+      this.teams = [this.homeTeam, this.visitorTeam];
+      this.homeTeamPlayers = this.stats.filter(p => p.team.id === this.homeTeamId);
+      this.visitorTeamPlayers = this.stats.filter(p => p.team.id === this.visitorTeamId);
+      this.playersByTeam = [this.homeTeamPlayers, this.visitorTeamPlayers];
+      this.gameSelected = { game: this.game, home_team: this.homeTeam, visitor_team: this.visitorTeam };
+      this.topPlayers = this._getTopPlayers(this.stats, this.filterTopPlayer);
+    })
   }
 }
