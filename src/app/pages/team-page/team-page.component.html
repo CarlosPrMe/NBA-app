@@ -21,7 +21,7 @@
         <div class="team-page__container">
             <h2 class="team-page__title h2">
                 <img class="team-page__logo" src="{{team?.image_url}}" alt="">
-                <span *ngIf="seasonTeam == '2019'">Plantilla actual de </span> <span *ngIf="seasonTeam != '2019'">Plantilla año {{ seasonTeam }} de </span> <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
+                <span *ngIf="seasonTeam == '2019'">Plantilla actual </span> <span *ngIf="seasonTeam != '2019'">Plantilla año {{ seasonTeam }} </span> <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
                     {{team?.full_name}}</span>
             </h2>
             <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">

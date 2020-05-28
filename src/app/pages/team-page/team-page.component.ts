@@ -59,6 +59,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
       if (currentTeamId !== this.team.id_team) {
         this.players = null;
         this.team = null;
+        this.seasonTeam = '2019';
         this.teamService.getTeamById(currentTeamId).subscribe(team => {
           this.team = team;
           this.teamService.getGamesByTeam(currentTeamId, this.current_page, this.perPage, this.season).subscribe(data => {
