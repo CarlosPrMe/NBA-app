@@ -5,18 +5,30 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        display: block;
+        width: 80%;
+        left: 10%;
+        height: 100%;
+        border-top: 1px solid $gray-500;
+        border-bottom: 1px solid $gray-500;
+    }
 
     &--disabled {
-        opacity: .4;
+        opacity: 0.4;
         pointer-events: none;
     }
 
     &__page {
-        padding: .25rem .5rem;
+        padding: 0.25rem 0.5rem;
         border: 1px solid $transparent;
         border-radius: 3px;
-        background-color: $primary;
-        color: $white;
+        color: $black;
         text-decoration: none;
         position: relative;
         transition: all $normal ease;
@@ -26,21 +38,25 @@
         }
 
         &:hover {
-            background-color: $secondary;
+            background-color: $primary;
             border-color: $gray-900;
             color: $black;
+            color: $white;
         }
-
+        
         &--current {
-            background-color: $secondary;
-            border-color: $gray-900;
-            color: $black;
+            background-color: lighten($primary, 25%);
+            color: $white;
             pointer-events: none;
             cursor: default;
+
+            &:hover {
+                background-color: $transparent;
+            }
         }
 
         &--disabled {
-            opacity: .3;
+            opacity: 0.3;
             pointer-events: none;
             cursor: default;
         }
