@@ -13,6 +13,7 @@ export class FormFiltersComponent implements OnInit, OnChanges {
   @Input() optionsPerSeason: Array<number>;
   @Input() disabled: boolean;
   @Input() currentSeason: string;
+  @Input() hidePlayoffs: boolean;
   @Output() changeParamFilters = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) { }

@@ -95,9 +95,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
       this.homeTeam.team_color = change.game.currentValue.home_team.team_color;
       this.homeTeam.full_name = change.game.currentValue.home_team.full_name;
       this.homeTeam.image_url = change.game.currentValue.home_team.image_url;
-    }
 
-    if (change.game?.currentValue?.home_team) {
       this.visitorTeam.id_team = change.game.currentValue.visitor_team.id_team;
       this.visitorTeam.team_color = change.game.currentValue.visitor_team.team_color;
       this.visitorTeam.full_name = change.game.currentValue.visitor_team.full_name;

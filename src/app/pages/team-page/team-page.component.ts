@@ -26,15 +26,19 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
   private perPage: number;
   private current_page: number;
   public season: string;
+  public seasonTeam: string;
   private postseasonFilter: boolean;
   public seasonsAvailable: Array<number>;
   public formDisabled: boolean;
+  public hidePlayoffs: boolean;
   private filteredByPostseason: boolean;
   private gamesPostseason: Array<GameModel>;
   constructor(private activate: ActivatedRoute, private teamService: TeamService,
     private userService: UserService, private searcherService: SearcherService) { }
 
   ngOnInit(): void {
+    this.hidePlayoffs = true;
+    this.seasonTeam = '2019';
     this.formDisabled = false;
     this.filteredByPostseason = false;
     this.perPage = 10;
@@ -126,22 +130,33 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
+  public onChangeSeason(event) {
+    this.formDisabled = true;
+    this.seasonTeam = event.season;
+    this._getPlayers(this.seasonTeam)
+  }
+
   private _checkPlayers() {
     if (!this.players) {
-      this.teamService.getGamesByTeam(this.team.id_team, 0, 10, '2019').subscribe(res => {
-        let id = res.data[0].id;
-        this.teamService.getStatsById(id).subscribe(data => {
-          this.players = data.data.filter(p => {
-            if (p.team.id === this.team.id_team) {
-              return p.player;
-            }
-          }).map(p => {
-            !p.avatar ? p.player.avatar = this.userService.setAvatar() : null;
-            return p.player
-          })
+      this._getPlayers('2019');
+    }
+  }
+
+  private _getPlayers(season){
+    this.teamService.getGamesByTeam(this.team.id_team, 0, 10, season).subscribe(res => {
+      let id = res.data[0].id;
+      this.teamService.getStatsById(id).subscribe(data => {
+        this.players = data.data.filter(p => {
+          if (p.team.id === this.team.id_team) {
+            return p.player;
+          }
+        }).map(p => {
+          !p.avatar ? p.player.avatar = this.userService.setAvatar() : null;
+          return p.player
         })
       })
-    }
+      this.formDisabled ? this.formDisabled = false : null
+    })
   }
 
   private _createSeasonsList(limitYear) {

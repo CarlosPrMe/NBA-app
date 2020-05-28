@@ -114,7 +114,6 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
         this.router.navigate(['team', +form.teamSelected]);
       } else {
         this.teamService.getGamesByTeam(form.teamSelected, 1, 120, null, form.date).subscribe(data => {
-          debugger
           let idGame = data?.data[0]?.id || null;
           if (idGame) {
             this.router.navigate(['stats', idGame]);

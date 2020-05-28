@@ -10,6 +10,14 @@
     &__group {
         flex: 0 1 33%;
         padding: 0 .5rem;
+
+        &--bigger{
+            flex-basis: 100%;
+        }
+
+        &--hidden{
+            display: none;
+        }
     }
 
     &__label {

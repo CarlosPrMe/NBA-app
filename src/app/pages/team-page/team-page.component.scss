@@ -12,13 +12,6 @@
     &__container {
         padding: 1rem;
         flex: 0 1 50%;
-        &:nth-of-type(2n) {
-            .team-page__content {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-            }
-        }
     }
 
     &__title {

@@ -21,9 +21,13 @@
         <div class="team-page__container">
             <h2 class="team-page__title h2">
                 <img class="team-page__logo" src="{{team?.image_url}}" alt="">
-                Plantilla actual de <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
-                    {{team?.full_name}}</span> </h2>
+                <span *ngIf="seasonTeam == '2019'">Plantilla actual de </span> <span *ngIf="seasonTeam != '2019'">Plantilla año {{ seasonTeam }} de </span> <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
+                    {{team?.full_name}}</span>
+            </h2>
             <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">
+            <div class="team-page__form">
+                <app-form-filters (changeParamFilters)="onChangeSeason($event)" [disabled]="formDisabled" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable" [currentSeason]="seasonTeam" [hidePlayoffs]="hidePlayoffs"></app-form-filters>
+            </div>
               <div class="row">
                 <app-card class="col-sm-12 col-md-6" [teamImage]="team?.image_url" [player]="player" *ngFor="let player of players"></app-card>
               </div>
