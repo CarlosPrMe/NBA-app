@@ -50,7 +50,7 @@ export class PlayerPageComponent implements OnInit {
     this.perPage = 10;
     this.current_page = 1;
     this._searcherService.currentSeason.subscribe(data => {
-      this.season = data;
+      this.season = data || '2019';
     })
     this.postseasonFilter = false;
     this.pagesNum = [5, 10, 15];
