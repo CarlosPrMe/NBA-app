@@ -16,7 +16,7 @@ export class ResultBoxComponent implements OnInit, OnChanges {
   public statsDetailsData: Array<StatsModel>;
   public pageStats: boolean;
 
-  constructor(private teamService: TeamService) { }
+  constructor(private _teamService: TeamService) { }
 
   ngOnInit(): void { }
   ngOnChanges(change: SimpleChanges) {
@@ -25,7 +25,7 @@ export class ResultBoxComponent implements OnInit, OnChanges {
   }
 
   public onShowStatsEvent(event) {
-    this.teamService.getStatsById(event[0]).subscribe(res => {
+    this._teamService.getStatsById(event[0]).subscribe(res => {
       this.statsDetailsData = res.data;
       this.idStatsDetails = event[0];
       this.gameSelected = event[1];

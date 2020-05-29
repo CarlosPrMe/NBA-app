@@ -27,7 +27,7 @@ export class TeamsComponent implements OnInit {
   public noDate: boolean;
   private positionScroll: number;
 
-  constructor(private activateRouter: ActivatedRoute, private teamService: TeamService) { }
+  constructor(private _activateRouter: ActivatedRoute, private _teamService: TeamService) { }
 
   ngOnInit(): void {
     this.noDate = true;
@@ -35,7 +35,7 @@ export class TeamsComponent implements OnInit {
     this.imageHeader = true;
     this.westConference = [];
     this.eastConference = [];
-    this.teams = this.activateRouter.snapshot.data.teams;
+    this.teams = this._activateRouter.snapshot.data.teams;
     this.teams.forEach((team: any) => {
       team.won_games = this._randomNumber(0, this.teams.length);
     })
@@ -99,7 +99,7 @@ export class TeamsComponent implements OnInit {
       this.currentDetailId = id;
       this.matchesResume = null;
       this.positionScroll = window.pageYOffset;
-      this.teamService.getGamesByTeam(id).subscribe(res => {
+      this._teamService.getGamesByTeam(id).subscribe(res => {
         this.matchesResume = res.data;
         this.resumeShow = true;
       })

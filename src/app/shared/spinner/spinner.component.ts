@@ -9,10 +9,10 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class SpinnerComponent implements OnInit {
 
   public showSpinner: boolean;
-  constructor(private spinnerService: SpinnerService) { }
+  constructor(private _spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
-     this.spinnerService.changeShow.subscribe(res=>{
+    this._spinnerService.changeShow.subscribe(res => {
       this.showSpinner = res;
     });
   }

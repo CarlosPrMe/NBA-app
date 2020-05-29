@@ -33,7 +33,7 @@ export class StatsPageComponent implements OnInit {
   public highlights: boolean;
   public textHighlights: Array<string>;
 
-  constructor(private activateRouter: ActivatedRoute, private teamService: TeamService) { }
+  constructor(private _activateRouter: ActivatedRoute, private _teamService: TeamService) { }
 
   ngOnInit(): void {
 
@@ -41,18 +41,18 @@ export class StatsPageComponent implements OnInit {
     this.filterTopPlayer = ['pts', 'reb', 'ast', 'blk'];
     this.textHighlights = ['anotador', 'reboteador', 'asistente', 'taponador'];
     this.pageStats = true;
-    this.stats = this.activateRouter.snapshot.data.stats.data;
-    this.idStatsDetails = this.activateRouter.snapshot.params.id;
+    this.stats = this._activateRouter.snapshot.data.stats.data;
+    this.idStatsDetails = this._activateRouter.snapshot.params.id;
     this.game = this.stats[0].game;
     this.homeTeamId = this.game.home_team_id;
     this.visitorTeamId = this.game.visitor_team_id;
     this._getData()
 
-    this.activateRouter.params.subscribe(res => {
+    this._activateRouter.params.subscribe(res => {
       this.idStatsDetails = res.id;
       this.playersByTeam = [];
       this.topPlayers = [];
-      this.teamService.getStatsById(res.id).subscribe(data => {
+      this._teamService.getStatsById(res.id).subscribe(data => {
         this.stats = data.data;
         this.game = this.stats[0].game;
         this.homeTeamId = this.game.home_team_id;
@@ -99,7 +99,7 @@ export class StatsPageComponent implements OnInit {
   }
 
   private _getData() {
-    this.teamService.getTeamImagesById([this.homeTeamId, this.visitorTeamId]).subscribe(data => {
+    this._teamService.getTeamImagesById([this.homeTeamId, this.visitorTeamId]).subscribe(data => {
       this.homeTeam = data.find(team => team.id_team === this.homeTeamId);
       this.visitorTeam = data.find(team => team.id_team === this.visitorTeamId);
       this.teams = [this.homeTeam, this.visitorTeam];

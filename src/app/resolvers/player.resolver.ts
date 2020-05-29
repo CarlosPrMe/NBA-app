@@ -8,9 +8,9 @@ import { PlayerModel } from '../models/player.model';
 
 export class PlayerResolver implements Resolve<PlayerModel> {
 
-    constructor(private playerService: PlayerService) { }
+    constructor(private _playerService: PlayerService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return this.playerService.getPlayerById(+route.paramMap.get('id'));
+        return this._playerService.getPlayerById(+route.paramMap.get('id'));
     }
 }

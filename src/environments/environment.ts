@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   localUrl:'http://localhost:3001/',
+  apiUrl:'https://free-nba.p.rapidapi.com'
 };
 
 /*

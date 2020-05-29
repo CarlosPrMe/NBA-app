@@ -20,7 +20,7 @@ export class CardComponent implements OnInit, OnChanges {
   @Input() game: GameModel;
   @Input() gameId: number;
   public simpleData: boolean;
-  constructor(private playerService: PlayerService, private router: Router) { }
+  constructor(private _playerService: PlayerService, private _router: Router) { }
 
   ngOnInit(): void {
     this.simpleData = true;
@@ -35,7 +35,7 @@ export class CardComponent implements OnInit, OnChanges {
   public setCurrentPlayer(event) {
     event.preventDefault();
     let current: any = { player: this.player };
-    this.playerService.playerSelected.next(current);
-    this.router.navigate(['player', this.player.id]);
+    this._playerService.playerSelected.next(current);
+    this._router.navigate(['player', this.player.id]);
   }
 }

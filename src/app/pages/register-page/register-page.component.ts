@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user-service.service';
 import { customValidatorEmail } from '../../models/customValidators';
@@ -16,17 +16,17 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class RegisterPageComponent implements OnInit {
 
   public registered: boolean;
-  public myForm;
+  public myForm: FormGroup;
   public minLengthName: number;
   public minLengthPass: number;
   public user: UserModel;
-  constructor(private fb: FormBuilder, private userService: UserService, private router: Router, private spinnerService: SpinnerService) { }
+  constructor(private _fb: FormBuilder, private _userService: UserService, private router: Router, private spinnerService: SpinnerService) { }
 
   ngOnInit(): void {
     this.registered = true;
     this.minLengthName = 5;
     this.minLengthPass = 4;
-    this.myForm = this.fb.group({
+    this.myForm = this._fb.group({
       email: ['', Validators.compose([Validators.required, customValidatorEmail])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(this.minLengthPass)])]
     });
@@ -34,7 +34,7 @@ export class RegisterPageComponent implements OnInit {
 
   createForm(user) {
     if (!user) {
-      this.myForm = this.fb.group({
+      this.myForm = this._fb.group({
         name: ['', Validators.compose([Validators.required, Validators.minLength(this.minLengthName)])],
         sur_name: ['', Validators.required],
         avatar: ['', Validators.compose([customValidatorUrl])],
@@ -43,7 +43,7 @@ export class RegisterPageComponent implements OnInit {
         terms: ['', Validators.requiredTrue]
       })
     } else {
-      this.myForm = this.fb.group({
+      this.myForm = this._fb.group({
         email: ['', Validators.compose([Validators.required, customValidatorEmail])],
         password: ['', Validators.compose([Validators.required, Validators.minLength(this.minLengthPass)])]
       })
@@ -60,7 +60,7 @@ export class RegisterPageComponent implements OnInit {
     setTimeout(() => {
       if (form.valid) {
         this.user = { ...form.value }
-        this.userService.addUser(this.user).subscribe((res): any => {
+        this._userService.addUser(this.user).subscribe((res): any => {
           this.spinnerService.changeSpinnerState();
           if (res._id) {
             this.router.navigate(['/home']);
@@ -77,9 +77,9 @@ export class RegisterPageComponent implements OnInit {
     this.spinnerService.changeSpinnerState();
     if (form.valid) {
       setTimeout(() => {
-        this.userService.getUSer(form.value).subscribe(res=>{
-          this.userService.user.next(res);
-          this.spinnerService.changeSpinnerState();
+        this._userService.getUSer(form.value).subscribe(res => {
+          this._userService.user.next(res);
+          // this.spinnerService.changeSpinnerState();
           this.router.navigate(['/home']);
         })
       }, 2000);

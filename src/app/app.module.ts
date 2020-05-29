@@ -9,7 +9,7 @@ import { CarouselComponent } from './shared/carousel/carousel.component';
 import { LogoComponent } from './shared/logo/logo.component';
 import { MenuComponent } from './shared/menu/menu.component';
 import { CardCarouselComponent } from './shared/card-carousel/card-carousel.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BgImageDirective } from './directives/bg-image.directive';
 import { TeamPageComponent } from './pages/team-page/team-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -33,6 +33,11 @@ import { CardComponent } from './shared/card/card.component';
 import { PaginatorComponent } from './shared/paginator/paginator.component';
 import { FormFiltersComponent } from './shared/form-filters/form-filters.component';
 import { SearcherComponent } from './shared/searcher/searcher.component';
+
+
+// Interceptors
+import { SpinnerInterceptorService } from './interceptors/spinner-interceptor.service';
+import { AddHeadersRapidApiInterceptorService } from './interceptors/addHeadersRapidApi.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +79,16 @@ import { SearcherComponent } from './shared/searcher/searcher.component';
     ReactiveFormsModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AddHeadersRapidApiInterceptorService,
+      multi: true
+    }
 
   ],
   bootstrap: [AppComponent]

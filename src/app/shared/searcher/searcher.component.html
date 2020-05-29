@@ -18,7 +18,8 @@
                                 <label class="form__label form__label--inline" for="team">Equipo</label>
                             </div>
                         </div>
-                        <div class="col-xs-12 form__control">
+                        <div class="col-xs-12 form__control form__control--results" #numResults>
+                            <span class="results" *ngIf="resultsNumber">{{resultsNumber}}</span>
                             <input #input id="inputText" formControlName="text" type="text" class="form__input">
                         </div>
                         <div class="col-xs-12">

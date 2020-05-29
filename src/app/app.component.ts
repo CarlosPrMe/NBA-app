@@ -11,14 +11,14 @@ import { SearcherService } from './services/searcher.service';
 
 export class AppComponent implements OnInit {
 
-  constructor(private router: Router, private searcherService: SearcherService) { }
+  constructor(private _router: Router, private _searcherService: SearcherService) { }
   title = 'app-nba';
 
   ngOnInit() {
-    this.router.events.subscribe(val => {
+    this._router.events.subscribe(val => {
       if (val instanceof Scroll) {
         window.scroll(0, 0);
-        this.searcherService.searcherShow.next(false);
+        this._searcherService.searcherShow.next(false);
       }
     })
   }

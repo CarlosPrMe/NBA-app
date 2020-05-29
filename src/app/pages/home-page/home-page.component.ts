@@ -10,7 +10,7 @@ import { GameModel } from 'src/app/models/game.model';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor(private teamService: TeamService, private datesService: DatesService) { }
+  constructor(private _teamService: TeamService, private _datesService: DatesService) { }
   private dates: Array<string>;
   private datesToSend: string;
   public games: Array<GameModel>;
@@ -18,11 +18,11 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.dates = [];
-    this.dates = this.datesService.getLastDays()
+    this.dates = this._datesService.getLastDays()
     this.dates = this.dates.map(d => '&dates[]='.concat(d));
-    this.datesToSend = this.datesService.convertToString(this.dates);
-    this.teamService.getMatchYesterday(this.datesToSend).subscribe(res => {
-      this.games = this.datesService.getLastResuts(res.data, this.dates);
+    this.datesToSend = this._datesService.convertToString(this.dates);
+    this._teamService.getMatchYesterday(this.datesToSend).subscribe(res => {
+      this.games = this._datesService.getLastResuts(res.data, this.dates);
     })
   }
 

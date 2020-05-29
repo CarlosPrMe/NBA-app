@@ -20,10 +20,10 @@ export class ResultDataComponent implements OnInit, OnChanges {
   public homeTeam: TeamModel;
   public visitorTeam: TeamModel;
   public gameId: number;
-  private randomhours: Array<string>;
+  private _randomhours: Array<string>;
   @Input() gameSelected: number;
 
-  constructor(private teamService: TeamService) { }
+  constructor(private _teamService: TeamService) { }
   ngOnInit(): void {
     this._configureTeams();
   }
@@ -46,9 +46,9 @@ export class ResultDataComponent implements OnInit, OnChanges {
 
   private _configureTeams() {
     this.gameId = this.gameSimple ? this.gameSimple.id : this.game.id
-    this.randomhours = ['12:00', '17:00', '19:00', '21:00'];
+    this._randomhours = ['12:00', '17:00', '19:00', '21:00'];
     this.teamsId = this.gameSimple ? [this.gameSimple.home_team_id, this.gameSimple.visitor_team_id] : new Array(+this.game.home_team.id, +this.game.visitor_team.id);
-    this.teamService.getTeamImagesById(this.teamsId).subscribe(res => {
+    this._teamService.getTeamImagesById(this.teamsId).subscribe(res => {
       this.images = res;
       this.homeTeam = this.images.find(t => {
         if (this.game && t.id_team === this.game.home_team.id) {
@@ -67,7 +67,7 @@ export class ResultDataComponent implements OnInit, OnChanges {
       let day = document.getElementsByClassName('result__date')[0];
       if (day) {
         let dateSeparated = day?.textContent?.split(' ');
-        this.game.hourDate = this._addImagerRandom(0, this.randomhours.length - 1);
+        this.game.hourDate = this._addImagerRandom(0, this._randomhours.length - 1);
         this.game.date = dateSeparated ? dateSeparated[0] : null;
       }
       if (this.isFirst) {
@@ -78,6 +78,6 @@ export class ResultDataComponent implements OnInit, OnChanges {
 
   private _addImagerRandom(min, max) {
     let num = Math.round(Math.random() * (max - min) + min);
-    return this.randomhours[num];
+    return this._randomhours[num];
   }
 }

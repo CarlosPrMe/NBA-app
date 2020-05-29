@@ -8,9 +8,9 @@ import { PlayerModel } from '../models/player.model';
 
 export class StatsByPlayerResolver implements Resolve<PlayerModel> {
 
-    constructor(private playerService: PlayerService) { }
+    constructor(private _playerService: PlayerService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        return this.playerService.getStatsPlayerById(+route.paramMap.get('id'))
+        return this._playerService.getStatsPlayerById(+route.paramMap.get('id'))
     }
 }

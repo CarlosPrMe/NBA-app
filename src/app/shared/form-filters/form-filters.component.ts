@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form-filters',
@@ -8,7 +8,7 @@ import { FormBuilder } from '@angular/forms';
 })
 export class FormFiltersComponent implements OnInit, OnChanges {
 
-  public myForm;
+  public myForm: FormGroup;
   @Input() optionsPerPage: Array<object>;
   @Input() optionsPerSeason: Array<number>;
   @Input() disabled: boolean;
@@ -16,11 +16,11 @@ export class FormFiltersComponent implements OnInit, OnChanges {
   @Input() hidePlayoffs: boolean;
   @Output() changeParamFilters = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder) { }
 
   ngOnInit(): void {
     let paintSeason = this.currentSeason || this.optionsPerSeason[0]
-    this.myForm = this.fb.group({
+    this.myForm = this._fb.group({
       per_page: [this.optionsPerPage[1]],
       season: [paintSeason],
       postseason: ['']

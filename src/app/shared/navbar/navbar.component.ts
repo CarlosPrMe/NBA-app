@@ -12,14 +12,14 @@ export class NavbarComponent implements OnInit {
 
   public user: UserModel;
   public searcherOpen: boolean;
-  constructor(private userService: UserService, private searcherService: SearcherService) { }
+  constructor(private _userService: UserService, private _searcherService: SearcherService) { }
 
   ngOnInit(): void {
-    this.searcherService.searcherShow.subscribe(res=> {
+    this._searcherService.searcherShow.subscribe(res=> {
       this.searcherOpen = res;
     })
 
-    this.userService.user.subscribe((res: UserModel) => {
+    this._userService.user.subscribe((res: UserModel) => {
       if (res) {
         this.user = res;
       } else {
@@ -40,6 +40,6 @@ export class NavbarComponent implements OnInit {
   }
 
   showSearcher($event) {
-    this.searcherService.searcherShow.next(!this.searcherOpen)
+    this._searcherService.searcherShow.next(!this.searcherOpen)
   }
 }

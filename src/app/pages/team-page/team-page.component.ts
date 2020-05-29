@@ -33,8 +33,8 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
   public hidePlayoffs: boolean;
   private filteredByPostseason: boolean;
   private gamesPostseason: Array<GameModel>;
-  constructor(private activate: ActivatedRoute, private teamService: TeamService,
-    private userService: UserService, private searcherService: SearcherService) { }
+  constructor(private _activate: ActivatedRoute, private _teamService: TeamService,
+    private _userService: UserService, private _searcherService: SearcherService) { }
 
   ngOnInit(): void {
     this.hidePlayoffs = true;
@@ -43,26 +43,26 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.filteredByPostseason = false;
     this.perPage = 10;
     this.current_page = 1;
-    this.searcherService.currentSeason.subscribe(data => {
+    this._searcherService.currentSeason.subscribe(data => {
       this.season = data;
     })
     this.postseasonFilter = false;
     this.smallTeamName = true;
     this.pagesNum = [5, 10, 15];
     this.seasonsAvailable = this._createSeasonsList(1978);
-    this.team = this.activate.snapshot.data.team;
-    this.games = this.activate.snapshot.data.games.data;
-    this.meta = this.activate.snapshot.data.games.meta;
+    this.team = this._activate.snapshot.data.team;
+    this.games = this._activate.snapshot.data.games.data;
+    this.meta = this._activate.snapshot.data.games.meta;
     this._checkPlayers();
-    this.activate.params.subscribe(res => {
+    this._activate.params.subscribe(res => {
       let currentTeamId = +res.id;
       if (currentTeamId !== this.team.id_team) {
         this.players = null;
         this.team = null;
         this.seasonTeam = '2019';
-        this.teamService.getTeamById(currentTeamId).subscribe(team => {
+        this._teamService.getTeamById(currentTeamId).subscribe(team => {
           this.team = team;
-          this.teamService.getGamesByTeam(currentTeamId, this.current_page, this.perPage, this.season).subscribe(data => {
+          this._teamService.getGamesByTeam(currentTeamId, this.current_page, this.perPage, this.season).subscribe(data => {
             this.games = data.data;
             this.meta = data.meta;
             this._checkPlayers();
@@ -77,7 +77,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.searcherService.currentSeason.next(null);
+    this._searcherService.currentSeason.next(null);
   }
 
   public onChangeParams(event) {
@@ -98,7 +98,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
     // Check if user request games of postseason
 
     if (!this.postseasonFilter) {
-      this.teamService.getGamesByTeam(this.team.id_team, this.current_page, this.perPage, this.season).subscribe(res => {
+      this._teamService.getGamesByTeam(this.team.id_team, this.current_page, this.perPage, this.season).subscribe(res => {
         this.games = res.data;
         this.meta = res.meta;
         this.filteredByPostseason = false;
@@ -111,7 +111,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
 
       if (!this.filteredByPostseason) {
         this.current_page = 1;
-        this.teamService.getGamesByTeam(this.team.id_team, this.current_page, 100, this.season).subscribe(res => {
+        this._teamService.getGamesByTeam(this.team.id_team, this.current_page, 100, this.season).subscribe(res => {
           this.games = this._filterPostSeasonGames(res.data);
           this.gamesPostseason = this.games.slice(); // Save postseason games
           this.meta = this._metaPostSeasonGames(this.games, this.perPage, +this.current_page);
@@ -144,15 +144,15 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   private _getPlayers(season){
-    this.teamService.getGamesByTeam(this.team.id_team, 0, 10, season).subscribe(res => {
+    this._teamService.getGamesByTeam(this.team.id_team, 0, 10, season).subscribe(res => {
       let id = res.data[0].id;
-      this.teamService.getStatsById(id).subscribe(data => {
+      this._teamService.getStatsById(id).subscribe(data => {
         this.players = data.data.filter(p => {
           if (p.team.id === this.team.id_team) {
             return p.player;
           }
         }).map(p => {
-          !p.avatar ? p.player.avatar = this.userService.setAvatar() : null;
+          !p.avatar ? p.player.avatar = this._userService.setAvatar() : null;
           return p.player
         })
       })

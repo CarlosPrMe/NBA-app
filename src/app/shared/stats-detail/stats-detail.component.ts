@@ -13,7 +13,7 @@ export class StatsDetailComponent implements OnInit {
   @Output() deleteDetails = new EventEmitter<any>();
   @ViewChild('detail') detail: ElementRef;
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private _playerService: PlayerService) { }
 
   ngOnInit(): void {
     this._playerSelected(this.player)
@@ -36,7 +36,7 @@ export class StatsDetailComponent implements OnInit {
   }
 
   private _playerSelected(playerValue){
-    this.playerService.playerSelected.next(playerValue);
+    this._playerService.playerSelected.next(playerValue);
   }
 
 }

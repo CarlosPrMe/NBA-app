@@ -7,12 +7,12 @@ import { TeamService } from '../services/team.service';
 @Injectable({ providedIn: 'root' })
 export class TeamsResolver implements Resolve<TeamModel> {
 
-    constructor(private teamService: TeamService) { }
+    constructor(private _teamService: TeamService) { }
 
     resolve(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<any> | Promise<any> | any {
-        return this.teamService.getLogos();
+        return this._teamService.getLogos();
     }
 }

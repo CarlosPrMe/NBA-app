@@ -9,21 +9,14 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class PlayerService {
   public playerSelected = new BehaviorSubject(null);
   private rapid_headers: any
-  private url: string = environment.localUrl;
-  constructor(private http: HttpClient) {
-    this.rapid_headers = {
-      "x-rapidapi-host": "free-nba.p.rapidapi.com",
-      "x-rapidapi-key": "0577e6108amshf0cc140309a1e1cp18138bjsna1a1ba56bf67"
-    }
-  }
+  private _url: string = environment.apiUrl;
+  constructor(private _http: HttpClient) { }
 
   getPlayerById(id: number): Observable<any> {
-    let headers = new HttpHeaders(this.rapid_headers);
-    return this.http.get(`https://free-nba.p.rapidapi.com/players/${id}`, { headers: headers });
+    return this._http.get(`${this._url}/players/${id}`);
   }
 
   getStatsPlayerById(id: number, page: number = 0, per_page: number = 10, season: string = '2019'): Observable<any> {
-    let headers = new HttpHeaders(this.rapid_headers);
-    return this.http.get(`https://free-nba.p.rapidapi.com/stats?page=${page}&per_page=${per_page}&player_ids[]=${id}&seasons[]=${season}`, { headers: headers });
+    return this._http.get(`${this._url}/stats?page=${page}&per_page=${per_page}&player_ids[]=${id}&seasons[]=${season}`);
   }
 }

@@ -9,11 +9,11 @@ import { SearcherService } from '../services/searcher.service';
 
 export class GamesResolver implements Resolve<TeamModel> {
 
-    private currentSeason: string;
-    constructor(private teamService: TeamService, private searchService: SearcherService) { }
+    private _currentSeason: string;
+    constructor(private _teamService: TeamService, private searchService: SearcherService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> | Promise<any> | any {
-        this.currentSeason = this.searchService.currentSeason.value;
-        return this.teamService.getGamesByTeam(+route.paramMap.get('id'), 0, 10, this.currentSeason);
+        this._currentSeason = this.searchService.currentSeason.value;
+        return this._teamService.getGamesByTeam(+route.paramMap.get('id'), 0, 10, this._currentSeason);
     }
 }

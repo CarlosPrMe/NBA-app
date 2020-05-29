@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ElementRef, ViewChild, AfterViewChecked } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { GameModel } from 'src/app/models/game.model';
 import { PlayerModel } from 'src/app/models/player.model';
 import { TeamModel } from 'src/app/models/team.model';
@@ -26,14 +26,14 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   public teams: Array<any>;
   public playerStats: any;
   public gameDate: any;
-  public myForm;
+  public myForm: FormGroup;
   public optionsFilter: Array<any>;
   public sortBy: string;
   public descendent: boolean;
   public showComplete: boolean;
-  private statsHeight: number;
+  private _statsHeight: number;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private _fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.optionsFilter = [
@@ -59,7 +59,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
       },
     ]
 
-    this.myForm = this.fb.group(
+    this.myForm = this._fb.group(
       {
         sort: ['pts']
       }
@@ -76,7 +76,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
 
     if (!change?.game?.firstChange) {
       this.statsContainer.nativeElement.classList.remove('stats--small', 'stats--dropdown');
-      this.statsHeight = null;
+      this._statsHeight = null;
       this.showComplete = false;
     }
 
@@ -166,9 +166,9 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   }
 
   private _getHeightContent(): void {
-    if (this.statsContainer && !this.statsHeight && !this.pageStats) {
-      this.statsHeight = this.statsContainer.nativeElement.clientHeight;
-      this._changeValueHeight(this.statsHeight);
+    if (this.statsContainer && !this._statsHeight && !this.pageStats) {
+      this._statsHeight = this.statsContainer.nativeElement.clientHeight;
+      this._changeValueHeight(this._statsHeight);
       this.statsContainer.nativeElement.classList.add('stats--small');
     }
   }

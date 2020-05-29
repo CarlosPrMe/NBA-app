@@ -40,8 +40,8 @@ export class PlayerPageComponent implements OnInit {
 
   @ViewChild('stats') containerGames: ElementRef;
 
-  constructor(private activate: ActivatedRoute, private userService: UserService,
-    private teamService: TeamService, private playerService: PlayerService, private searcherService: SearcherService) { }
+  constructor(private _activate: ActivatedRoute, private _userService: UserService,
+    private _teamService: TeamService, private _playerService: PlayerService, private _searcherService: SearcherService) { }
 
   ngOnInit(): void {
     this.simpleData = true;
@@ -49,38 +49,38 @@ export class PlayerPageComponent implements OnInit {
     this.filteredByPostseason = false;
     this.perPage = 10;
     this.current_page = 1;
-    this.searcherService.currentSeason.subscribe(data => {
+    this._searcherService.currentSeason.subscribe(data => {
       this.season = data;
     })
     this.postseasonFilter = false;
     this.pagesNum = [5, 10, 15];
-    this.seasonsAvailable = this._createSeasonsList(1999);
+    this.seasonsAvailable = this._createSeasonsList(1978);
     this.textBig = true;
 
-    if (this.playerService.playerSelected.value) {
-      this.player = this.playerService.playerSelected.value.player;
-      this.player.team = this.playerService.playerSelected.value.team || this.activate.snapshot.data.player.team;
+    if (this._playerService.playerSelected.value) {
+      this.player = this._playerService.playerSelected.value.player;
+      this.player.team = this._playerService.playerSelected.value.team || this._activate.snapshot.data.player.team;
     }
     else {
-      this.player = this.activate.snapshot.data.player;
-      this.player.avatar = this.userService.setAvatar();
+      this.player = this._activate.snapshot.data.player;
+      this.player.avatar = this._userService.setAvatar();
     }
 
-    this.gamesStats = this.activate.snapshot.data.stats.data;
-    this.meta = this.activate.snapshot.data.stats.meta;
+    this.gamesStats = this._activate.snapshot.data.stats.data;
+    this.meta = this._activate.snapshot.data.stats.meta;
     this.games = this._getGamesFromStats(this.gamesStats);
-    this.teamService.getTeamById(this.player.team.id).subscribe(res => {
+    this._teamService.getTeamById(this.player.team.id).subscribe(res => {
       this.team = res;
     })
-    this.activate.params.subscribe(res => {
-      this.playerService.getPlayerById(res.id).subscribe(player => {
+    this._activate.params.subscribe(res => {
+      this._playerService.getPlayerById(res.id).subscribe(player => {
         if (this.player.id !== player.id || !this.player) {
           this.player = player;
-          !this.player.avatar ? this.player.avatar = this.userService.setAvatar() : null;
-          this.teamService.getTeamById(this.player.team.id).subscribe(team => {
+          !this.player.avatar ? this.player.avatar = this._userService.setAvatar() : null;
+          this._teamService.getTeamById(this.player.team.id).subscribe(team => {
             this.team = team;
           })
-          this.playerService.getStatsPlayerById(player.id).subscribe(data => {
+          this._playerService.getStatsPlayerById(player.id).subscribe(data => {
             this.gamesStats = data.data;
             this.meta = data.meta;
             this.games = this._getGamesFromStats(this.gamesStats);
@@ -108,7 +108,7 @@ export class PlayerPageComponent implements OnInit {
     // Check if user request games of postseason
 
     if (!this.postseasonFilter) {
-      this.playerService.getStatsPlayerById(this.player.id, this.current_page, this.perPage, this.season).subscribe(res => {
+      this._playerService.getStatsPlayerById(this.player.id, this.current_page, this.perPage, this.season).subscribe(res => {
         this.gamesStats = res.data;
         this.games = this._getGamesFromStats(this.gamesStats);
         this.meta = res.meta;
@@ -123,7 +123,7 @@ export class PlayerPageComponent implements OnInit {
 
       if (!this.filteredByPostseason) {
         this.current_page = 1;
-        this.playerService.getStatsPlayerById(this.player.id, this.current_page, 100, this.season).subscribe(res => {
+        this._playerService.getStatsPlayerById(this.player.id, this.current_page, 100, this.season).subscribe(res => {
           this.gamesStats = this._filterPostSeasonGames(res.data);
           this.games = this._getGamesFromStats(this.gamesStats);
           this.gamesPostseason = this.games.slice(); // Save postseason games

@@ -9,52 +9,43 @@ import { environment } from '../../environments/environment';
 })
 export class TeamService {
 
-  private rapid_headers: any
-  private url: string = environment.localUrl;
-  constructor(private http: HttpClient) {
-    this.rapid_headers = {
-      "x-rapidapi-host": "free-nba.p.rapidapi.com",
-      "x-rapidapi-key": "0577e6108amshf0cc140309a1e1cp18138bjsna1a1ba56bf67"
-    }
-  }
+  private _url: string = environment.localUrl;
+  private _apiUrl: string = environment.apiUrl;
+  constructor(private http: HttpClient) { }
 
   getAllTeams(): Observable<any> {
-    let mis_headers = new HttpHeaders(this.rapid_headers);
-    return this.http.get("https://free-nba.p.rapidapi.com/teams?page=0", { headers: mis_headers });
+    return this.http.get("https://free-nba.p.rapidapi.com/teams?page=0");
   }
 
   getLogos(): Observable<any> {
-    return this.http.get(`${this.url}teams`);
+    return this.http.get(`${this._url}teams`);
   }
 
   getTeamById(id): Observable<any> {
-    return this.http.get(`${this.url}team/${id}`);
+    return this.http.get(`${this._url}team/${id}`);
   }
 
   getTeamImagesById(ids): Observable<any> {
-    return this.http.post(`${this.url}team-image`, ids);
+    return this.http.post(`${this._url}team-image`, ids);
   }
 
   getMatchYesterday(dates: string, page: number = 0, per_page: number = 25): Observable<any> {
-    let mis_headers = new HttpHeaders(this.rapid_headers);
-    return this.http.get(`https://free-nba.p.rapidapi.com/games?page=${page}&per_page=${per_page}${dates}`, { headers: mis_headers });
+    return this.http.get(`${this._apiUrl}/games?page=${page}&per_page=${per_page}${dates}`);
   }
 
   getStatsById(id): Observable<any> {
-    let mis_headers = new HttpHeaders(this.rapid_headers);
-    return this.http.get(`https://free-nba.p.rapidapi.com/stats?game_ids[]=${id}&page=0&per_page=30}`, { headers: mis_headers });
+    return this.http.get(`${this._apiUrl}/stats?game_ids[]=${id}&page=0&per_page=30}`);
   }
 
   getGamesByTeam(id: number, page: number = 0, perPage: number = 10, year: string = '2019', date: string = ''): Observable<any> {
-    let mis_headers = new HttpHeaders(this.rapid_headers);
     let seasons = this._checkParams(year, date);
     let dateChecked = date ? `&dates[]=${date}` : '';
-    return this.http.get(`https://free-nba.p.rapidapi.com/games?team_ids[]=${id}${seasons}&page=${page}&per_page=${perPage}${dateChecked}"}`, { headers: mis_headers });
+    return this.http.get(`${this._apiUrl}/games?team_ids[]=${id}${seasons}&page=${page}&per_page=${perPage}${dateChecked}"}`);
   }
 
   getTeamByName(name: string): Observable<any> {
     let request = { team_name: name }
-    return this.http.post(`${this.url}team-name`, request)
+    return this.http.post(`${this._url}team-name`, request)
   }
 
   private _checkParams(year, date) {

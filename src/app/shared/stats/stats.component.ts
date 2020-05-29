@@ -17,14 +17,15 @@ export class StatsComponent implements OnInit {
   @Input() mvp: boolean;
   @Output() detailsPlayer = new EventEmitter<any>();
   public noPlayed: boolean;
-  constructor(private userService: UserService) { }
+
+  constructor(private _userService: UserService) { }
 
   ngOnInit(): void {
     this.noPlayed = !this.player.min ? true : false;
     if(!this.player.player.avatar && this.avatar){
       this.player.player.avatar = this.avatar;
     }else if(!this.player.player.avatar && !this.avatar){
-      this.player.player.avatar = this.userService.setAvatar();
+      this.player.player.avatar = this._userService.setAvatar();
     }
     this.player.team.image_url = this.bgImage;
   }
