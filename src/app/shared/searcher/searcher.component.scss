@@ -80,24 +80,38 @@
         border-radius: 0.4rem;
         max-height: 240px;
         overflow-y: auto;
-        @include customScrollBar($primary, $primary, $gray-400, 8px, 8px, 4px, 0);
+        @include customScrollBar($primary, $primary, $white, 8px, 8px, 4px, 0);
     }
 
     &__item {
         font-size: $fs-sm + 2px;
         &:hover {
-            background-color: rgba($primary, 0.6);
             .predictive-results__link {
                 color: $white;
                 padding-left: 1rem;
             }
         }
+
         &:nth-child(odd) {
-            background-color: rgba($primary, 0.2);
+            &:hover {
+                .predictive-results__link {
+                    padding-left: 1.5rem;
+                }
+            }
+        }
+
+        &--player {
             &:hover {
                 background-color: rgba($primary, 0.6);
                 .predictive-results__link {
-                    padding-left: 1.5rem;
+                    color: $white;
+                }
+            }
+
+            &:nth-child(odd) {
+                background-color: rgba($primary, 0.2);
+                &:hover {
+                    background-color: rgba($primary, 0.6);
                 }
             }
         }

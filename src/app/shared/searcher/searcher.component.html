@@ -32,7 +32,7 @@
                                         </li>
                                     </ul>
                                     <ul class="predictive-results__list" *ngIf="resultsPlayers.length > 0">
-                                        <li class="predictive-results__item" *ngFor="let player of resultsPlayers">
+                                        <li class="predictive-results__item predictive-results__item--player" *ngFor="let player of resultsPlayers">
                                             <a (click)="resetSearch($event, player.id, 'isPlayer')"
                                                 class="predictive-results__link" href="#"
                                                 [routerLink]="['/player',player?.id]">{{player.first_name}}
