@@ -7,8 +7,8 @@
         </select>
     </div>
     <div class="form__group" [ngClass]="{'form__group--hidden':hidePlayoffs}">
-        <label class="form__label" for="season">Por página</label>
-        <select class="form__input" name="per_page" formControlName="per_page">
+        <label class="form__label" for="per_page">Por página</label>
+        <select id="per_page" class="form__input" name="per_page" formControlName="per_page">
             <option value="{{option}}" *ngFor="let option of optionsPerPage">{{option}}</option>
         </select>
     </div>

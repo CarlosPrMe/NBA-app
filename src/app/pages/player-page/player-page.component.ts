@@ -82,6 +82,8 @@ export class PlayerPageComponent implements OnInit {
           })
           this._playerService.getStatsPlayerById(player.id).subscribe(data => {
             this.gamesStats = data.data;
+            this.perPage = 10;
+            this.postseasonFilter = false;
             this.meta = data.meta;
             this.games = this._getGamesFromStats(this.gamesStats);
           })

@@ -10,7 +10,7 @@
     <div class="row">
     <h2 class="stats__title stats__title--color h3 col-sm-6">Partidos de {{player?.first_name}} {{player?.last_name}}</h2>
       <div class="col-sm-6">
-        <app-form-filters (changeParamFilters)="onChangeParams($event)" [disabled]="formDisabled" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable" [currentSeason]="season"></app-form-filters>
+        <app-form-filters [postseasonFilter]="postseasonFilter" [perPage]="perPage" (changeParamFilters)="onChangeParams($event)" [disabled]="formDisabled" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable" [currentSeason]="season"></app-form-filters>
       </div>
     </div>
     <div class="row">
