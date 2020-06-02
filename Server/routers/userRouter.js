@@ -21,10 +21,10 @@ class UsersRouter {
   }
 
   static async modifyUser(req, res) {
-    let user = req.body;
-    let id = req.params.id;
-    let newUSer = await userModel.findByIdAndUpdate({ _id: id }, user);
-    newUSer ? res.status(200).send(newUSer) : res.status(400);
+    let user = req.body;    
+    let id = req.params.id;    
+    let newUser = await userModel.findByIdAndUpdate({ _id: id }, user);    
+    newUser ? res.status(200).send(user) : res.status(400).send(new Error());
   }
 
   static async deleteUSer(req, res) {
@@ -37,14 +37,14 @@ class UsersRouter {
     }
   }
 
-  static async getUser(req, res){
-    let user = req.body;  
-    let userFound= await userModel.findOne({email: user.email, password: user.password}, (err, user)=>{
+  static async getUser(req, res) {
+    let user = req.body;
+    let userFound = await userModel.findOne({ email: user.email, password: user.password }, (err, userSearch) => {
 
-      if(user){
-        res.status(200).send(user);
-      }else{
-        res.status(400);
+      if (userSearch) {
+        res.status(200).send(userSearch);
+      } else {
+        res.status(400).send( new Error());
       }
     });
   }
@@ -54,6 +54,6 @@ router.get("/users", UsersRouter.getUsers);
 router.post("/user-register", jsonParser, UsersRouter.addUser);
 router.post("/oauth", jsonParser, UsersRouter.getUser);
 router.delete("/user/:id", UsersRouter.deleteUSer);
-router.patch("user/:id", jsonParser, UsersRouter.modifyUser);
+router.patch("/user/:id", jsonParser, UsersRouter.modifyUser);
 
 module.exports = router;

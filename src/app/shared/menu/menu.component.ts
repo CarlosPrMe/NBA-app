@@ -19,4 +19,10 @@ export class MenuComponent implements OnInit {
     this.closeSessionUser.emit(true);
   }
 
+  public goTo(event,link){
+    event.preventDefault();
+    console.log(link);
+    
+  }
+
 }

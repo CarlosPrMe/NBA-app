@@ -6,6 +6,6 @@ export interface UserModel {
     email:string,
     password: string,
     terms: boolean,
-    fav_team?: Array<any>,
+    fav_team?: Array<number>,
     fav_five?: string
 }

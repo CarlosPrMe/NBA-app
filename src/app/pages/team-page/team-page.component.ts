@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user-service.service';
 import { PlayerModel } from 'src/app/models/player.model';
 import { GameModel } from 'src/app/models/game.model';
 import { SearcherService } from 'src/app/services/searcher.service';
+import { UserModel } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-team-page',
@@ -31,6 +32,8 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
   public seasonsAvailable: Array<number>;
   public formDisabled: boolean;
   public hidePlayoffs: boolean;
+  public user: UserModel;
+  public isMyFavouriteTeam: boolean;
   private filteredByPostseason: boolean;
   private gamesPostseason: Array<GameModel>;
   constructor(private _activate: ActivatedRoute, private _teamService: TeamService,
@@ -53,6 +56,12 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.team = this._activate.snapshot.data.team;
     this.games = this._activate.snapshot.data.games.data;
     this.meta = this._activate.snapshot.data.games.meta;
+    this._userService.user.subscribe(res => {
+      this.user = res;
+      if (this.user?._id) {
+        this.isMyFavouriteTeam = this._userService.checkFavouriteTeam(this.team?.id_team, this.user?.fav_team);
+      }
+    })
     this._checkPlayers();
     this._activate.params.subscribe(res => {
       let currentTeamId = +res.id;
@@ -62,6 +71,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.seasonTeam = '2019';
         this._teamService.getTeamById(currentTeamId).subscribe(team => {
           this.team = team;
+          this.isMyFavouriteTeam = this._userService.checkFavouriteTeam(this.team?.id_team, this.user?.fav_team);
           this._teamService.getGamesByTeam(currentTeamId, this.current_page, this.perPage, this.season).subscribe(data => {
             this.games = data.data;
             this.meta = data.meta;
@@ -143,7 +153,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
     }
   }
 
-  private _getPlayers(season){
+  private _getPlayers(season) {
     this._teamService.getGamesByTeam(this.team.id_team, 0, 10, season).subscribe(res => {
       let id = res.data[0].id;
       this._teamService.getStatsById(id).subscribe(data => {
@@ -192,6 +202,15 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
       per_page: +numPages,
       total_count: games.length
     };
-    return newMeta
+    return newMeta;
+  }
+
+  public onModifyFavouritesTeams(team, isMyFavouriteTeam) {
+    let favouriteTeam: Array<number>;
+    isMyFavouriteTeam ? favouriteTeam = [] : favouriteTeam = [team];
+    let newUser = { ...this.user, fav_team: favouriteTeam }
+    this._userService.modifiUser(newUser).subscribe(res => {
+      this._userService.user.next(res);
+    })
   }
 }

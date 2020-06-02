@@ -1,11 +1,19 @@
-
+@import "../../../assets/scss/partials/vars";
 .page {
-    background-image: url('../../../assets/img/wall.jpg');
+    background-image: url("../../../assets/img/wall.jpg");
 }
 
 .form {
     &--register {
         width: 500px;
         margin: 0 auto;
+        margin-bottom: 1rem;
+    }
+
+    &__input {
+        &--fixed, &--fixed:focus {
+            background-color: $gray-200;
+            pointer-events: none;
+        }
     }
 }
