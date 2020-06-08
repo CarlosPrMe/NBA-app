@@ -2,3 +2,9 @@
     display: block;
     margin-top: 5rem;
 }
+
+@for $i from 1 through 10 {
+    .mg-top-#{$i}{
+        margin-top: #{$i}rem;
+    }
+}

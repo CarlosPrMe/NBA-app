@@ -4,8 +4,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
-  border-radius: 4px;
+  padding: 2rem;
+  border-radius: .4rem;
   box-shadow: 0 0 1rem rgba($black, .4);
   color: $white;
   position: relative;
@@ -28,11 +28,11 @@
   }
 
   &__input {
-    border: 1px solid $transparent;
-    border-radius: 4px;
-    height: 2.5rem;
-    font-size: $fs-base - 3px;
-    padding: 0 1rem;
+    border: .1rem solid $transparent;
+    border-radius: .5rem;
+    height: 3.8rem;
+    font-size: $fs-base - .3rem;
+    padding: 0 1.5rem;
     outline: none;
     transition: all $normal linear;
 
@@ -41,7 +41,7 @@
     }
 
     &:focus {
-      border: 1px solid $gray-700;
+      border: .1rem solid $gray-700;
     }
 
     &--custom {
@@ -57,7 +57,7 @@
     transition: all $normal ease;
 
     &--custom {
-      border-radius: 5px;
+      border-radius: .5rem;
       cursor: pointer;
       display: flex;
       justify-content: space-around;
@@ -65,7 +65,7 @@
       padding: .8rem;
 
       .icon {
-        font-size: $fs-base + 4px;
+        font-size: $fs-base + .4rem;
       }
 
       &:hover {
@@ -105,7 +105,7 @@
       animation: showIn $normal ease-in;
       animation-fill-mode: forwards;
       background-color: rgba($danger, .4);
-      border-radius: 5px;
+      border-radius: .5rem;
       display: block;
       margin-top: 1rem;
       padding: .5rem 1rem;

@@ -30,7 +30,7 @@
       color: $white;
       padding-bottom: 0;
       background-color: rgba($primary, .4);
-      border-radius: 5px;
+      border-radius: .5rem;
       box-shadow: 0 0 1rem rgba($black, .3);
     }
 
@@ -38,7 +38,7 @@
       flex: 0 1 48%;
       background-color: rgba(0, 0, 0, .35);
       box-shadow: 0 0 1rem rgba($black, .15);
-      border-radius: 5px;
+      border-radius: .5rem;
       padding: 2rem 1rem 1rem;
     }
 
@@ -99,9 +99,9 @@
     background-color: $white;
     position: absolute;
     left: 0;
-    top: -.5rem;
-    width: 2.5rem;
-    height: 2.5rem;
+    top: -1rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 100%;
     box-shadow: 0 0 1rem $black;
     overflow: hidden;

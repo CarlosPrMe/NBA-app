@@ -1,23 +1,23 @@
 @mixin mobile-xs {
-  @media screen and (min-width: $mobile-xs) {
+  @media screen and (min-width: 300px) {
     @content;
   }
 }
 
 @mixin mobile {
-  @media screen and (min-width: $mobile) {
+  @media screen and (min-width: 768px) {
     @content;
   }
 }
 
 @mixin tablet {
-  @media screen and (min-width: $tablet) {
+  @media screen and (min-width: 992px) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media screen and (min-width: $desktop) {
+  @media screen and (min-width: 1200px) {
     @content;
   }
 }
@@ -26,9 +26,9 @@
   $mainColor: $primary,
   $secColor: $secondary,
   $auxColor: $white,
-  $width: 8px,
-  $height: 8px,
-  $borderRad: 4px,
+  $width: .8rem,
+  $height: .8rem,
+  $borderRad: .4rem,
   $margin: 1rem
 ) {
   &::-webkit-scrollbar {
@@ -44,7 +44,7 @@
   /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
   &::-webkit-scrollbar-thumb:hover {
     background: $secColor;
-    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 .2rem .1rem rgba(0, 0, 0, 0.2);
   }
 
   /* Cambiamos el fondo cuando esté en active */

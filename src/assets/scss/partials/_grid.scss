@@ -2,7 +2,7 @@
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 -10px;
+  margin: 0 -1rem;
 
   &--center {
     align-items: center;
@@ -11,242 +11,49 @@
   &--end {
     align-items: flex-end;
   }
-  
-  &--between{
+
+  &--between {
     justify-content: space-between;
   }
 }
 
 [class^="col"] {
   flex: 1 0 auto;
-  padding: 0 10px;
-
+  padding: 0 1rem;
 }
 
 @include mobile-xs {
-  .col-xs-2 {
-    flex-basis: calc((2 / 12) * 100%);
-    max-width: calc((2 / 12) * 100%);
-  }
-
-  .col-xs-3 {
-    flex-basis: calc((3 / 12) * 100%);
-    max-width: calc((3 / 12) * 100%);
-  }
-
-  .col-xs-4 {
-    flex-basis: calc((4 / 12) * 100%);
-    max-width: calc((4 / 12) * 100%);
-  }
-
-  .col-xs-5 {
-    flex-basis: calc((5 / 12) * 100%);
-    max-width: calc((5 / 12) * 100%);
-  }
-
-  .col-xs-6 {
-    flex-basis: calc((6 / 12) * 100%);
-    max-width: calc((6 / 12) * 100%);
-  }
-
-  .col-xs-7 {
-    flex-basis: calc((7 / 12) * 100%);
-    max-width: calc((7 / 12) * 100%);
-  }
-
-  .col-xs-8 {
-    flex-basis: calc((8 / 12) * 100%);
-    max-width: calc((8 / 12) * 100%);
-  }
-
-  .col-xs-9 {
-    flex-basis: calc((9 / 12) * 100%);
-    max-width: calc((9 / 12) * 100%);
-  }
-
-  .col-xs-10 {
-    flex-basis: calc((10 / 12) * 100%);
-    max-width: calc((10 / 12) * 100%);
-  }
-
-  .col-xs-11 {
-    flex-basis: calc((11 / 12) * 100%);
-    max-width: calc((11 / 12) * 100%);
-  }
-
-  .col-xs-12 {
-    flex-basis: calc((12 / 12) * 100%);
-    max-width: calc((12 / 12) * 100%);
+  @for $i from 2 through 12 {
+    .col-xs-#{$i} {
+      flex-basis: calc((#{$i} / 12) * 100%);
+      max-width: calc((#{$i} / 12) * 100%);
+    }
   }
 }
 
 @include mobile {
-  .col-sm-2 {
-    flex-basis: calc((2 / 12) * 100%);
-    max-width: calc((2 / 12) * 100%);
-  }
-
-  .col-sm-3 {
-    flex-basis: calc((3 / 12) * 100%);
-    max-width: calc((3 / 12) * 100%);
-  }
-
-  .col-sm-4 {
-    flex-basis: calc((4 / 12) * 100%);
-    max-width: calc((4 / 12) * 100%);
-  }
-
-  .col-sm-5 {
-    flex-basis: calc((5 / 12) * 100%);
-    max-width: calc((5 / 12) * 100%);
-  }
-
-  .col-sm-6 {
-    flex-basis: calc((6 / 12) * 100%);
-    max-width: calc((6 / 12) * 100%);
-  }
-
-  .col-sm-7 {
-    flex-basis: calc((7 / 12) * 100%);
-    max-width: calc((7 / 12) * 100%);
-  }
-
-  .col-sm-8 {
-    flex-basis: calc((8 / 12) * 100%);
-    max-width: calc((8 / 12) * 100%);
-  }
-
-  .col-sm-9 {
-    flex-basis: calc((9 / 12) * 100%);
-    max-width: calc((9 / 12) * 100%);
-  }
-
-  .col-sm-10 {
-    flex-basis: calc((10 / 12) * 100%);
-    max-width: calc((10 / 12) * 100%);
-  }
-
-  .col-sm-11 {
-    flex-basis: calc((11 / 12) * 100%);
-    max-width: calc((11 / 12) * 100%);
-  }
-
-  .col-sm-12 {
-    flex-basis: calc((12 / 12) * 100%);
-    max-width: calc((12 / 12) * 100%);
+  @for $i from 2 through 12 {
+    .col-sm-#{$i} {
+      flex-basis: calc((#{$i} / 12) * 100%);
+      max-width: calc((#{$i} / 12) * 100%);
+    }
   }
 }
 
 @include tablet {
-  .col-md-2 {
-    flex-basis: calc((2 / 12) * 100%);
-    max-width: calc((2 / 12) * 100%);
-  }
-
-  .col-md-3 {
-    flex-basis: calc((3 / 12) * 100%);
-    max-width: calc((3 / 12) * 100%);
-  }
-
-  .col-md-4 {
-    flex-basis: calc((4 / 12) * 100%);
-    max-width: calc((4 / 12) * 100%);
-  }
-
-  .col-md-5 {
-    flex-basis: calc((5 / 12) * 100%);
-    max-width: calc((5 / 12) * 100%);
-  }
-
-  .col-md-6 {
-    flex-basis: calc((6 / 12) * 100%);
-    max-width: calc((6 / 12) * 100%);
-  }
-
-  .col-md-7 {
-    flex-basis: calc((7 / 12) * 100%);
-    max-width: calc((7 / 12) * 100%);
-  }
-
-  .col-md-8 {
-    flex-basis: calc((8 / 12) * 100%);
-    max-width: calc((8 / 12) * 100%);
-  }
-
-  .col-md-9 {
-    flex-basis: calc((9 / 12) * 100%);
-    max-width: calc((9 / 12) * 100%);
-  }
-
-  .col-md-10 {
-    flex-basis: calc((10 / 12) * 100%);
-    max-width: calc((10 / 12) * 100%);
-  }
-
-  .col-md-11 {
-    flex-basis: calc((11 / 12) * 100%);
-    max-width: calc((11 / 12) * 100%);
-  }
-
-  .col-md-12 {
-    flex-basis: calc((12 / 12) * 100%);
-    max-width: calc((12 / 12) * 100%);
+  @for $i from 2 through 12 {
+    .col-md-#{$i} {
+      flex-basis: calc((#{$i} / 12) * 100%);
+      max-width: calc((#{$i} / 12) * 100%);
+    }
   }
 }
 
 @include desktop {
-  .col-lg-2 {
-    flex-basis: calc((2 / 12) * 100%);
-    max-width: calc((2 / 12) * 100%);
-  }
-
-  .col-lg-3 {
-    flex-basis: calc((3 / 12) * 100%);
-    max-width: calc((3 / 12) * 100%);
-  }
-
-  .col-lg-4 {
-    flex-basis: calc((4 / 12) * 100%);
-    max-width: calc((4 / 12) * 100%);
-  }
-
-  .col-lg-5 {
-    flex-basis: calc((5 / 12) * 100%);
-    max-width: calc((5 / 12) * 100%);
-  }
-
-  .col-lg-6 {
-    flex-basis: calc((6 / 12) * 100%);
-    max-width: calc((6 / 12) * 100%);
-  }
-
-  .col-lg-7 {
-    flex-basis: calc((7 / 12) * 100%);
-    max-width: calc((7 / 12) * 100%);
-  }
-
-  .col-lg-8 {
-    flex-basis: calc((8 / 12) * 100%);
-    max-width: calc((8 / 12) * 100%);
-  }
-
-  .col-lg-9 {
-    flex-basis: calc((9 / 12) * 100%);
-    max-width: calc((9 / 12) * 100%);
-  }
-
-  .col-lg-10 {
-    flex-basis: calc((10 / 12) * 100%);
-    max-width: calc((10 / 12) * 100%);
-  }
-
-  .col-lg-11 {
-    flex-basis: calc((11 / 12) * 100%);
-    max-width: calc((11 / 12) * 100%);
-  }
-
-  .col-lg-12 {
-    flex-basis: calc((12 / 12) * 100%);
-    max-width: calc((12 / 12) * 100%);
+  @for $i from 2 through 12 {
+    .col-lg-#{$i} {
+      flex-basis: calc((#{$i} / 12) * 100%);
+      max-width: calc((#{$i} / 12) * 100%);
+    }
   }
 }

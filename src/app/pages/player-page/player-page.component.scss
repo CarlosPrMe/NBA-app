@@ -2,8 +2,8 @@
 
 .stats {
   background-color: $gray-200;
-  border: 1px solid $gray-700;
-  border-radius: 5px;
+  border: .1rem solid $gray-700;
+  border-radius: .5rem;
   padding: 1rem;
 
   &__title {
@@ -11,7 +11,7 @@
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    border-radius: .5rem;
 
     &--color {
       background-color: rgba($white, 0.6);

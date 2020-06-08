@@ -4,8 +4,8 @@
   position: relative;
 
   &__container {
-    height: 18rem;
-    border: 5px solid $secondary;
+    height: 28rem;
+    border: .5rem solid $secondary;
     background-color: rgba($white, .8);
     overflow: hidden;
     position: relative;
@@ -28,7 +28,7 @@
     color: $white;
     color: $secondary;
     height: 100%;
-    font-size: 3rem;
+    font-size: 4rem;
     position: absolute;
     top: 0;
     display: none;

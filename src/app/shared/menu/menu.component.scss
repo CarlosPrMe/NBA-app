@@ -36,15 +36,15 @@
     transition: transform $fast ease;
     &.icon-user {
       border-radius: 100%;
-      border: 1px solid $white;
+      border: .1rem solid $white;
       padding: .5rem;
     }
   }
 
   &__list {
     background-color: $secondary;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
     box-shadow: 0 0 1rem rgba($black, .8);
     position: absolute;
     right: -1rem;
@@ -59,8 +59,8 @@
 
   &__item {
     &:last-child .menu__link {
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: .5rem;
+      border-bottom-right-radius: .5rem;
     }
   }
 

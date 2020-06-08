@@ -5,12 +5,12 @@
     height: auto;
     position: fixed;
     padding-bottom: 1rem;
-    top: 52px;
+    top: 5.2rem;
     width: 100vw;
     background-color: $white;
     color: $gray-900;
     transition: all $normal ease;
-    transform: translateY(calc(-100% - 52px));
+    transform: translateY(calc(-100% - 5.2rem));
     z-index: $over + 1;
 
     &--show {
@@ -75,16 +75,16 @@
 
     &__list {
         background-color: $white;
-        border: 2px solid $white;
+        border: .2rem solid $white;
         border-top-color: transparent;
         border-radius: 0.4rem;
-        max-height: 240px;
+        max-height: 24rem;
         overflow-y: auto;
-        @include customScrollBar($primary, $primary, $white, 8px, 8px, 4px, 0);
+        @include customScrollBar($primary, $primary, $white, .8rem, .8rem, .4rem, 0);
     }
 
     &__item {
-        font-size: $fs-sm + 2px;
+        font-size: $fs-sm + .2rem;
         &:hover {
             .predictive-results__link {
                 color: $white;
@@ -117,13 +117,13 @@
         }
 
         & + & {
-            border-top: 1px solid $gray-400;
+            border-top: .1rem solid $gray-400;
         }
 
         &:last-of-type {
             .predictive-results__link {
-                border-bottom-left-radius: 10px;
-                border-bottom-right-radius: 10px;
+                border-bottom-left-radius: 1rem;
+                border-bottom-right-radius: 1rem;
             }
         }
     }

@@ -7,10 +7,10 @@
 
 .team-stat {
   flex: 0 1 auto;
-  border: 1px solid rgba($primary, .4);
+  border: .1rem solid rgba($primary, .4);
   padding: 2rem;
   background-color: rgba($black, .15);
-  border-radius: 10px;
+  border-radius: 1rem;
   box-shadow: 0 0 2rem rgba($primary, .2);
 
   &__title {
@@ -20,7 +20,7 @@
 
 .highlights {
   background-color: rgba($white, .7);
-  border-radius: 5px;
+  border-radius: .5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,7 +37,7 @@
     font-weight: bold;
     text-transform: uppercase;
     padding: .5rem;
-    border-radius: 5px;
+    border-radius: .5rem;
     box-shadow: 0 0 1rem rgba($black, .15);
   }
 }

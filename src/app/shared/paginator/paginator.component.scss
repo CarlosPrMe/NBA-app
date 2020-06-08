@@ -15,8 +15,8 @@
         width: 80%;
         left: 10%;
         height: 100%;
-        border-top: 1px solid $gray-500;
-        border-bottom: 1px solid $gray-500;
+        border-top: .1rem solid $gray-500;
+        border-bottom: .1rem solid $gray-500;
     }
 
     &--disabled {
@@ -26,8 +26,8 @@
 
     &__page {
         padding: 0.25rem 0.5rem;
-        border: 1px solid $transparent;
-        border-radius: 3px;
+        border: .1rem solid $transparent;
+        border-radius: .3rem;
         color: $black;
         text-decoration: none;
         position: relative;

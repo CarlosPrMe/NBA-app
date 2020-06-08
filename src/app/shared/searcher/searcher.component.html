@@ -1,102 +1,108 @@
 <div class="searcher" [ngClass]="{'searcher--show':sercherState}" #searcher>
     <div class="container">
-        <h3 class="h3">Buscador</h3>
-        <form class="form" [formGroup]="myForm" (keyup.enter)="submit(myForm.value)">
-            <div class="row">
-                <div class="col-xs-5 form__group">
-                    <div class="row" [ngClass]="{'disabled': !fieldDisabled}">
-                        <span class="col-xs-3 form__label">Elige opción</span>
-                        <div class="col-xs-3 form__group">
-                            <div class="from__control">
-                                <input formControlName="type" type="radio" name="type" value="player" id="player">
-                                <label class="form__label form__label--inline" for="player">Player</label>
+        <div class="searcher__container">
+            <h3 class="h3">Buscador</h3>
+            <form class="form" [formGroup]="myForm" (keyup.enter)="submit(myForm.value)">
+                <div class="row">
+                    <div class="col-xs-5 form__group">
+                        <div class="row" [ngClass]="{'disabled': !fieldDisabled}">
+                            <span class="col-xs-3 form__label">Elige opción</span>
+                            <div class="col-xs-3 form__group">
+                                <div class="from__control">
+                                    <input formControlName="type" type="radio" name="type" value="player" id="player">
+                                    <label class="form__label form__label--inline" for="player">Player</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-3 form__group">
+                                <div class="form__control">
+                                    <input formControlName="type" type="radio" name="type" value="team" id="team">
+                                    <label class="form__label form__label--inline" for="team">Equipo</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form__control form__control--results" #numResults>
+                                <span class="results" *ngIf="resultsNumber">{{resultsNumber}}</span>
+                                <input #input id="inputText" formControlName="text" type="text" class="form__input">
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="row">
+                                    <div class="col-xs-12 predictive-results">
+                                        <ul class="predictive-results__list"
+                                            *ngIf="resultsPlayers.length == 0 && resultsTeams.length == 0 && searched">
+                                            <li class="predictive-results__item">
+                                                <span class="predictive-results__link">No hay resultados</span>
+                                            </li>
+                                        </ul>
+                                        <ul class="predictive-results__list" *ngIf="resultsPlayers.length > 0">
+                                            <li class="predictive-results__item predictive-results__item--player"
+                                                *ngFor="let player of resultsPlayers">
+                                                <a (click)="resetSearch($event, player.id, 'isPlayer')"
+                                                    class="predictive-results__link" href="#"
+                                                    [routerLink]="['/player',player?.id]">{{player.first_name}}
+                                                    {{player.last_name}}</a>
+                                            </li>
+                                        </ul>
+                                        <ul class="predictive-results__list" *ngIf="resultsTeams.length > 0">
+                                            <li class="predictive-results__item" *ngFor="let team of resultsTeams">
+                                                <a (click)="resetSearch($event, team.id_team, 'isTeam')"
+                                                    class="predictive-results__link" href="#"
+                                                    [routerLink]="['/team',team?.id_team]"
+                                                    style="background-color: rgba({{team.team_color}}, .4);">{{team.full_name}}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-3 form__group">
-                            <div class="form__control">
-                                <input formControlName="type" type="radio" name="type" value="team" id="team">
-                                <label class="form__label form__label--inline" for="team">Equipo</label>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="row">
+                            <div class="col-xs-4 form__group">
+                                <div class="form__control">
+                                    <span class="form__label">Opciones</span>
+                                    <input id="stats" formControlName="stats" type="checkbox" value="false">
+                                    <label class="form__label form__label--inline" for="stats">Buscar
+                                        estadisticas/partidos</label>
+                                </div>
+                                <div class="form__control" [ngClass]="{'disabled': fieldDisabled}">
+                                    <input id="seasonStats" formControlName="seasonStats" type="checkbox" value="false"
+                                        #statsDate>
+                                    <label class="form__label form__label--inline" for="seasonStats">Fecha
+                                        determinada</label>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xs-12 form__control form__control--results" #numResults>
-                            <span class="results" *ngIf="resultsNumber">{{resultsNumber}}</span>
-                            <input #input id="inputText" formControlName="text" type="text" class="form__input">
-                        </div>
-                        <div class="col-xs-12">
-                            <div class="row">
-                                <div class="col-xs-12 predictive-results">
-                                    <ul class="predictive-results__list"
-                                        *ngIf="resultsPlayers.length == 0 && resultsTeams.length == 0 && searched">
-                                        <li class="predictive-results__item">
-                                            <span class="predictive-results__link">No hay resultados</span>
-                                        </li>
-                                    </ul>
-                                    <ul class="predictive-results__list" *ngIf="resultsPlayers.length > 0">
-                                        <li class="predictive-results__item predictive-results__item--player" *ngFor="let player of resultsPlayers">
-                                            <a (click)="resetSearch($event, player.id, 'isPlayer')"
-                                                class="predictive-results__link" href="#"
-                                                [routerLink]="['/player',player?.id]">{{player.first_name}}
-                                                {{player.last_name}}</a>
-                                        </li>
-                                    </ul>
-                                    <ul class="predictive-results__list" *ngIf="resultsTeams.length > 0">
-                                        <li class="predictive-results__item" *ngFor="let team of resultsTeams">
-                                            <a (click)="resetSearch($event, team.id_team, 'isTeam')"
-                                                class="predictive-results__link" href="#"
-                                                [routerLink]="['/team',team?.id_team]"
-                                                style="background-color: rgba({{team.team_color}}, .4);">{{team.full_name}}</a>
-                                        </li>
-                                    </ul>
+                            <div class="col-xs-4 form__group" [ngClass]="{'disabled': fieldDisabled}">
+                                <div class="form__control" [ngClass]="{'disabled':myForm.controls.seasonStats.value }">
+                                    <label class="form__label" for="season">Toda la temporada</label>
+                                    <select formControlName="season" name="team" id="season" class="form__input">
+                                        <option value="{{year}}" *ngFor="let year of seasonsAvailable">{{year}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="form__control" [ngClass]="{'disabled':!myForm.controls.seasonStats.value }">
+                                    <label class="form__label" for="date">Fecha de partido</label>
+                                    <input id="date" formControlName="date" type="date" class="form__input"
+                                        placeholder="2019-06-01" min="1978-01-01" max="2019-06-01">
+                                </div>
+                            </div>
+                            <div class="col-xs-4 form__group" [ngClass]="{'disabled': fieldDisabled}">
+                                <div class="form__control">
+                                    <label class="form__label" for="teamSelect">Elegir Equipo</label>
+                                    <select formControlName="teamSelected" name="team" id="teamSelect"
+                                        class="form__input">
+                                        <option value="{{team.id_team}}" *ngFor="let team of teamOptions">
+                                            {{team.full_name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-7">
-                    <div class="row">
-                        <div class="col-xs-4 form__group">
-                            <div class="form__control">
-                                <span class="form__label">Opciones</span>
-                                <input id="stats" formControlName="stats" type="checkbox" value="false">
-                                <label class="form__label form__label--inline" for="stats">Buscar
-                                    estadisticas/partidos</label>
-                            </div>
-                            <div class="form__control" [ngClass]="{'disabled': fieldDisabled}">
-                                <input id="seasonStats" formControlName="seasonStats" type="checkbox" value="false" #statsDate>
-                                <label class="form__label form__label--inline" for="seasonStats">Fecha
-                                    determinada</label>
-                            </div>
-                        </div>
-                        <div class="col-xs-4 form__group" [ngClass]="{'disabled': fieldDisabled}">
-                            <div class="form__control" [ngClass]="{'disabled':myForm.controls.seasonStats.value }">
-                                <label class="form__label" for="season">Toda la temporada</label>
-                                <select formControlName="season" name="team" id="season" class="form__input">
-                                    <option value="{{year}}" *ngFor="let year of seasonsAvailable">{{year}}
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="form__control" [ngClass]="{'disabled':!myForm.controls.seasonStats.value }">
-                                <label class="form__label" for="date">Fecha de partido</label>
-                                <input id="date" formControlName="date" type="date" class="form__input"
-                                    placeholder="2019-06-01" min="1978-01-01" max="2019-06-01">
-                            </div>
-                        </div>
-                        <div class="col-xs-4 form__group" [ngClass]="{'disabled': fieldDisabled}">
-                            <div class="form__control">
-                                <label class="form__label" for="teamSelect">Elegir Equipo</label>
-                                <select formControlName="teamSelected" name="team" id="teamSelect" class="form__input">
-                                    <option value="{{team.id_team}}" *ngFor="let team of teamOptions">{{team.full_name}}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row">
+                    <button (click)="submit(myForm.value)" type="button" class="btn btn--primary"> <span
+                            class="icon icon-cancel-circle"></span> Buscar</button>
                 </div>
-            </div>
-            <div class="row">
-                <button (click)="submit(myForm.value)" type="button" class="btn btn--primary"> <span
-                        class="icon icon-cancel-circle"></span> Buscar</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </div>

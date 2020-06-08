@@ -23,7 +23,7 @@
     bottom: 3rem;
     width: 50%;
     background-color: rgba($white, .8);
-    border-radius: 5px;
+    border-radius: .5rem;
     box-shadow: 0 0 2rem 1rem rgba($black, .6);
     color: $black;
     overflow-y: auto;
@@ -43,7 +43,7 @@
   }
 
   &__block {
-    border-radius: 5px;
+    border-radius: .5rem;
     flex: 0 1 100%;
     padding: 1rem;
     min-height: 6rem;
@@ -60,7 +60,7 @@
     &:nth-of-type(2) {
       .details__data {
         &:hover {
-          border: 2px solid rgba($primary, .6);
+          border: .2rem solid rgba($primary, .6);
           box-shadow: 0 0 1rem rgba($black, .2);
           background-color: rgba($black, .15);
         }
@@ -97,13 +97,13 @@
       font-weight: bold;
       text-decoration: underline;
       background-color: rgba($secondary, .8);
-      border-radius: 4px;
+      border-radius: .5rem;
     }
   }
 
   &__data {
-    border: 2px solid $transparent;
-    border-radius: 4px;
+    border: .2rem solid $transparent;
+    border-radius: .5rem;
     display: block;
     flex: 1 0 33%;
     padding: .2rem;

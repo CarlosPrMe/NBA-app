@@ -1,8 +1,8 @@
 @import '../../../assets/scss/partials/vars';
 
 .logo {
-  left: 1rem;
-  padding-top: 1rem;
+  left: 1.5rem;
+  padding-top: 1.5rem;
   position: absolute;
   text-align: center;
   top: 0;
@@ -15,7 +15,7 @@
 
   &__img {
     border-radius: 100%;
-    max-width: 4.5rem;
+    max-width: 6rem;
     height: auto;
     width: 100%;
   }

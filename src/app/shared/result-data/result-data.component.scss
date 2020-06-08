@@ -8,8 +8,8 @@
 
 .result {
   background-color: $white;
-  border: 1px solid $white;
-  border-radius: 4px;
+  border: .1rem solid $white;
+  border-radius: .4rem;
   transition: all $normal ease;
   position: relative;
   overflow: hidden;
@@ -20,10 +20,10 @@
       background-color: $tertiary;
       position: absolute;
       display: block;
-      height: 2.5rem;
-      width: 2rem;
-      left: -1rem;
-      top: -1rem;
+      height: 3.5rem;
+      width: 2.6rem;
+      left: -1.2rem;
+      top: -1.4rem;
       transform: rotate(45deg);
     }
   }
@@ -67,14 +67,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .5rem;
+    padding: .8rem;
     & + & {
       flex-direction: row-reverse;
       &::after {
         content: "";
         display: block;
         height: 60%;
-        width: 2px;
+        width: .2rem;
         background-color: $gray-500;
         position: absolute;
         left: 0;
@@ -86,7 +86,7 @@
   &__media {
     display: inline-block;
     object-fit: contain;
-    max-width: 2rem;
+    max-width: 3.5rem;
     transition: all $normal ease;
   }
 
