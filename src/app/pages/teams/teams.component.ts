@@ -26,6 +26,7 @@ export class TeamsComponent implements OnInit {
   public currentDetailId: number;
   public noDate: boolean;
   private positionScroll: number;
+  public textConference: Array<string>;
 
   constructor(private _activateRouter: ActivatedRoute, private _teamService: TeamService) { }
 
@@ -36,6 +37,7 @@ export class TeamsComponent implements OnInit {
     this.westConference = [];
     this.eastConference = [];
     this.teams = this._activateRouter.snapshot.data.teams;
+    this.textConference = ['Conferencia Oeste', 'Conferencia Este'];
     this.teams.forEach((team: any) => {
       team.won_games = this._randomNumber(0, this.teams.length);
     })

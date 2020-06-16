@@ -6,126 +6,134 @@
         <div class="bg-dark">
             <div class="container">
                 <div class="teams" *ngIf="westConference.length && eastConference.length">
-                    <h2 class="teams__title h2">Conferencia Oeste</h2>
-                    <h2 class="teams__title h2">Conferencia Este</h2>
-
-                    <div *ngFor="let conference of teamsSorted" class="teams__block">
-                        <div (click)="showDetails($event,team.id_team)" *ngFor="let team of conference; index as i"
-                            class="teams__media" [ngClass]="{'teams__media--clasified': i < 8}">
-                            <img class="teams__logo" src="{{team.image_url}}" alt="team image">
-                            <span class="teams__name">{{team.full_name}}</span>
-                            <span class="teams__data"> Pos: {{i + 1}}</span>
-                            <span
-                                *ngIf="!matchesResume || matchesResume && team.id_team === currentDetailId && !resumeShow || matchesResume && team.id_team !== currentDetailId"
-                                class="teams__show-more h4">Click para ver útlimos resultados</span>
-                            <span *ngIf="matchesResume && team.id_team === currentDetailId && resumeShow"
-                                class="teams__show-more h4">Click para ocultar</span>
-                            <div class="teams__details" *ngIf="matchesResume && team.id_team === currentDetailId"
-                                [ngClass]="{'teams__details--show' :team.id_team === currentDetailId && resumeShow}">
-                                <h3 class="h4">Últimos 10 encuentros</h3>
-                                <a class="teams__link" href="#" [routerLink]="['/stats',game.id]"
-                                    *ngFor="let game of matchesResume">
-                                    <app-result-data [simpleData]="noDate" [game]="game"> </app-result-data>
-                                </a>
-                                <div class="teams__btns">
-                                    <button (click)="hideMatch" type="button" class="btn btn--primary h4"><span
-                                            class="icon icon-circle-up"></span></button>
+                    <div class="row">
+                        <div *ngFor="let conference of teamsSorted; index as i" class="col-xs-12 col-md-6 teams__block">
+                            <div class="teams__conference">
+                                <h2 class="teams__title h2">{{textConference[i]}}</h2>
+                                <div (click)="showDetails($event,team.id_team)"
+                                    *ngFor="let team of conference; index as i" class="teams__media"
+                                    [ngClass]="{'teams__media--clasified': i < 8}">
+                                    <img [ngClass]="{'teams__logo--placed' :team.id_team === currentDetailId && resumeShow}"
+                                        class="teams__logo" src="{{team.image_url}}" alt="team image">
+                                    <span class="teams__name">{{team.full_name}}</span>
+                                    <span class="teams__data"> Pos: {{i + 1}}</span>
+                                    <span
+                                        *ngIf="!matchesResume || matchesResume && team.id_team === currentDetailId && !resumeShow || matchesResume && team.id_team !== currentDetailId"
+                                        class="teams__show-more h4">Click para ver útlimos resultados</span>
+                                    <span *ngIf="matchesResume && team.id_team === currentDetailId && resumeShow"
+                                        class="teams__show-more h4">Click para ocultar</span>
+                                    <div class="teams__details"
+                                        *ngIf="matchesResume && team.id_team === currentDetailId"
+                                        [ngClass]="{'teams__details--show' :team.id_team === currentDetailId && resumeShow}">
+                                        <h3 class="h4">Últimos 10 encuentros</h3>
+                                        <a class="teams__link" href="#" [routerLink]="['/stats',game.id]"
+                                            *ngFor="let game of matchesResume">
+                                            <app-result-data [simpleData]="noDate" [game]="game"> </app-result-data>
+                                        </a>
+                                        <div class="teams__btns">
+                                            <button (click)="hideMatch" type="button" class="btn btn--primary h4"><span
+                                                    class="icon icon-circle-up"></span></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-            <div class="playoffs">
-                <h2 class="playoffs__title h2">Imagen PlayOffs</h2>
-                <div class="playoffs__content">
-                    <div *ngFor="let conference of playoffs" class="playoffs__conference">
-                        <div class="playoffs__block">
-                            <div *ngFor="let match of conference[0]" class="playoffs__match">
-                                <div *ngFor="let team of match" class="playoffs__media">
-                                    <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
-                                    <span class="playoffs__team-name">{{team.full_name}}</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="playoffs__block">
-                            <div *ngFor="let match of conference[1]" class="playoffs__match">
-                                <div *ngFor="let team of match" class="playoffs__media">
-                                    <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
-                                    <span class="playoffs__team-name">{{team.full_name}}</span>
-                                </div>
-                                <div *ngIf="!match.team && !simulated" class="playoffs__match">
-                                    <div class="playoffs__media">
-                                        <img class="playoffs__team-logo playoffs__team-logo--ball"
-                                            src="../../../assets/img/balon.png" alt="">
-                                        <span class="playoffs__team-name">Por determinar</span>
-                                    </div>
-                                    <div class="playoffs__media">
-                                        <img class="playoffs__team-logo playoffs__team-logo--ball"
-                                            src="../../../assets/img/balon.png" alt="">
-                                        <span class="playoffs__team-name">Por determinar</span>
+        <div class="playoffs">
+            <div class="container">
+                <div class="playoffs__container">
+                    <h2 class="playoffs__title h2">Imagen PlayOffs</h2>
+                    <div class="playoffs__content">
+                        <div *ngFor="let conference of playoffs" class="playoffs__conference">
+                            <div class="playoffs__block">
+                                <div *ngFor="let match of conference[0]" class="playoffs__match">
+                                    <div *ngFor="let team of match" class="playoffs__media">
+                                        <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
+                                        <span class="playoffs__team-name">{{team.full_name}}</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="playoffs__block">
-                            <div *ngFor="let match of conference[2]" class="playoffs__match">
-                                <div *ngFor="let team of match" class="playoffs__media">
-                                    <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
-                                    <span class="playoffs__team-name">{{team.full_name}}</span>
-                                </div>
-                                <div *ngIf="!match.team && !simulated" class="playoffs__match">
-                                    <div class="playoffs__media">
-                                        <img class="playoffs__team-logo playoffs__team-logo--ball"
-                                            src="../../../assets/img/balon.png" alt="">
-                                        <span class="playoffs__team-name">Por determinar</span>
+                            <div class="playoffs__block">
+                                <div *ngFor="let match of conference[1]" class="playoffs__match">
+                                    <div *ngFor="let team of match" class="playoffs__media">
+                                        <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
+                                        <span class="playoffs__team-name">{{team.full_name}}</span>
                                     </div>
-                                    <div class="playoffs__media">
-                                        <img class="playoffs__team-logo playoffs__team-logo--ball"
-                                            src="../../../assets/img/balon.png" alt="">
-                                        <span class="playoffs__team-name">Por determinar</span>
+                                    <div *ngIf="!match.team && !simulated" class="playoffs__match">
+                                        <div class="playoffs__media">
+                                            <img class="playoffs__team-logo playoffs__team-logo--ball"
+                                                src="../../../assets/img/balon.png" alt="">
+                                            <span class="playoffs__team-name">Por determinar</span>
+                                        </div>
+                                        <div class="playoffs__media">
+                                            <img class="playoffs__team-logo playoffs__team-logo--ball"
+                                                src="../../../assets/img/balon.png" alt="">
+                                            <span class="playoffs__team-name">Por determinar</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="playoffs__block">
-                            <div *ngFor="let match of conference[3]" class="playoffs__match">
-                                <div *ngFor="let team of match" class="playoffs__media">
-                                    <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
-                                    <span class="playoffs__team-name">{{team.full_name}}</span>
+                            <div class="playoffs__block">
+                                <div *ngFor="let match of conference[2]" class="playoffs__match">
+                                    <div *ngFor="let team of match" class="playoffs__media">
+                                        <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
+                                        <span class="playoffs__team-name">{{team.full_name}}</span>
+                                    </div>
+                                    <div *ngIf="!match.team && !simulated" class="playoffs__match">
+                                        <div class="playoffs__media">
+                                            <img class="playoffs__team-logo playoffs__team-logo--ball"
+                                                src="../../../assets/img/balon.png" alt="">
+                                            <span class="playoffs__team-name">Por determinar</span>
+                                        </div>
+                                        <div class="playoffs__media">
+                                            <img class="playoffs__team-logo playoffs__team-logo--ball"
+                                                src="../../../assets/img/balon.png" alt="">
+                                            <span class="playoffs__team-name">Por determinar</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div *ngIf="!match.team && !simulated" class="playoffs__media">
-                                    <img class="playoffs__team-logo playoffs__team-logo--ball"
-                                        src="../../../assets/img/balon.png" alt="">
-                                    <span class="playoffs__team-name">Por determinar</span>
+                            </div>
+                            <div class="playoffs__block">
+                                <div *ngFor="let match of conference[3]" class="playoffs__match">
+                                    <div *ngFor="let team of match" class="playoffs__media">
+                                        <img class="playoffs__team-logo" src="{{team.image_url}}" alt="team image">
+                                        <span class="playoffs__team-name">{{team.full_name}}</span>
+                                    </div>
+                                    <div *ngIf="!match.team && !simulated" class="playoffs__media">
+                                        <img class="playoffs__team-logo playoffs__team-logo--ball"
+                                            src="../../../assets/img/balon.png" alt="">
+                                        <span class="playoffs__team-name">Por determinar</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <img class="playoffs__trophy" src="../../../assets/img/trofeo.png" alt="nba trophy">
-                <div *ngIf="simulated" class="playoffs__winner">
-                    <span class="playoffs__winner-title h2"> <span class="icon icon-trophy"></span> Campeones <span
-                            class="icon icon-trophy"></span></span>
-                    <a href="#" [routerLink]="['/team',winner.id_team]" class="playoffs__winner-content">
-                        <img class="playoffs__winner-logo" src="{{winner.image_url}}" alt="team image">
-                        <span class="playoffs__winner-name h3">{{winner.full_name}}</span>
+                    <img class="playoffs__trophy" src="../../../assets/img/trofeo.png" alt="nba trophy">
+                    <div *ngIf="simulated" class="playoffs__winner">
+                        <span class="playoffs__winner-title h2"> <span class="icon icon-trophy"></span> Campeones <span
+                                class="icon icon-trophy"></span></span>
+                        <a href="#" [routerLink]="['/team',winner.id_team]" class="playoffs__winner-content">
+                            <img class="playoffs__winner-logo" src="{{winner.image_url}}" alt="team image">
+                            <span class="playoffs__winner-name h3">{{winner.full_name}}</span>
 
-                    </a>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="playoffs__buttons" [ngSwitch]="simulated">
-                <button type="button" *ngSwitchCase='false' class="btn btn--primary" (click)="simulateGames()">
-                    <span class="icon icon-trophy"></span> Simular
-                    PlayOffs</button>
-                <button type="button" *ngSwitchCase='true' class="btn btn--primary" (click)="resetGames()">
-                    <span class="icon icon-cancel-circle"></span>
-                    Reset
-                    PlayOffs</button>
+                <div class="playoffs__buttons" [ngSwitch]="simulated">
+                    <button type="button" *ngSwitchCase='false' class="btn btn--primary" (click)="simulateGames()">
+                        <span class="icon icon-trophy"></span> Simular
+                        PlayOffs</button>
+                    <button type="button" *ngSwitchCase='true' class="btn btn--primary" (click)="resetGames()">
+                        <span class="icon icon-cancel-circle"></span>
+                        Reset
+                        PlayOffs</button>
 
+                </div>
             </div>
         </div>
     </main>

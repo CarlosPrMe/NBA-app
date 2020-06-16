@@ -5,13 +5,20 @@
 
 .form {
     &--register {
-        width: 50rem;
+        align-self: center;
         margin: 0 auto;
         margin-bottom: 1rem;
+        @include mobile-landscape {
+            width: 50rem;
+        }
+        @include desktop {
+            align-self: flex-start;
+        }
     }
 
     &__input {
-        &--fixed, &--fixed:focus {
+        &--fixed,
+        &--fixed:focus {
             background-color: $gray-200;
             pointer-events: none;
         }

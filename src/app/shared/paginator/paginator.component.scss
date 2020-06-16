@@ -15,8 +15,8 @@
         width: 80%;
         left: 10%;
         height: 100%;
-        border-top: .1rem solid $gray-500;
-        border-bottom: .1rem solid $gray-500;
+        border-top: 0.1rem solid $gray-500;
+        border-bottom: 0.1rem solid $gray-500;
     }
 
     &--disabled {
@@ -26,32 +26,36 @@
 
     &__page {
         padding: 0.25rem 0.5rem;
-        border: .1rem solid $transparent;
-        border-radius: .3rem;
+        border: 0.1rem solid $transparent;
+        border-radius: 0.3rem;
         color: $black;
         text-decoration: none;
         position: relative;
         transition: all $normal ease;
-        cursor: pointer;
         & + & {
             margin-left: 1rem;
         }
-
-        &:hover {
-            background-color: $primary;
-            border-color: $gray-900;
-            color: $black;
-            color: $white;
-        }
         
+        @include desktop {
+            cursor: pointer;
+            &:hover {
+                background-color: $primary;
+                border-color: $gray-900;
+                color: $black;
+                color: $white;
+            }
+        }
+
         &--current {
             background-color: lighten($primary, 25%);
             color: $white;
             pointer-events: none;
             cursor: default;
 
-            &:hover {
-                background-color: $transparent;
+            @include desktop {
+                &:hover {
+                    background-color: $transparent;
+                }
             }
         }
 

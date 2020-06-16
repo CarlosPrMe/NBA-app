@@ -10,42 +10,44 @@
   &__user {
     align-self: center;
     color: $white;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
-    padding: .5rem 0;
+    padding: 0.5rem 0;
     text-decoration: none;
-
-    &:hover {
-      .menu__user-name {
-        text-decoration: underline;
-      }
-      .menu__avatar {
-        transform: scale(1.05);
-      }
-      .menu__avatar.icon-user {
-        text-decoration: none;
+    
+    @include desktop {
+      cursor: pointer;
+      &:hover {
+        .menu__user-name {
+          text-decoration: underline;
+        }
+        .menu__avatar {
+          transform: scale(1.05);
+        }
+        .menu__avatar.icon-user {
+          text-decoration: none;
+        }
       }
     }
   }
 
   &__avatar {
     border-radius: 100%;
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     max-width: 2.5rem;
     transition: transform $fast ease;
     &.icon-user {
       border-radius: 100%;
-      border: .1rem solid $white;
-      padding: .5rem;
+      border: 0.1rem solid $white;
+      padding: 0.5rem;
     }
   }
 
   &__list {
     background-color: $secondary;
-    border-bottom-left-radius: .5rem;
-    border-bottom-right-radius: .5rem;
-    box-shadow: 0 0 1rem rgba($black, .8);
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    box-shadow: 0 0 1rem rgba($black, 0.8);
     position: absolute;
     right: -1rem;
     display: flex;
@@ -59,30 +61,32 @@
 
   &__item {
     &:last-child .menu__link {
-      border-bottom-left-radius: .5rem;
-      border-bottom-right-radius: .5rem;
+      border-bottom-left-radius: 0.5rem;
+      border-bottom-right-radius: 0.5rem;
     }
   }
 
   &__link {
     color: $white;
-    cursor: pointer;
     display: inline-block;
     height: 100%;
     padding: 1rem;
     text-decoration: none;
     transition: all $normal linear;
     width: 100%;
-
+    
     span {
       transition: all $normal linear;
       display: inline-block;
     }
-
-    &:hover {
-      background-color: darken($secondary, 10%);
-      & > span {
-        transform: translateX(2rem);
+    
+    @include desktop {
+      cursor: pointer;
+      &:hover {
+        background-color: darken($secondary, 10%);
+        & > span {
+          transform: translateX(2rem);
+        }
       }
     }
   }

@@ -5,13 +5,19 @@
     height: auto;
     position: fixed;
     padding-bottom: 1rem;
-    top: 5.2rem;
+    top: 5.5rem;
     width: 100vw;
     background-color: $white;
     color: $gray-900;
     transition: all $normal ease;
     transform: translateY(calc(-100% - 5.2rem));
     z-index: $over + 1;
+    overflow-y: auto;
+    height: calc(100vh - 5.5rem);
+
+    @include desktop {
+        height: auto;
+    }
 
     &--show {
         transform: translateY(0);
@@ -23,7 +29,10 @@
 
         &__label {
             color: $black;
-            cursor: pointer;
+
+            @include desktop {
+                cursor: pointer;
+            }
             padding: 0.5rem;
 
             & + & {
@@ -59,11 +68,11 @@
         display: inline-flex;
         position: absolute;
         top: 0;
+        right: 2rem;
         align-items: center;
         height: 100%;
         width: max-content;
         color: $gray-600;
-        right: 1rem;
         font-size: $fs-sm;
         z-index: $over;
     }
@@ -75,49 +84,61 @@
 
     &__list {
         background-color: $white;
-        border: .2rem solid $white;
+        border: 0.2rem solid $white;
         border-top-color: transparent;
         border-radius: 0.4rem;
         max-height: 24rem;
         overflow-y: auto;
-        @include customScrollBar($primary, $primary, $white, .8rem, .8rem, .4rem, 0);
+        z-index: $top;
+        position: relative;
+        @include customScrollBar($primary, $primary, $white, 0.8rem, 0.8rem, 0.4rem, 0);
     }
 
     &__item {
-        font-size: $fs-sm + .2rem;
-        &:hover {
-            .predictive-results__link {
-                color: $white;
-                padding-left: 1rem;
+        font-size: $fs-sm + 0.2rem;
+
+        @include desktop {
+            &:hover {
+                .predictive-results__link {
+                    color: $white;
+                    padding-left: 1rem;
+                }
             }
         }
 
         &:nth-child(odd) {
-            &:hover {
-                .predictive-results__link {
-                    padding-left: 1.5rem;
+            @include desktop {
+                &:hover {
+                    .predictive-results__link {
+                        padding-left: 1.5rem;
+                    }
                 }
             }
         }
 
         &--player {
-            &:hover {
-                background-color: rgba($primary, 0.6);
-                .predictive-results__link {
-                    color: $white;
+            @include desktop {
+                &:hover {
+                    background-color: rgba($primary, 0.6);
+                    .predictive-results__link {
+                        color: $white;
+                    }
                 }
             }
 
             &:nth-child(odd) {
                 background-color: rgba($primary, 0.2);
-                &:hover {
-                    background-color: rgba($primary, 0.6);
+
+                @include desktop {
+                    &:hover {
+                        background-color: rgba($primary, 0.6);
+                    }
                 }
             }
         }
 
         & + & {
-            border-top: .1rem solid $gray-400;
+            border-top: 0.1rem solid $gray-400;
         }
 
         &:last-of-type {
@@ -135,8 +156,10 @@
         padding: 1rem 0.5rem;
         transition: all $normal ease;
 
-        &:hover {
-            background-color: rgba($primary, 0.3);
+        @include desktop {
+            &:hover {
+                background-color: rgba($primary, 0.3);
+            }
         }
     }
 }

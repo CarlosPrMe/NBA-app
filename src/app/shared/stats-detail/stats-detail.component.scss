@@ -12,7 +12,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    opacity: .2;
+    opacity: 0.2;
     width: 100%;
   }
 
@@ -22,14 +22,14 @@
     top: 3rem;
     bottom: 3rem;
     width: 50%;
-    background-color: rgba($white, .8);
-    border-radius: .5rem;
-    box-shadow: 0 0 2rem 1rem rgba($black, .6);
+    background-color: rgba($white, 0.8);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 2rem 1rem rgba($black, 0.6);
     color: $black;
     overflow-y: auto;
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
 
-    @include customScrollBar()
+    @include customScrollBar();
   }
 
   &__content {
@@ -43,15 +43,15 @@
   }
 
   &__block {
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     flex: 0 1 100%;
     padding: 1rem;
     min-height: 6rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    box-shadow: 0 0 1rem rgba($black, .3);
-    background-color: rgba($white, .8);
+    box-shadow: 0 0 1rem rgba($black, 0.3);
+    background-color: rgba($white, 0.8);
 
     & + & {
       margin-top: 1rem;
@@ -59,10 +59,12 @@
 
     &:nth-of-type(2) {
       .details__data {
-        &:hover {
-          border: .2rem solid rgba($primary, .6);
-          box-shadow: 0 0 1rem rgba($black, .2);
-          background-color: rgba($black, .15);
+        @include desktop {
+          &:hover {
+            border: 0.2rem solid rgba($primary, 0.6);
+            box-shadow: 0 0 1rem rgba($black, 0.2);
+            background-color: rgba($black, 0.15);
+          }
         }
       }
     }
@@ -70,7 +72,7 @@
 
   &__avatar {
     border-radius: 100%;
-    box-shadow: 0 0 1rem rgba($black, .3);
+    box-shadow: 0 0 1rem rgba($black, 0.3);
     display: inline-flex;
     height: 10rem;
     margin-right: 2rem;
@@ -91,29 +93,32 @@
     text-decoration: none;
     color: $primary;
     transition: all $normal ease;
-    padding: .2rem;
-    &:hover {
-      color: $white;
-      font-weight: bold;
-      text-decoration: underline;
-      background-color: rgba($secondary, .8);
-      border-radius: .5rem;
+    padding: 0.2rem;
+
+    @include desktop {
+      &:hover {
+        color: $white;
+        font-weight: bold;
+        text-decoration: underline;
+        background-color: rgba($secondary, 0.8);
+        border-radius: 0.5rem;
+      }
     }
   }
 
   &__data {
-    border: .2rem solid $transparent;
-    border-radius: .5rem;
+    border: 0.2rem solid $transparent;
+    border-radius: 0.5rem;
     display: block;
     flex: 1 0 33%;
-    padding: .2rem;
+    padding: 0.2rem;
     text-transform: capitalize;
     transition: all $normal ease;
   }
 
   .btn {
     position: absolute;
-    right: .5rem;
-    top: .5rem;
+    right: 0.5rem;
+    top: 0.5rem;
   }
 }

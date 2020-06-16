@@ -4,7 +4,7 @@
   background-color: rgba($primary, 0.7);
   box-shadow: 0 0 2.5rem 0.5rem rgba($white, 0.4), inset 0rem 0rem 0.7rem 1rem rgba($black, 0.2);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 1rem;
   align-items: center;
   position: fixed;
@@ -12,11 +12,15 @@
   top: 0;
   z-index: $top;
 
+  @include mobile-landscape {
+    justify-content: space-between;
+  }
+
   &__item {
     display: inline-block;
     padding: 1rem 0;
     position: relative;
-    
+
     &--btn {
       padding: 0;
     }
@@ -28,12 +32,15 @@
     padding: 1.6rem;
     text-decoration: none;
     text-align: center;
-    &:hover {
-      background: linear-gradient(to bottom, $transparent 57%, darken($primary, 15%) 100%),
-        linear-gradient(to top, $transparent 57%, rgba($white, 0.3) 100%);
 
-      .icon {
-        color: $secondary;
+    @include desktop {
+      &:hover {
+        background: linear-gradient(to bottom, $transparent 57%, darken($primary, 15%) 100%),
+          linear-gradient(to top, $transparent 57%, rgba($white, 0.3) 100%);
+
+        .icon {
+          color: $secondary;
+        }
       }
     }
 
@@ -49,6 +56,15 @@
     &--btn {
       border-radius: 0;
       box-shadow: none;
+    }
+  }
+
+  &__text {
+    display: none;
+
+    @include mobile-landscape {
+      display: inline-block;
+      margin-left: .5rem;
     }
   }
 }

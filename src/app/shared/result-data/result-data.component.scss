@@ -8,8 +8,8 @@
 
 .result {
   background-color: $white;
-  border: .1rem solid $white;
-  border-radius: .4rem;
+  border: 0.1rem solid $white;
+  border-radius: 0.4rem;
   transition: all $normal ease;
   position: relative;
   overflow: hidden;
@@ -32,20 +32,22 @@
     border-color: $gray-500;
   }
 
-  &:hover {
-    border-color: $gray-600;
-    box-shadow: 0 0 1rem rgba($black, .5);
+  @include desktop {
+    &:hover {
+      border-color: $gray-600;
+      box-shadow: 0 0 1rem rgba($black, 0.5);
 
-    .result__media {
-      transform: scale(1.1);
-    }
-    .result__block {
-      .result__data {
-        transform: translateX(-.5rem);
+      .result__media {
+        transform: scale(1.1);
       }
-      &:last-of-type {
+      .result__block {
         .result__data {
-          transform: translateX(.5rem);
+          transform: translateX(-0.5rem);
+        }
+        &:last-of-type {
+          .result__data {
+            transform: translateX(0.5rem);
+          }
         }
       }
     }
@@ -53,12 +55,15 @@
 
   &__link {
     color: $black;
-    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: stretch;
     flex-wrap: wrap;
     text-decoration: none;
+
+    @include desktop {
+      cursor: pointer;
+    }
   }
 
   &__block {
@@ -67,18 +72,27 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .8rem;
+    padding: 0.8rem;
     & + & {
       flex-direction: row-reverse;
+
       &::after {
         content: "";
         display: block;
-        height: 60%;
-        width: .2rem;
         background-color: $gray-500;
         position: absolute;
-        left: 0;
-        top: 20%;
+        top: 0;
+        width: 80%;
+        left: 10%;
+        height: 1px;
+        @include mobile {
+          height: 60%;
+          width: 0.2rem;
+          background-color: $gray-500;
+          position: absolute;
+          left: 0;
+          top: 20%;
+        }
       }
     }
   }

@@ -2,8 +2,12 @@
 @import "../../../assets/scss/partials/typography";
 
 :host {
-  flex: 1 0 16.666667%;
+  flex: 1 0 33.3333333%;
   height: 100%;
+  // display: block;
+  @include tablet {
+    flex: 1 0 16.666667%;
+  }
 }
 
 .card-carousel {
@@ -31,23 +35,31 @@
     box-shadow: inset 0 0 1rem rgba(0, 0, 0, .4);
     border: .1rem solid rgba($black, .5);
     display: inline-block;
-    flex: 1 0 75%;
+    flex: 0 1 70%;
     margin-bottom: .5rem;
     transition: transform $normal ease;
-
-    &:hover {
-      transform: scale(1.1);
-      & + .card-carousel__title {
-        transform: translateY(.5rem);
-        font-size: 100%;
+    
+    @include tablet {
+      flex: 1 0 75%;
+    }
+    
+    @include desktop {
+      &:hover {
+        transform: scale(1.1);
+        & + .card-carousel__title {
+          transform: translateY(.5rem);
+          font-size: 100%;
+        }
       }
     }
   }
+  
   &__title {
     color: $black;
     color: rgba($color: #000000, $alpha: 1);
     display: inline-block;
     text-align: center;
     transition: all $normal ease;
+    flex: 0 1 auto;
   }
 }

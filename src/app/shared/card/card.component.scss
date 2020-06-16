@@ -6,13 +6,13 @@
 
 .card {
   text-decoration: none;
-  border: .1rem solid $gray-700;
+  border: 0.1rem solid $gray-700;
   color: $gray-800;
   display: flex;
   background-color: $white;
   padding: 0.5rem;
   box-shadow: 0 0 1rem rgba($black, 0.3);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   transition: all $normal ease;
   height: 100%;
   position: relative;
@@ -27,13 +27,15 @@
     transition: all $normal ease;
   }
 
-  &:hover {
-    border-color: $white;
-    box-shadow: 0 0 1rem rgba($black, 0.5);
-    background-color: rgba($white, 0.4);
+  @include desktop {
+    &:hover {
+      border-color: $white;
+      box-shadow: 0 0 1rem rgba($black, 0.5);
+      background-color: rgba($white, 0.4);
 
-    .card__background {
-      opacity: 0.4;
+      .card__background {
+        opacity: 0.4;
+      }
     }
   }
 
@@ -59,7 +61,7 @@
   }
 
   &__data {
-    padding: .3rem;
+    padding: 0.3rem;
 
     &--capitalice {
       text-transform: capitalize;
@@ -68,7 +70,7 @@
 
   &__details {
     display: inline-block;
-    padding: .3rem 1rem;
+    padding: 0.3rem 1rem;
   }
 
   &__link {
@@ -77,5 +79,4 @@
     text-decoration: none;
     width: 100%;
   }
-
 }

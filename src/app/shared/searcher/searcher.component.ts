@@ -61,7 +61,7 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
 
   @HostListener('document:click', ['$event'])
   clickout(event) {
-    if (this._searcherService.searcherShow.value && !this._content.contains(event.target) && !event.target.classList.contains('nav__link--btn')) {
+    if (this._searcherService.searcherShow.value && !this._content.contains(event.target) && (!event.target.classList.contains('nav__link--btn') && event.target.offsetParent.classList.contains('nav__link--btn'))) {
       this._searcherService.searcherShow.next(false);
       this._setData();
       this._createForm();

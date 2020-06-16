@@ -4,17 +4,17 @@
         <li class="nav__item" *ngIf="!user">
             <a [routerLink]="['/register']" routerLinkActive="nav__link--active" class="nav__link" href="#">
                 <span class="icon icon-user"></span>
-                Login</a>
+                <span class="nav__text">Login</span></a>
         </li>
         <li class="nav__item">
             <a [routerLink]="['/teams']" routerLinkActive="nav__link--active" class="nav__link" href="#">
                 <span class="icon icon-profile"></span>
-                Clasificaciones</a>
+                <span class="nav__text">Clasificaciones</span></a>
         </li>
         <li (click)="showSearcher($event)" class="nav__item nav__item--btn" [ngClass]="{'nav__link--active':searcherOpen}">
             <button type="btn" class="btn nav__link nav__link--btn">
                 <span class="icon icon-dribbble"></span>
-                Buscador</button>
+                <span class="nav__text">Buscador</span></button>
         </li>
     </ul>
     <app-menu [user]="user" (closeSessionUser)="onCloseSessionUser($event)"></app-menu>
