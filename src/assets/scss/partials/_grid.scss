@@ -31,6 +31,15 @@
   }
 }
 
+@include mobile-landscape {
+  @for $i from 2 through 12 {
+    .col-xs-#{$i} {
+      flex-basis: calc((#{$i} / 12) * 100%);
+      max-width: calc((#{$i} / 12) * 100%);
+    }
+  }
+}
+
 @include mobile {
   @for $i from 2 through 12 {
     .col-sm-#{$i} {

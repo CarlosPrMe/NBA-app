@@ -3,8 +3,13 @@
     @content;
   }
 }
-
 @mixin mobile {
+  @media screen and (min-width: 520px) {
+    @content;
+  }
+}
+
+@mixin mobile-landscape {
   @media screen and (min-width: 768px) {
     @content;
   }
@@ -26,9 +31,9 @@
   $mainColor: $primary,
   $secColor: $secondary,
   $auxColor: $white,
-  $width: .8rem,
-  $height: .8rem,
-  $borderRad: .4rem,
+  $width: 0.8rem,
+  $height: 0.8rem,
+  $borderRad: 0.4rem,
   $margin: 1rem
 ) {
   &::-webkit-scrollbar {
@@ -42,9 +47,11 @@
   }
 
   /* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: $secColor;
-    box-shadow: 0 0 .2rem .1rem rgba(0, 0, 0, 0.2);
+  @include desktop {
+    &::-webkit-scrollbar-thumb:hover {
+      background: $secColor;
+      box-shadow: 0 0 0.2rem 0.1rem rgba(0, 0, 0, 0.2);
+    }
   }
 
   /* Cambiamos el fondo cuando esté en active */
