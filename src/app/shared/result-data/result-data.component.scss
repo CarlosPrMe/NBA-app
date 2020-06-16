@@ -68,11 +68,15 @@
 
   &__block {
     position: relative;
-    flex: 1 0 50%;
+    flex: 1 0 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.8rem;
+
+    @include mobile {
+      flex-basis: 50%;
+    }
     & + & {
       flex-direction: row-reverse;
 
@@ -118,5 +122,11 @@
         font-size: $fs-base;
       }
     }
+  }
+
+  &__date {
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 }

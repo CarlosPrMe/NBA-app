@@ -1,19 +1,10 @@
 @import "../../../assets/scss/partials/vars";
 
 .form {
-    padding: 1rem;
-
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
+    display: block;
 
     &__group {
-        flex: 0 1 33%;
         padding: 0 .5rem;
-
-        &--bigger{
-            flex-basis: 100%;
-        }
 
         &--hidden{
             display: none;

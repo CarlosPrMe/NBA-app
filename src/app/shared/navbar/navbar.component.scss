@@ -12,7 +12,7 @@
   top: 0;
   z-index: $top;
 
-  @include mobile-landscape {
+  @include tablet {
     justify-content: space-between;
   }
 

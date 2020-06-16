@@ -53,12 +53,4 @@ export class UserService {
   public checkFavouriteTeam(id: number, team: Array<number>): boolean {
     return team?.length && id === team[0];
   }
-
-  // public checkFavouriteTeams(id: number, teams: Array<number>): boolean {
-  //   for (let i = 0; i < teams.length; i++) {
-  //     if (teams[i] === id) {
-  //       return true
-  //     }
-  //   }
-  // }
 }

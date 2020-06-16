@@ -1,7 +1,6 @@
 @import "../../../assets/scss/partials/vars";
 
 .carousel {
-
   padding: 4rem 1rem;
   position: relative;
 
@@ -11,9 +10,12 @@
     height: 20rem;
     overflow-x: auto;
     position: relative;
-    
-    @include tablet {
+
+    @include mobile-landscape {
       height: 28rem;
+    }
+
+    @include tablet {
       overflow: hidden;
     }
 
@@ -25,7 +27,7 @@
       }
     }
   }
-  
+
   &__list {
     height: 100%;
     display: flex;

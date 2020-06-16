@@ -1,22 +1,25 @@
 <form class="form" [formGroup]="myForm" (change)="changeFilters(myForm.value)" [ngClass]="{'form--disabled':disabled}">
-    <div class="form__group" [ngClass]="{'form__group--bigger':hidePlayoffs}">
-        <label class="form__label" for="season" *ngIf="!hidePlayoffs">Temporada</label>
-        <label class="form__label" for="season" *ngIf="hidePlayoffs">Elige temporada para ver los jugadores de aquel año</label>
-        <select class="form__input" name="season" id="season" formControlName="season">
-            <option value="{{option}}" *ngFor="let option of optionsPerSeason">{{option}}</option>
-        </select>
-    </div>
-    <div class="form__group" [ngClass]="{'form__group--hidden':hidePlayoffs}">
-        <label class="form__label" for="per_page">Por página</label>
-        <select id="per_page" class="form__input" name="per_page" formControlName="per_page">
-            <option value="{{option}}" *ngFor="let option of optionsPerPage">{{option}}</option>
-        </select>
-    </div>
-    <div class="form__group" *ngIf="!hidePlayoffs">
-        <label class="form__label form__label--custom" for="postseason">Solo playoffs
-            <input formControlName="postseason" class="form__input--custom" type="checkbox" name="postseason"
-                id="postseason" value="true">
-            <span class="icon icon-wink"></span>
-        </label>
+    <div class="row">
+        <div class="form__group col-xs-6 col-sm-4" [ngClass]="{'col-xs-12 col-sm-6':hidePlayoffs}">
+            <label class="form__label" for="season" *ngIf="!hidePlayoffs">Temporada</label>
+            <label class="form__label" for="season" *ngIf="hidePlayoffs">Elige temporada para ver los jugadores de aquel
+                año</label>
+            <select class="form__input" name="season" id="season" formControlName="season">
+                <option value="{{option}}" *ngFor="let option of optionsPerSeason">{{option}}</option>
+            </select>
+        </div>
+        <div class="form__group col-xs-6 col-sm-4" [ngClass]="{'form__group--hidden':hidePlayoffs}">
+            <label class="form__label" for="per_page">Por página</label>
+            <select id="per_page" class="form__input" name="per_page" formControlName="per_page">
+                <option value="{{option}}" *ngFor="let option of optionsPerPage">{{option}}</option>
+            </select>
+        </div>
+        <div class="form__group col-xs-6 col-sm-4" *ngIf="!hidePlayoffs">
+            <label class="form__label form__label--custom" for="postseason">Solo playoffs
+                <input formControlName="postseason" class="form__input--custom" type="checkbox" name="postseason"
+                    id="postseason" value="true">
+                <span class="icon icon-wink"></span>
+            </label>
+        </div>
     </div>
 </form>

@@ -18,10 +18,10 @@
 
   &__box {
     position: fixed;
-    left: 25%;
+    left: 2.5%;
     top: 3rem;
     bottom: 3rem;
-    width: 50%;
+    width: 95%;
     background-color: rgba($white, 0.8);
     border-radius: 0.5rem;
     box-shadow: 0 0 2rem 1rem rgba($black, 0.6);
@@ -30,6 +30,16 @@
     padding: 0.5rem 1rem;
 
     @include customScrollBar();
+
+    @include mobile-landscape {
+      left: 10%;
+      width: 80%;
+      padding: 1rem 2rem;
+    }
+    @include tablet {
+      left: 25%;
+      width: 50%;
+    }
   }
 
   &__content {

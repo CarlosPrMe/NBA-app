@@ -19,15 +19,20 @@
                     class="icon icon-sort"></span></button>
         </div>
 
-        <div class="stats__block" *ngFor="let team of teams">
-            <h3 class="stats__title" [ngClass]="{'h2': pageStats}">{{team.full_name}}
-                <span class="stats__logo"
-                    style="background-image: url({{team?.image_url}});box-shadow:0 0 1rem rgba({{team?.team_color}} , 1)">
-                </span>
-            </h3>
-            <div class="stats__content">
-                <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player" [bgImage]="team?.image_url"
-                    [pageStats]="pageStats" *ngFor="let player of team.players"></app-stats>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6" *ngFor="let team of teams">
+                <div class="stats__block">
+                    <h3 class="stats__title" [ngClass]="{'h2': pageStats}">{{team.full_name}}
+                        <span class="stats__logo"
+                            style="background-image: url({{team?.image_url}});box-shadow:0 0 1rem rgba({{team?.team_color}} , 1)">
+                        </span>
+                    </h3>
+                    <div class="stats__content">
+                        <app-stats (detailsPlayer)="onDetailsPlayer($event)" [player]="player"
+                            [bgImage]="team?.image_url" [pageStats]="pageStats" *ngFor="let player of team.players">
+                        </app-stats>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

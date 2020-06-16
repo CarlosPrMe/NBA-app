@@ -32,14 +32,25 @@
       background-color: rgba($primary, .4);
       border-radius: .5rem;
       box-shadow: 0 0 1rem rgba($black, .3);
+      padding-top: 2rem;
+      @include mobile {
+        padding-top: 0;
+      }
     }
 
     .stats__block {
-      flex: 0 1 48%;
       background-color: rgba(0, 0, 0, .35);
       box-shadow: 0 0 1rem rgba($black, .15);
       border-radius: .5rem;
       padding: 2rem 1rem 1rem;
+
+      &:first-child{
+        margin-bottom: 2rem;
+
+        @include mobile {
+          margin-bottom: 0;
+        }
+      }
     }
 
     .stats__title {
@@ -76,6 +87,8 @@
     padding-bottom: 1rem;
     position: relative;
 
+    font-size: 1.5rem;
+
     &::after {
       content: "";
       position: absolute;
@@ -90,6 +103,10 @@
         rgba($white, .2) 100%
       );
     }
+
+    @include mobile-landscape {
+      font-size: $fs-md;
+    }
   }
 
   &__logo {
@@ -98,13 +115,19 @@
     background-repeat: no-repeat;
     background-color: $white;
     position: absolute;
-    left: 0;
-    top: -1rem;
-    width: 4rem;
-    height: 4rem;
+    left: 1.5rem;
+    top: -0.8rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 100%;
     box-shadow: 0 0 1rem $black;
     overflow: hidden;
+    @include mobile {
+      width: 4rem;
+      height: 4rem;
+      left: 0;
+      top: -1rem;
+    }
   }
 
   &__image {

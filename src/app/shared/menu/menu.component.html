@@ -1,10 +1,10 @@
-<div class="menu" *ngIf="user">
+<div class="menu" *ngIf="user" (click)="changeStateMenu()" #menu>
     <span class="menu__user">
         <img *ngIf="user.avatar" class="menu__avatar" src="{{user.avatar}}" alt="user avatar">
         <span *ngIf="!user.avatar" class="menu__avatar icon icon-user"></span>
         <span class="menu__user-name">{{user.name}} {{user.sur_name}}</span>
     </span>
-    <ul class="menu__list">
+    <ul class="menu__list" [ngClass]="{'menu__list--show':showMenu}">
         <li class="menu__item" *ngIf="user?.fav_team.length">
             <a href="#" class="menu__link" [routerLink]="['/team',user?.fav_team[0]]">
                 <span>Equipo Favorito</span>

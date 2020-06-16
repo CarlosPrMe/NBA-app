@@ -11,7 +11,7 @@
 <header class="header header--game" *ngIf="teams">
     <div class="container">
         <div class="row row--between">
-            <div class="col-xs-12 col-md-6 header__block" *ngFor="let team of teams; first as isFirst">
+            <div class="col-xs-12 col-sm-6 header__block" *ngFor="let team of teams; first as isFirst">
                 <div class="header__team"
                     style="background-color: rgba({{team.team_color}}, .15); border: .2rem solid rgba({{team.team_color}},.5)">
                     <div class="header__media-container">

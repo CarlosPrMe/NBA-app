@@ -28,13 +28,32 @@
 
   &__media {
     height: 100%;
-    max-height: 22rem;
+    max-height: 8rem;
     object-fit: cover;
     width: auto;
+    
+    @include mobile {
+      max-height: 13rem;
+    }
+    @include tablet {
+      max-height: 22rem;
+    }
   }
 
   &__title {
-    padding: 3rem;
+    padding: 1rem;
+    font-size: 2rem;
+    
+    @include mobile {
+      font-size: 4rem;
+
+    }
+    
+    @include tablet {
+      padding: 3rem;
+      font-size: $fs-xl;
+
+    }
   }
 
   &__add-favourites {
@@ -57,27 +76,18 @@
 
   &__block {
     margin: 1rem 0;
+    min-height: 15.5rem;
     &:nth-child(2) {
       .header__team {
         flex-direction: row-reverse;
 
-        // @include desktop {
-        //   &::before {
-        //     content: "";
-        //     position: absolute;
-        //     display: block;
-        //     height: .4rem;
-        //     width: 2.5rem;
-        //     border-radius: .5rem;
-        //     left: -2rem;
-        //     top: calc(50% - 2.5rem);
-        //     background-color: $gray-800;
-        //   }
-        // }
-
         .header__data-container {
           text-align: left;
         }
+      }
+
+      .header__media-container {
+        justify-content: flex-end;
       }
     }
   }
@@ -86,6 +96,7 @@
     border-radius: 1rem;
     box-shadow: 0 0 1rem rgba($black, 0.5);
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     height: 100%;
     padding: 1rem;
@@ -94,6 +105,11 @@
 
   &__media-container {
     flex: 1 0 20%;
+    display: inline-flex;
+
+    @include tablet {
+      display: block;
+    }
   }
 
   &__logo {
@@ -102,8 +118,12 @@
   }
 
   &__data-container {
-    flex: 1 0 auto;
+    flex: 1 0 50%;
     text-align: end;
+
+    @include mobile-landscape {
+      flex-basis: auto;
+    }
   }
 
   &__date {

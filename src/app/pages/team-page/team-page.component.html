@@ -1,42 +1,47 @@
-<app-header [team]="team" [user]="user" [isMyFavouriteTeam]="isMyFavouriteTeam" (modifyFavouritesTeams)="onModifyFavouritesTeams($event, isMyFavouriteTeam)"></app-header>
+<app-header [team]="team" [user]="user" [isMyFavouriteTeam]="isMyFavouriteTeam"
+    (modifyFavouritesTeams)="onModifyFavouritesTeams($event, isMyFavouriteTeam)"></app-header>
 
 <div class="container" #container>
     <div class="team-page" *ngIf="team?.id_team">
-        <div class="team-page__container">
-            <h2 class="team-page__title h2">
-                <img class="team-page__logo" src="{{team?.image_url}}" alt="">
-                Resultados <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
-                    {{team?.full_name}}</span> </h2>
-            <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.3);">
-                <div class="team-page__form">
-                    <app-form-filters (changeParamFilters)="onChangeParams($event)" [disabled]="formDisabled"
-                        [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable" [currentSeason]="season">
-                    </app-form-filters>
+        <div class="row">
+            <div class="col-xs-12 col-md-6 team-page__container">
+                <h2 class="team-page__title h2">
+                    <img class="team-page__logo" src="{{team?.image_url}}" alt="">
+                    Resultados <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
+                        {{team?.full_name}}</span> </h2>
+                <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.3);">
+                    <div class="team-page__form">
+                        <app-form-filters (changeParamFilters)="onChangeParams($event)" [disabled]="formDisabled"
+                            [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable" [currentSeason]="season">
+                        </app-form-filters>
+                    </div>
+                    <a class="team-page__link" href="#" [routerLink]="['/stats', game?.id]" *ngFor="let game of games">
+                        <app-result-data [game]="game"></app-result-data>
+                    </a>
+                    <h3 class="h3" *ngIf="!games?.length">No hay resultados</h3>
+                    <app-paginator *ngIf="games?.length" [data]="meta" (changePage)="onChangeParams($event)"
+                        [disabled]="formDisabled"></app-paginator>
                 </div>
-                <a class="team-page__link" href="#" [routerLink]="['/stats', game?.id]" *ngFor="let game of games">
-                    <app-result-data [game]="game"></app-result-data>
-                </a>
-                <h3 class="h3" *ngIf="!games?.length">No hay resultados</h3>
-                <app-paginator *ngIf="games?.length" [data]="meta" (changePage)="onChangeParams($event)"
-                    [disabled]="formDisabled"></app-paginator>
             </div>
-        </div>
-        <div class="team-page__container">
-            <h2 class="team-page__title h2">
-                <img class="team-page__logo" src="{{team?.image_url}}" alt="">
-                <span *ngIf="seasonTeam == '2019'">Plantilla actual </span> <span *ngIf="seasonTeam != '2019'">Plantilla
-                    año {{ seasonTeam }} </span> <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
-                    {{team?.full_name}}</span>
-            </h2>
-            <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">
-                <div class="team-page__form">
-                    <app-form-filters (changeParamFilters)="onChangeSeason($event)" [disabled]="formDisabled"
-                        [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable" [currentSeason]="seasonTeam"
-                        [hidePlayoffs]="hidePlayoffs"></app-form-filters>
-                </div>
-                <div class="row">
-                    <app-card class="col-sm-12 col-md-6" [teamImage]="team?.image_url" [player]="player"
-                        *ngFor="let player of players"></app-card>
+            <div class="col-xs-12 col-md-6 team-page__container">
+                <h2 class="team-page__title h2">
+                    <img class="team-page__logo" src="{{team?.image_url}}" alt="">
+                    <span *ngIf="seasonTeam == '2019'">Plantilla actual </span> <span
+                        *ngIf="seasonTeam != '2019'">Plantilla
+                        año {{ seasonTeam }} </span> <span class="team-page__team-name" colorTxt="{{team?.team_color}}">
+                        {{team?.full_name}}</span>
+                </h2>
+                <div class="team-page__content" style="background-color: rgba({{team?.team_color}},.2);">
+                    <div class="team-page__form">
+                        <app-form-filters (changeParamFilters)="onChangeSeason($event)" [disabled]="formDisabled"
+                            [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable"
+                            [currentSeason]="seasonTeam" [hidePlayoffs]="hidePlayoffs"></app-form-filters>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6" *ngFor="let player of players"> 
+                            <app-card [teamImage]="team?.image_url" [player]="player"></app-card>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

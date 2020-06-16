@@ -2,11 +2,18 @@
 
 .menu {
   position: relative;
-  &:hover {
-    .menu__list {
-      transform: translateX(0);
+  height: 5rem;
+  display: flex;
+
+  @include desktop {
+    &:hover {
+      .menu__list {
+        transform: translateX(0%);
+        right: -1rem;
+      }
     }
   }
+
   &__user {
     align-self: center;
     color: $white;
@@ -14,7 +21,7 @@
     align-items: center;
     padding: 0.5rem 0;
     text-decoration: none;
-    
+
     @include desktop {
       cursor: pointer;
       &:hover {
@@ -28,6 +35,14 @@
           text-decoration: none;
         }
       }
+    }
+  }
+
+  &__user-name {
+    display: none;
+
+    @include mobile {
+      display: inline-block;
     }
   }
 
@@ -49,14 +64,24 @@
     border-bottom-right-radius: 0.5rem;
     box-shadow: 0 0 1rem rgba($black, 0.8);
     position: absolute;
-    right: -1rem;
+    top: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    min-width: 13rem;
+    min-width: 15rem;
     transition: transform $normal ease-in;
-    transform: translateX(100%);
+    transform: translateX(130%);
+
+    &--show {
+      transform: translateX(0%);
+      right: -1rem;
+    }
+
+    @include tablet {
+      min-width: 18rem;
+
+    }
   }
 
   &__item {
@@ -74,12 +99,12 @@
     text-decoration: none;
     transition: all $normal linear;
     width: 100%;
-    
+
     span {
       transition: all $normal linear;
       display: inline-block;
     }
-    
+
     @include desktop {
       cursor: pointer;
       &:hover {

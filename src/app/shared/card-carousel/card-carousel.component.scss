@@ -4,7 +4,9 @@
 :host {
   flex: 1 0 33.3333333%;
   height: 100%;
-  // display: block;
+  @include mobile {
+    flex: 1 0 25%;
+  }
   @include tablet {
     flex: 1 0 16.666667%;
   }
@@ -56,7 +58,7 @@
   
   &__title {
     color: $black;
-    color: rgba($color: #000000, $alpha: 1);
+    color: rgba($black, $alpha: 1);
     display: inline-block;
     text-align: center;
     transition: all $normal ease;
