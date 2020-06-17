@@ -18,7 +18,7 @@
                     <a class="team-page__link" href="#" [routerLink]="['/stats', game?.id]" *ngFor="let game of games">
                         <app-result-data [game]="game"></app-result-data>
                     </a>
-                    <h3 class="team-page__title h3" *ngIf="!games?.length">No hay resultados</h3>
+                    <h3 class="team-page__title h3" *ngIf="!games?.length"><span class="icon icon-sad"></span> No hay resultados</h3>
                     <app-paginator *ngIf="games?.length" [data]="meta" (changePage)="onChangeParams($event)"
                         [disabled]="formDisabled"></app-paginator>
                 </div>

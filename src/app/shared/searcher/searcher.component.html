@@ -28,8 +28,8 @@
                                     <div class="col-xs-12 predictive-results">
                                         <ul class="predictive-results__list"
                                             *ngIf="resultsPlayers.length == 0 && resultsTeams.length == 0 && searched">
-                                            <li class="predictive-results__item">
-                                                <span class="predictive-results__link">No hay resultados</span>
+                                            <li class="predictive-results__item predictive-results__item--no-result">
+                                                <span class="predictive-results__link"><span class="icon icon-sad"></span> No hay resultados</span>
                                             </li>
                                         </ul>
                                         <ul class="predictive-results__list" *ngIf="resultsPlayers.length > 0">
@@ -100,7 +100,7 @@
                 </div>
                 <div class="row">
                     <button (click)="submit(myForm.value)" type="button" class="btn btn--primary"> <span
-                            class="icon icon-cancel-circle"></span> Buscar</button>
+                            class="icon icon-search"></span> Buscar</button>
                 </div>
             </form>
         </div>

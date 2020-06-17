@@ -18,6 +18,7 @@
     @include desktop {
         height: auto;
         top: 5.1rem;
+        overflow-y: visible;
     }
 
     &--show {
@@ -110,6 +111,7 @@
         overflow-y: auto;
         z-index: $top;
         position: relative;
+        box-shadow: 0rem 2.1rem 2.5rem -1rem rgba($black, 0.8);
         @include customScrollBar($primary, $primary, $white, 0.8rem, 0.8rem, 0.4rem, 0);
     }
 
@@ -117,6 +119,7 @@
         font-size: $fs-sm + 0.2rem;
 
         @include desktop {
+            cursor: pointer;
             &:hover {
                 .predictive-results__link {
                     color: $white;
@@ -156,14 +159,21 @@
             }
         }
 
+        &--no-result{
+            background-color: rgba($danger, 0.6);
+            .predictive-results__link {
+                color: $white;
+            }
+        }
+
         & + & {
             border-top: 0.1rem solid $gray-400;
         }
 
         &:last-of-type {
             .predictive-results__link {
-                border-bottom-left-radius: 1rem;
-                border-bottom-right-radius: 1rem;
+                // border-bottom-left-radius: 1rem;
+                // border-bottom-right-radius: 1rem;
             }
         }
     }

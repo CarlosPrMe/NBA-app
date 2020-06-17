@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row">
-      <h3 class="stats__title h3" *ngIf="!games?.length" >No hay resultados</h3>
+      <h3 class="stats__title h3" *ngIf="!games?.length"><span class="icon icon-sad"></span> No hay resultados</h3>
       <app-result-data class="col-xs-12 col-md-6" (showStatsEvent)="onShowStatsEvent($event)" [isFirst]="isFirst"
         [gameSimple]="stats" [simpleData]="simpleData" [gameSelected]="currentGame"
         *ngFor="let stats of games;first as isFirst"></app-result-data>
