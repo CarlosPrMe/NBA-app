@@ -24,8 +24,6 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
   public meta: any;
   public pagesNum: Array<number>;
   public smallTeamName: boolean;
-  private perPage: number;
-  private current_page: number;
   public season: string;
   public seasonTeam: string;
   private postseasonFilter: boolean;
@@ -34,8 +32,10 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
   public hidePlayoffs: boolean;
   public user: UserModel;
   public isMyFavouriteTeam: boolean;
-  private filteredByPostseason: boolean;
-  private gamesPostseason: Array<GameModel>;
+  public filteredByPostseason: boolean;
+  public perPage: number;
+  private _current_page: number;
+  private _gamesPostseason: Array<GameModel>;
   constructor(private _activate: ActivatedRoute, private _teamService: TeamService,
     private _userService: UserService, private _searcherService: SearcherService) { }
 
@@ -45,7 +45,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.formDisabled = false;
     this.filteredByPostseason = false;
     this.perPage = 10;
-    this.current_page = 1;
+    this._current_page = 1;
     this._searcherService.currentSeason.subscribe(data => {
       this.season = data;
     })
@@ -72,7 +72,7 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
         this._teamService.getTeamById(currentTeamId).subscribe(team => {
           this.team = team;
           this.isMyFavouriteTeam = this._userService.checkFavouriteTeam(this.team?.id_team, this.user?.fav_team);
-          this._teamService.getGamesByTeam(currentTeamId, this.current_page, this.perPage, this.season).subscribe(data => {
+          this._teamService.getGamesByTeam(currentTeamId, this._current_page, this.perPage, this.season).subscribe(data => {
             this.games = data.data;
             this.meta = data.meta;
             this._checkPlayers();
@@ -98,17 +98,17 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
     if (isNaN(event)) {
       this.perPage = event.per_page;
       this.season = event.season;
-      this.current_page = 1;
+      this._current_page = 1;
       this.postseasonFilter = event.postseason;
       this.filteredByPostseason = false;
     } else {
-      this.current_page = event;
+      this._current_page = event;
     }
 
     // Check if user request games of postseason
 
     if (!this.postseasonFilter) {
-      this._teamService.getGamesByTeam(this.team.id_team, this.current_page, this.perPage, this.season).subscribe(res => {
+      this._teamService.getGamesByTeam(this.team.id_team, this._current_page, this.perPage, this.season).subscribe(res => {
         this.games = res.data;
         this.meta = res.meta;
         this.filteredByPostseason = false;
@@ -120,18 +120,18 @@ export class TeamPageComponent implements OnInit, AfterViewChecked, OnDestroy {
       // User request postseason games, that games are solicited just one time
 
       if (!this.filteredByPostseason) {
-        this.current_page = 1;
-        this._teamService.getGamesByTeam(this.team.id_team, this.current_page, 100, this.season).subscribe(res => {
+        this._current_page = 1;
+        this._teamService.getGamesByTeam(this.team.id_team, this._current_page, 100, this.season).subscribe(res => {
           this.games = this._filterPostSeasonGames(res.data);
-          this.gamesPostseason = this.games.slice(); // Save postseason games
-          this.meta = this._metaPostSeasonGames(this.games, this.perPage, +this.current_page);
-          this.games = this._getPagesPostSeason(this.games, this.current_page, +this.perPage);
+          this._gamesPostseason = this.games.slice(); // Save postseason games
+          this.meta = this._metaPostSeasonGames(this.games, this.perPage, +this._current_page);
+          this.games = this._getPagesPostSeason(this.games, this._current_page, +this.perPage);
           this.formDisabled = false;
         })
       } else {
         // Pagination on postseason games
-        this.meta = this._metaPostSeasonGames(this.gamesPostseason, this.perPage, +this.current_page);
-        this.games = this._getPagesPostSeason(this.gamesPostseason, this.current_page, +this.perPage);
+        this.meta = this._metaPostSeasonGames(this._gamesPostseason, this.perPage, +this._current_page);
+        this.games = this._getPagesPostSeason(this._gamesPostseason, this._current_page, +this.perPage);
         this.formDisabled = false;
       }
 

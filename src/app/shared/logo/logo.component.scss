@@ -2,10 +2,14 @@
 
 .logo {
   left: 1.5rem;
-  padding-top: 1.5rem;
+  padding-top: 1.8rem;
   position: absolute;
   text-align: center;
   top: 0;
+  
+  @include mobile-landscape {
+    padding-top: 1.5rem;
+  }
 
   &__link {
     display: flex;
@@ -15,10 +19,15 @@
 
   &__img {
     border-radius: 100%;
-    max-width: 6rem;
+    max-width: 4.5rem;
     height: auto;
-    max-height: 6rem;
+    max-height: 4.5rem;
     width: 100%;
+
+    @include mobile-landscape {
+      max-width: 6rem;
+      max-height: 6rem;
+    }
   }
 
   &__title {

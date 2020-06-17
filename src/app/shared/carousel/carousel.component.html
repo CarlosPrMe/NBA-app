@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="carousel" *ngIf="teamsWithLogo">
-        <div class="carousel__container">
+    <div class="carousel" *ngIf="teamsWithLogo" [ngClass]="{'carousel--scrolling': scrolling, 'carousel--end':finish}">
+        <div class="carousel__container" (scroll)="onScrolling($event)">
             <div class="carousel__list" #list>
                 <app-card-carousel *ngFor="let team of teamsWithLogo" [team]="team"></app-card-carousel>
             </div>
