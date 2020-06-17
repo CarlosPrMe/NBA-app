@@ -14,8 +14,8 @@
                 <option value="{{option}}" *ngFor="let option of optionsPerPage">{{option}}</option>
             </select>
         </div>
-        <div class="form__group col-xs-6 col-sm-4" *ngIf="!hidePlayoffs">
-            <label class="form__label form__label--custom" for="postseason">Solo playoffs
+        <div class="form__group col-xs-12 col-sm-4" *ngIf="!hidePlayoffs">
+            <label class="form__label form__label--custom" for="postseason" [ngClass]="{'form__label--checked': myForm.controls.postseason.value}">Solo playoffs
                 <input formControlName="postseason" class="form__input--custom" type="checkbox" name="postseason"
                     id="postseason" value="true">
                 <span class="icon icon-wink"></span>

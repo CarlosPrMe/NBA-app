@@ -24,4 +24,8 @@
             pointer-events: none;
         }
     }
+
+    &__label {
+        display: inline-block;
+    }
 }

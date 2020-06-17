@@ -13,6 +13,9 @@
 
     &__title {
         padding: 1rem 0;
+        .icon {
+            display: inline-block;
+        }
     }
 
     &__content {

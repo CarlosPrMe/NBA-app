@@ -83,8 +83,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form__group" *ngIf="!edition">
-                        <input formControlName="terms" type="checkbox" value="true" id="terms" required>
+                    <div class="form__group form__group--resalted" *ngIf="!edition">
+                        <input class="form__input--custom" [ngClass]="{'checked': myForm.controls.terms.value}" formControlName="terms" type="checkbox" value="true" id="terms" required>
+                        <span class="icon icon-checkmark"></span>
                         <label class="form__label" for="terms">Aceptar terminos</label>
                     </div>
                     <button type="button" class="btn form__link h5" (click)="register()" *ngIf="!edition">¿Ya eres

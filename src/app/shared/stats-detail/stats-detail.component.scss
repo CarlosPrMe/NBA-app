@@ -1,4 +1,5 @@
 @import "../../../assets/scss/partials/vars";
+
 .details {
   position: fixed;
   height: 100vh;
@@ -46,6 +47,10 @@
     position: relative;
     display: flex;
     flex-wrap: wrap;
+    padding-top: 3rem;
+    @include mobile {
+      padding-top: 0;
+    }
   }
 
   &__title {
@@ -128,7 +133,15 @@
 
   .btn {
     position: absolute;
-    right: 0.5rem;
-    top: 0.5rem;
+    right: -0.5rem;
+    top: 0;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+
+    @include mobile {
+      right: 0.5rem;
+      top: 0.5rem;
+      font-size: 2rem;
+    }
   }
 }
