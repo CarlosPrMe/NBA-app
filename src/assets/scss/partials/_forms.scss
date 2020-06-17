@@ -126,6 +126,6 @@ input[type="checkbox"],
 input[type="radio"] {
   &:checked + .icon {
     color: $secondary;
-    font-size: $fs-base + 6;
+    font-size: $fs-base + 2rem;
   }
 }
