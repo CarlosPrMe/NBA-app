@@ -9,4 +9,14 @@ main {
     padding-top: 6rem;
     padding-bottom: 4rem;
     background-attachment: fixed;
+
+    .h1 {
+        font-size: $fs-xl - 3rem;
+        text-align: center;
+
+        @include mobile-landscape {
+            text-align: left;
+            font-size: $fs-xl
+        }
+    }
 }

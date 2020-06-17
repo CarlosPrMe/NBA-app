@@ -39,7 +39,7 @@
 }
 .h2 {
   &--small {
-    font-size: $fs-l - .5rem;
+    font-size: $fs-l - .8rem;
     @include mobile {
       font-size: $fs-l;
     }

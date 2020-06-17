@@ -5,6 +5,13 @@
     min-height: 100vh;
 }
 
+.bg-dark{
+    margin-bottom: 0;
+    @include tablet {
+        margin-bottom: 4rem;
+    }
+}
+
 .teams {
     background-color: rgba($gray-400, 0.4);
     border: 0.1rem solid $gray-300;
@@ -110,7 +117,6 @@
         text-decoration: none;
         transition: all $normal ease;
         position: relative;
-        min-height: 10rem;
 
         & + & {
             margin-top: 1rem;
@@ -171,6 +177,7 @@
             
             @include tablet {
                 position: static;
+                opacity: 1;
             }
         }
 

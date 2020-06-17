@@ -4,6 +4,13 @@
   display: block;
   margin-bottom: 1rem;
   height: calc(100% - 1rem);
+
+  &.bigger{
+    @include tablet {
+      height: auto;
+    }
+  }
+
 }
 
 .card {
@@ -42,24 +49,33 @@
   }
 
   &__avatar {
-    flex: 0 1 40%;
+    flex: 0 1 30%;
     align-self: center;
     overflow: hidden;
     z-index: $over;
+    margin-right: 1.5rem;
 
     img {
       display: inline-block;
       max-width: 100%;
       border-radius: 100%;
     }
+
+    @include mobile-landscape{
+      flex-basis: 40%;
+    }
   }
 
   &__content {
-    flex: 0 1 50%;
+    flex: 0 1 60%;
     display: flex;
     flex-direction: column;
     z-index: $over;
     justify-content: center;
+
+    @include mobile-landscape{
+      flex-basis: 50%;
+    }
   }
 
   &__data {

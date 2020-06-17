@@ -17,10 +17,29 @@
 
     @include desktop {
         height: auto;
+        top: 5.1rem;
     }
 
     &--show {
         transform: translateY(0);
+    }
+
+    &__container {
+        padding-top: 1rem;
+        
+        @include tablet {
+            padding-top: 2rem;
+        }
+    }
+
+    &__title{
+        text-align: center;
+        margin-bottom: 2rem;
+
+        @include tablet {
+           text-align: left;
+           margin-bottom: 1rem;
+        }
     }
 
     .form {

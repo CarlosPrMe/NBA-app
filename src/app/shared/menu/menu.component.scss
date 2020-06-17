@@ -64,7 +64,7 @@
     border-bottom-right-radius: 0.5rem;
     box-shadow: 0 0 1rem rgba($black, 0.8);
     position: absolute;
-    top: 5rem;
+    top: 5.3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -80,7 +80,7 @@
 
     @include tablet {
       min-width: 18rem;
-
+      top: 5rem;
     }
   }
 

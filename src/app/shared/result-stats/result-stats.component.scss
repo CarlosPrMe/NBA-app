@@ -47,7 +47,7 @@
       &:first-child{
         margin-bottom: 2rem;
 
-        @include mobile {
+        @include tablet {
           margin-bottom: 0;
         }
       }
@@ -68,10 +68,6 @@
   &__form {
     display: inline-block;
     box-shadow: none;
-  }
-
-  &__block {
-    flex: 0 1 50%;
   }
 
   &__date {
@@ -115,18 +111,27 @@
     background-repeat: no-repeat;
     background-color: $white;
     position: absolute;
-    left: 1.5rem;
+    left: 6%;
     top: -0.8rem;
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 100%;
     box-shadow: 0 0 1rem $black;
     overflow: hidden;
+    
     @include mobile {
       width: 4rem;
       height: 4rem;
-      left: 0;
+      left: 6%;
       top: -1rem;
+    }
+    @include mobile-landscape{
+      left: 0;
+
+    }
+    @include desktop {
+      left: 3.5rem;
+      top: -0.8rem;
     }
   }
 

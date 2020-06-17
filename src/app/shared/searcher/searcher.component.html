@@ -1,7 +1,7 @@
 <div class="searcher" [ngClass]="{'searcher--show':sercherState}" #searcher>
     <div class="container">
         <div class="searcher__container">
-            <h3 class="h3">Buscador</h3>
+            <h3 class="h3 searcher__title">Buscador</h3>
             <form class="form" [formGroup]="myForm" (keyup.enter)="submit(myForm.value)">
                 <div class="row">
                     <div class="col-xs-12 col-md-5 form__group">

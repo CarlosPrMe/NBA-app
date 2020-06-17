@@ -1,6 +1,6 @@
 <div class="container mg-top-page">
   <div class="row">
-    <app-card class="col-xs-12 col-md-5 col-lg-6" [teamImage]="team?.image_url" [player]="player" [textBig]="textBig">
+    <app-card class="col-xs-12 col-md-5 col-lg-6" [teamImage]="team?.image_url" [player]="player" [textBig]="textBig" [ngClass]="{'bigger':textBig}">
     </app-card>
     <app-card *ngIf="games?.length" [gameId]="currentGame" class="col-xs-12 col-md-7 col-lg-6" 
       [stats]="currentStats"></app-card>
@@ -8,14 +8,16 @@
 
   <div class="stats" #stats>
     <div class="row">
-    <h2 class="col-sm-6 stats__title stats__title--color h3 ">Partidos de {{player?.first_name}} {{player?.last_name}}</h2>
-      <div class="col-sm-6">
+      <div class="col-xs-12 col-md-6">
+        <h2 class="stats__title stats__title--color h3 ">Partidos de {{player?.first_name}} {{player?.last_name}}</h2>
+      </div>
+      <div class="col-xs-12 col-md-6">
         <app-form-filters [postseasonFilter]="postseasonFilter" [perPage]="perPage" (changeParamFilters)="onChangeParams($event)" [disabled]="formDisabled" [optionsPerPage]="pagesNum" [optionsPerSeason]="seasonsAvailable" [currentSeason]="season"></app-form-filters>
       </div>
     </div>
     <div class="row">
       <h3 class="stats__title h3" *ngIf="!games?.length" >No hay resultados</h3>
-      <app-result-data class="col-xs-12 col-sm-6" (showStatsEvent)="onShowStatsEvent($event)" [isFirst]="isFirst"
+      <app-result-data class="col-xs-12 col-md-6" (showStatsEvent)="onShowStatsEvent($event)" [isFirst]="isFirst"
         [gameSimple]="stats" [simpleData]="simpleData" [gameSelected]="currentGame"
         *ngFor="let stats of games;first as isFirst"></app-result-data>
     </div>
