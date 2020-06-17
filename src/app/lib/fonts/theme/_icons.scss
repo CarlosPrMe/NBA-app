@@ -27,6 +27,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-sad:before {
+  content: "\e90f";
+}
+.icon-emoticon:before {
+  content: "\e90f";
+}
+.icon-smiley:before {
+  content: "\e90f";
+}
+.icon-face:before {
+  content: "\e90f";
+}
+.icon-search:before {
+  content: "\e90e";
+}
+.icon-magnifier:before {
+  content: "\e90e";
+}
+.icon-magnifying-glass:before {
+  content: "\e90e";
+}
+.icon-inspect:before {
+  content: "\e90e";
+}
+.icon-find:before {
+  content: "\e90e";
+}
 .icon-circle-down:before {
   content: "\e90b";
 }
