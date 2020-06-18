@@ -13,37 +13,37 @@ export class TeamService {
   private _apiUrl: string = environment.apiUrl;
   constructor(private http: HttpClient) { }
 
-  getAllTeams(): Observable<any> {
+  public getAllTeams(): Observable<any> {
     return this.http.get("https://free-nba.p.rapidapi.com/teams?page=0");
   }
 
-  getLogos(): Observable<any> {
+  public getLogos(): Observable<any> {
     return this.http.get(`${this._url}teams`);
   }
 
-  getTeamById(id): Observable<any> {
+  public getTeamById(id): Observable<any> {
     return this.http.get(`${this._url}team/${id}`);
   }
 
-  getTeamImagesById(ids): Observable<any> {
+  public getTeamImagesById(ids): Observable<any> {
     return this.http.post(`${this._url}team-image`, ids);
   }
 
-  getMatchYesterday(dates: string, page: number = 0, per_page: number = 25): Observable<any> {
+  public getMatchYesterday(dates: string, page: number = 0, per_page: number = 25): Observable<any> {
     return this.http.get(`${this._apiUrl}/games?page=${page}&per_page=${per_page}${dates}`);
   }
 
-  getStatsById(id): Observable<any> {
+  public getStatsById(id): Observable<any> {
     return this.http.get(`${this._apiUrl}/stats?game_ids[]=${id}&page=0&per_page=30}`);
   }
 
-  getGamesByTeam(id: number, page: number = 0, perPage: number = 10, year: string = '2019', date: string = ''): Observable<any> {
+  public getGamesByTeam(id: number, page: number = 0, perPage: number = 10, year: string = '2019', date: string = ''): Observable<any> {
     let seasons = this._checkParams(year, date);
     let dateChecked = date ? `&dates[]=${date}` : '';
     return this.http.get(`${this._apiUrl}/games?team_ids[]=${id}${seasons}&page=${page}&per_page=${perPage}${dateChecked}"}`);
   }
 
-  getTeamByName(name: string): Observable<any> {
+  public getTeamByName(name: string): Observable<any> {
     let request = { team_name: name }
     return this.http.post(`${this._url}team-name`, request)
   }

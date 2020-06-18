@@ -3,12 +3,10 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DatesService {
 
-  constructor() { }
-
-  getLastDays(prevDays: number = 5, today: Date = new Date()): Array<string> {
-
+  public getLastDays(prevDays: number = 5, today: Date = new Date()): Array<string> {
     let days: Array<string> = [];
     let day: number = today.getDate();
     let month: number = today.getMonth() + 1;
@@ -22,7 +20,7 @@ export class DatesService {
 
     for (let i = 0; i < prevDays; i++) {
       if (day >= prevDays) {
-        
+
         days.push(`${year - 2}-${this._addZero(month)}-${this._addZero(day - i)}`);
       } else {
 
@@ -36,13 +34,13 @@ export class DatesService {
             days.push(`${year - 3}-${12}-${31 - subtractionAdditional}`);
           }
           else if (currentMonthPar && month !== 2) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(30 - subtractionAdditional) }`);
+            days.push(`${year - 2}-${this._addZero(month - 1)}-${this._addZero(30 - subtractionAdditional)}`);
           }
           else if (currentMonthPar && month === 2) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(isLeapYear - subtractionAdditional)}`);
+            days.push(`${year - 2}-${this._addZero(month - 1)}-${this._addZero(isLeapYear - subtractionAdditional)}`);
           }
           else if (!currentMonthPar && month !== 1) {
-            days.push(`${year - 2}-${this._addZero(month - 1 )}-${this._addZero(31 - subtractionAdditional)}`);
+            days.push(`${year - 2}-${this._addZero(month - 1)}-${this._addZero(31 - subtractionAdditional)}`);
           }
           subtractionAdditional++;
         }
@@ -52,7 +50,7 @@ export class DatesService {
     return days;
   }
 
-  convertToString(array: Array<string>): string {
+  public convertToString(array: Array<string>): string {
     let string = '';
     array.forEach(element => {
       string = string.concat(element);
@@ -60,7 +58,7 @@ export class DatesService {
     return string;
   }
 
-  getLastResuts(data: Array<any>, days: Array<string>): Array<any> {
+  public getLastResuts(data: Array<any>, days: Array<string>): Array<any> {
     let results: Array<any> = [];
     for (let i = 0; i < days.length; i++) {
       results = data.filter(m => m.date.split('T00:00:00.000Z')[0] === days[i].split('&dates[]=')[1]);
@@ -71,7 +69,7 @@ export class DatesService {
     }
   }
 
-  _addZero(operation): string {
+  private _addZero(operation): string {
     let str = '0';
     if (operation < 10) {
       return str.concat(operation);
@@ -79,7 +77,7 @@ export class DatesService {
     return operation;
   }
 
-  getCurrentYear(){
-    return new Date().getFullYear()-2;
+  public getCurrentYear() {
+    return new Date().getFullYear() - 2;
   }
 }
