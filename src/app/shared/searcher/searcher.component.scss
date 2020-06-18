@@ -169,13 +169,6 @@
         & + & {
             border-top: 0.1rem solid $gray-400;
         }
-
-        &:last-of-type {
-            .predictive-results__link {
-                // border-bottom-left-radius: 1rem;
-                // border-bottom-right-radius: 1rem;
-            }
-        }
     }
 
     &__link {
