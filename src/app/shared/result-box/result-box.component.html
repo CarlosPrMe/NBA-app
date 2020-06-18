@@ -1,20 +1,22 @@
 <div class="bg-bright" *ngIf="games?.length > 0">
     <div class="container">
         <div class="result-box">
-            <div class="result-box__container">
-                <h2 class="result-box__title h2">
-                    <span class="icon icon-basketball"></span>
-                    Últimos resultados</h2>
-                <div class="result-box__content">
-                    <app-result-data (showStatsEvent)="onShowStatsEvent($event)" [gameSelected]="gameSelected?.game?.id" [game]="game" [isFirst]="isFirst" *ngFor="let game of games; first as isFirst"></app-result-data>
+            <div class="row">
+                <div class="col-xs-12 col-md-6 result-box__container">
+                    <h2 class="result-box__title h2">
+                        <span class="icon icon-basketball"></span>
+                        Últimos resultados</h2>
+                    <div class="result-box__content">
+                        <app-result-data (showStatsEvent)="onShowStatsEvent($event)" [gameSelected]="gameSelected?.game?.id" [game]="game" [isFirst]="isFirst" *ngFor="let game of games; first as isFirst"></app-result-data>
+                    </div>
                 </div>
-            </div>
-            <div *ngIf="statsDetailsData" class="result-box__container">
-                <h2 class="result-box__title h2">
-                    <span class="icon icon-stats-bars"></span>
-                    Estadísticas</h2>
-                <div class="result-box__content">
-                    <app-result-stats [stats]="statsDetailsData" [idStats]="idStatsDetails" [game]="gameSelected" [pageStats]="pageStats"></app-result-stats>                    
+                <div *ngIf="statsDetailsData" class="col-xs-12 col-md-6 result-box__container">
+                    <h2 class="result-box__title h2">
+                        <span class="icon icon-stats-bars"></span>
+                        Estadísticas</h2>
+                    <div class="result-box__content">
+                        <app-result-stats [stats]="statsDetailsData" [idStats]="idStatsDetails" [game]="gameSelected" [pageStats]="pageStats"></app-result-stats>                    
+                    </div>
                 </div>
             </div>
         </div>

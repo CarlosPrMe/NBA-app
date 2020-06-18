@@ -1,29 +1,43 @@
 <div class="stats" [ngClass]="{'stats--page': pageStats}" #container>
     <div class="stats__container">
-        <div class="stats__date" *ngIf="currentGame"><span class="icon icon-address-card"></span> Día del partido:
-            <span>{{currentGame.date | date}} </span>
-            <span> {{currentGame?.hourDate}}hs</span>
-
-            <a href="#" *ngIf="!pageStats" [routerLink]="['/stats',idStats]" class="btn btn--primary stats__link">Ir a
-                detalles del encuentro</a>
-            <form class="stats__form form" [formGroup]="myForm" (change)="sortTeams(myForm.value)">
-                <div class="form__group">
-                    <label for="" class="form__label">Ordenado por</label>
-                    <select formControlName="sort" name="sort" id="" class="form__input">
-                        <option *ngFor="let option of optionsFilter" class="{{option.class}}" value="{{option.value}}">
-                            {{option.text}}</option>
-                    </select>
+        <div class="stats__date" *ngIf="currentGame">
+            <div class="row row--center row--jc-end">
+                <div class="col-xs-12 col-sm-6">
+                    <span class="icon icon-address-card"></span> Día del partido:
+                    <span>{{currentGame.date | date}} </span>
+                    <span> {{currentGame?.hourDate}}hs</span>
+                    <a href="#" *ngIf="!pageStats" [routerLink]="['/stats',idStats]" class="btn btn--primary stats__link">Ir a
+                        detalles del encuentro</a>
                 </div>
-            </form>
-            <button type="button" class="btn btn--secondary" (click)="changeOrder($event, myForm.value)"><span
-                    class="icon icon-sort"></span></button>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="row row--center row--jc-end">
+                        <div class="col-xs-9 col-sm-8">
+                            <form class="stats__form form" [formGroup]="myForm" (change)="sortTeams(myForm.value)">
+                                <div class="form__group">
+                                    <label for="" class="form__label">Ordenado por</label>
+                                    <select formControlName="sort" name="sort" id="" class="form__input">
+                                        <option *ngFor="let option of optionsFilter" class="{{option.class}}" value="{{option.value}}">
+                                            {{option.text}}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-xs-3 col-sm-4">
+                            <button type="button" class="btn btn--secondary btn--sort" (click)="changeOrder($event, myForm.value)"><span
+                                    class="icon icon-sort"></span></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                </div>
+            </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-12 col-md-6" *ngFor="let team of teams">
+            <div class="col-xs-12 col-sm-6" *ngFor="let team of teams">
                 <div class="stats__block">
-                    <h3 class="stats__title" [ngClass]="{'h2': pageStats}">{{team.full_name}}
-                        <span class="stats__logo"
+                    <h3 class="stats__title" [ngClass]="{'h2': pageStats, 'stats__title--small':atHome}">{{team.full_name}}
+                        <span [ngClass]="{'stats__logo--small':atHome}" class="stats__logo"
                             style="background-image: url({{team?.image_url}});box-shadow:0 0 1rem rgba({{team?.team_color}} , 1)">
                         </span>
                     </h3>

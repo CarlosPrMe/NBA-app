@@ -1,12 +1,10 @@
 @import "../../../assets/scss/partials/vars";
 .result-box {
-  display: flex;
-  justify-content: space-between;
 
   &__container {
     padding: 1rem;
-    flex: 0 1 50%;
   }
+
   &__title {
     padding: 1rem;
   }

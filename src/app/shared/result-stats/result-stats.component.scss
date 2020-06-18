@@ -9,7 +9,15 @@
   transition: all $normal ease;
 
   &--small {
-    height: calc(var(--height-dropdown) / 4);
+    height: calc(var(--height-dropdown) / 5);
+
+    @include mobile {
+      height: calc(var(--height-dropdown) / 3.2);
+    }
+
+    @include mobile-landscape {
+      height: calc(var(--height-dropdown) / 4);
+    }
   }
 
   &--dropdown {
@@ -20,7 +28,7 @@
     overflow: visible;
     padding: 2rem 1.5rem;
     background-color: $gray-200;
-    box-shadow: inset 0 0 .5rem .5rem rgba($white, .8);
+    box-shadow: inset 0 0 0.5rem 0.5rem rgba($white, 0.8);
 
     .stats__container {
       justify-content: space-between;
@@ -29,9 +37,9 @@
     .stats__date {
       color: $white;
       padding-bottom: 0;
-      background-color: rgba($primary, .4);
-      border-radius: .5rem;
-      box-shadow: 0 0 1rem rgba($black, .3);
+      background-color: rgba($primary, 0.4);
+      border-radius: 0.5rem;
+      box-shadow: 0 0 1rem rgba($black, 0.3);
       padding-top: 2rem;
       @include mobile {
         padding-top: 0;
@@ -39,12 +47,12 @@
     }
 
     .stats__block {
-      background-color: rgba(0, 0, 0, .35);
-      box-shadow: 0 0 1rem rgba($black, .15);
-      border-radius: .5rem;
+      background-color: rgba(0, 0, 0, 0.35);
+      box-shadow: 0 0 1rem rgba($black, 0.15);
+      border-radius: 0.5rem;
       padding: 2rem 1rem 1rem;
 
-      &:first-child{
+      &:first-child {
         margin-bottom: 2rem;
 
         @include tablet {
@@ -67,14 +75,16 @@
 
   &__form {
     display: inline-block;
+    display: block;
     box-shadow: none;
+    padding: 1rem 0.5rem;
   }
 
   &__date {
     flex: 0 1 100%;
     text-align: center;
     margin-bottom: 2rem;
-    padding-bottom: 2rem;
+    padding-bottom: 3rem;
     position: relative;
   }
 
@@ -93,15 +103,15 @@
       left: 10%;
       bottom: 0;
       height: 4rem;
-      background: linear-gradient(
-        to bottom,
-        $transparent 52%,
-        rgba($white, .2) 100%
-      );
+      background: linear-gradient(to bottom, $transparent 52%, rgba($white, 0.2) 100%);
     }
 
     @include mobile-landscape {
       font-size: $fs-md;
+    }
+
+    &--small {
+      font-size: 1.7rem;
     }
   }
 
@@ -118,20 +128,31 @@
     border-radius: 100%;
     box-shadow: 0 0 1rem $black;
     overflow: hidden;
-    
+
     @include mobile {
       width: 4rem;
       height: 4rem;
       left: 6%;
       top: -1rem;
     }
-    @include mobile-landscape{
+    @include mobile-landscape {
       left: 0;
-
     }
     @include desktop {
       left: 3.5rem;
       top: -0.8rem;
+    }
+
+    &--small {
+      left: 0;
+      top: -0.8rem;
+
+      @include desktop {
+        left: 1rem;
+        top: -0.7rem;
+        width: 3.5rem;
+        height: 3.5rem;
+      }
     }
   }
 
@@ -143,12 +164,19 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: .5rem;
+    padding: 0.5rem;
   }
 
   .btn {
     .icon-sort {
       transform: rotate(180deg);
+    }
+    
+    &--sort {
+      margin-top: 1rem;
+      margin-left: auto;
+      display: block;
+      width: 100%;
     }
   }
 
@@ -171,7 +199,7 @@
 
     span:not(.icon) {
       display: inline-block;
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
     }
   }
 }
