@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges, HostListener } from '@angular/core';
 import { PaginatorModel } from 'src/app/models/pagintor.model';
 
 @Component({
@@ -12,10 +12,13 @@ export class PaginatorComponent implements OnInit, OnChanges {
   @Input() disabled: boolean;
   @Output() changePage = new EventEmitter<any>();
   public totalPages: Array<number>;
+  public numPages: number;
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.numPages = this._changeNumViewPages()
+  }
 
   ngOnChanges(change: SimpleChanges) {
     if (change?.data?.currentValue) {
@@ -37,6 +40,15 @@ export class PaginatorComponent implements OnInit, OnChanges {
       array.push(i);
     }
     return array;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.numPages = this._changeNumViewPages();
+  }
+
+  private _changeNumViewPages(): number {
+    return window.screen.width < 370 ? 9 : 10;
   }
 
 }

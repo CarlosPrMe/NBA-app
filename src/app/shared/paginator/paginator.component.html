@@ -1,6 +1,6 @@
 
 <div class="paginator" [ngClass]="{'paginator--disabled':disabled}">
-    <div *ngIf="totalPages.length <= 10; then PerPages else BySteps"></div>
+    <div *ngIf="totalPages.length <= numPages; then PerPages else BySteps"></div>
 </div>
 
 <ng-template #PerPages>
