@@ -21,6 +21,10 @@
     height: 100%;
     justify-content: space-between;
     padding: .5rem;
+
+    @include desktop {
+      padding: 1rem;
+    }
   }
 
   &__media {
@@ -37,12 +41,13 @@
     box-shadow: inset 0 0 1rem rgba(0, 0, 0, .4);
     border: .1rem solid rgba($black, .5);
     display: inline-block;
-    flex: 0 1 70%;
+    flex: 0 1 75%;
     margin-bottom: .5rem;
     transition: transform $normal ease;
     
     @include tablet {
-      flex: 1 0 75%;
+      flex: 1 0 85%;
+      margin-bottom: 1.5rem;
     }
     
     @include desktop {
@@ -59,9 +64,11 @@
   &__title {
     color: $black;
     color: rgba($black, $alpha: 1);
-    display: inline-block;
+    display: inline-flex;
     text-align: center;
     transition: all $normal ease;
-    flex: 0 1 auto;
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
   }
 }

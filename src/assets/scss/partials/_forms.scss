@@ -37,13 +37,13 @@
           border-radius: 0.5rem;
           display: inline-block;
         }
-        
+
         &:hover {
           .icon {
             color: $success;
             border-color: rgba($black, 0.4);
             background-color: rgba($white, 0.85);
-            margin-right: .5rem;
+            margin-right: 0.5rem;
           }
 
           .form__label {
@@ -178,8 +178,7 @@
   }
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"] {
   &:checked:not(.checked) + .icon {
     color: $secondary;
     font-size: $fs-base + 1rem;
@@ -190,8 +189,8 @@ input[type="radio"] {
   }
 
   &:checked.checked + .icon {
-    color: $success;
-    border: 0.1rem solid rgba($black, 0.4);
+    color: $success !important;
+    border: 0.1rem solid rgba($black, 0.4) !important;
     padding: 0.2rem;
     background-color: rgba($white, 0.85);
     border-radius: 0.5rem;
@@ -204,6 +203,42 @@ input[type="radio"] {
     border-bottom: 0.2rem solid rgba($white, 0.8);
     @include desktop {
       font-size: $fs-base + 0.1rem;
+    }
+  }
+}
+
+input[type="radio"] {
+  & ~ .form__label {
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      left: -1.9rem;
+      top: 0.1rem;
+      width: 1.9rem;
+      height: 1.9rem;
+      border-radius: 100%;
+      background-color: $white;
+      border: 0.2rem solid $success;
+      opacity: 0;
+      transition: all $fast linear;
+    }
+    &::after {
+      content: "";
+      position: absolute;
+      left: -1.4rem;
+      top: 0.6rem;
+      width: 0.9rem;
+      height: 0.9rem;
+      border-radius: 100%;
+      background-color: $success;
+      opacity: 0;
+    }
+  }
+  &:checked ~ .form__label {
+    &::before,
+    &::after {
+      opacity: 1;
     }
   }
 }

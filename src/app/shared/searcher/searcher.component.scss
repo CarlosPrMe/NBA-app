@@ -46,6 +46,11 @@
     .form {
         background-color: rgba($gray-200, 0.9);
         display: block;
+        padding-bottom: 7rem;
+
+        @include mobile-landscape {
+            padding-bottom: 2rem;
+        }
 
         &__label {
             color: $black;
@@ -72,6 +77,12 @@
 
         &__control {
             position: relative;
+        }
+
+        .icon--custom {
+            color: $gray-800;
+            border: .1rem solid $white;
+            border-radius: .4rem;
         }
     }
 
