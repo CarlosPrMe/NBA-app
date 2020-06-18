@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 import { TeamService } from 'src/app/services/team.service';
 import { TeamModel } from 'src/app/models/team.model';
 import { PlayerModel } from 'src/app/models/player.model';
-import { pipe } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { pipe, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap, map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-searcher',
@@ -26,7 +26,8 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
   public seasonsAvailable: Array<number>;
   public resultsNumber: string;
   private _currentSearch: string;
-  private _content;
+  private _content: any;
+  private searching: string;
 
   @ViewChild('searcher') searcher: ElementRef;
   @ViewChild('input') input: ElementRef;
@@ -94,7 +95,8 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
 
     this.myForm.valueChanges.subscribe(data => {
       let cleanText = data.text.trim();
-      this._searcherService.searcherTextLength.next(cleanText.length)
+      this._searcherService.searcherTextLength.next(cleanText.length);
+      this.searching = data.type;
       if (data.stats) {
         this.fieldDisabled = false;
       } else {
@@ -107,10 +109,33 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
         this._setData();
         this.input.nativeElement.value = '';
         this.myForm.get('text').setValue('');
-      } else if (cleanText.length > 2) {
+      }
+      else if (cleanText.length > 2) {
         this._checkForm(data);
-      } else if (cleanText.length <= 2) {
-        this._setData();
+      }
+    })
+
+    this.myForm.controls.text.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      filter(text => text.length > 2),
+      map(value => value.trim()),
+      switchMap((text: any) => {
+        if (text.length > 2) {
+          if (this.searching === 'player') {
+            return this._searcherService.getPlayers(text)
+          } else if (this.searching === 'team') {
+            return this._teamService.getTeamByName(text)
+          }
+          }else {
+            return of([]);
+          }
+        })
+    ).subscribe((res: any) => {
+      if (this.searching === 'player') {
+        this._setData(true, res.data, [], res.data.length);
+      } else if (this.searching === 'team') {
+        this._setData(true, [], res, res.length);
       }
     })
 
@@ -133,21 +158,6 @@ export class SearcherComponent implements OnInit, AfterContentChecked {
           }
           this._setData();
           this._createForm();
-        })
-      }
-
-    } else {
-      pipe(
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      if (form.type === 'player' && form.text.length > 2) {
-        this._searcherService.getPlayers(form.text).subscribe(res => {
-          this._setData(true, res.data, [], res.data.length);
-        })
-      } else if (form.type === 'team' && form.text.length > 2) {
-        this._teamService.getTeamByName(form.text).subscribe(res => {
-          this._setData(true, [], res, res.length);
         })
       }
     }

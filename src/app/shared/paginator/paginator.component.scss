@@ -12,11 +12,16 @@
         position: absolute;
         top: 0;
         display: block;
-        width: 80%;
-        left: 10%;
+        width: 100%;
+        left: 0%;
         height: 100%;
-        border-top: 0.1rem solid $gray-500;
-        border-bottom: 0.1rem solid $gray-500;
+        border-top: 0.1rem solid $white;
+        border-bottom: 0.1rem solid $white;
+
+        @include mobile {
+            width: 80%;
+            left: 10%;
+        }
     }
 
     &--disabled {
