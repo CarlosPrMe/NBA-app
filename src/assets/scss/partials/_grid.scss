@@ -1,4 +1,3 @@
-
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -15,6 +14,10 @@
   &--between {
     justify-content: space-between;
   }
+
+  &--jc-end {
+    justify-content: flex-end;
+  }
 }
 
 [class^="col"] {
@@ -23,7 +26,7 @@
 }
 
 @include mobile-xs {
-  @for $i from 2 through 12 {
+  @for $i from 1 through 12 {
     .col-xs-#{$i} {
       flex-basis: calc((#{$i} / 12) * 100%);
       max-width: calc((#{$i} / 12) * 100%);
@@ -32,7 +35,7 @@
 }
 
 @include mobile-landscape {
-  @for $i from 2 through 12 {
+  @for $i from 1 through 12 {
     .col-xs-#{$i} {
       flex-basis: calc((#{$i} / 12) * 100%);
       max-width: calc((#{$i} / 12) * 100%);
@@ -41,7 +44,7 @@
 }
 
 @include mobile {
-  @for $i from 2 through 12 {
+  @for $i from 1 through 12 {
     .col-sm-#{$i} {
       flex-basis: calc((#{$i} / 12) * 100%);
       max-width: calc((#{$i} / 12) * 100%);
@@ -50,7 +53,7 @@
 }
 
 @include tablet {
-  @for $i from 2 through 12 {
+  @for $i from 1 through 12 {
     .col-md-#{$i} {
       flex-basis: calc((#{$i} / 12) * 100%);
       max-width: calc((#{$i} / 12) * 100%);
@@ -59,7 +62,7 @@
 }
 
 @include desktop {
-  @for $i from 2 through 12 {
+  @for $i from 1 through 12 {
     .col-lg-#{$i} {
       flex-basis: calc((#{$i} / 12) * 100%);
       max-width: calc((#{$i} / 12) * 100%);
