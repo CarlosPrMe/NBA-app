@@ -4,15 +4,11 @@
             <label class="form__label" for="season" *ngIf="!hidePlayoffs">Temporada</label>
             <label class="form__label" for="season" *ngIf="hidePlayoffs">Elige temporada para ver los jugadores de aquel
                 año</label>
-            <select class="form__input" name="season" id="season" formControlName="season">
-                <option value="{{option}}" *ngFor="let option of optionsPerSeason">{{option}}</option>
-            </select>
+            <app-dropdown [options]="optionsPerSeason" [initialValue]="currentSeason" (newValue)="onNewValueSeason($event)"></app-dropdown>
         </div>
         <div class="form__group col-xs-6 col-sm-4" [ngClass]="{'form__group--hidden':hidePlayoffs}">
             <label class="form__label" for="per_page">Por página</label>
-            <select id="per_page" class="form__input" name="per_page" formControlName="per_page">
-                <option value="{{option}}" *ngFor="let option of optionsPerPage">{{option}}</option>
-            </select>
+            <app-dropdown [options]="optionsPerPage" [initialValue]="perPage" (newValue)="onNewValuePage($event)"></app-dropdown>
         </div>
         <div class="form__group col-xs-12 col-sm-4" *ngIf="!hidePlayoffs">
             <label class="form__label form__label--custom" for="postseason" [ngClass]="{'form__label--checked': myForm.controls.postseason.value}">Solo playoffs

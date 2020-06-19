@@ -34,6 +34,8 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   public showComplete: boolean;
   private _statsHeight: number;
   public atHome: boolean;
+  public initialValue: any;
+  public searching: boolean;
 
   constructor(private _fb: FormBuilder, private _router: Router) { }
 
@@ -67,6 +69,8 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
       }
     )
 
+    this.initialValue = this.optionsFilter[0];
+    this.searching = false;
     this.descendent = true;
     this.showComplete = false;
     this.sortTeams(this.myForm.value);
@@ -74,7 +78,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   }
 
   ngOnChanges(change: SimpleChanges) {
-
+    this.searching = true;
     if (!change?.game?.firstChange) {
       this._resetHeightContent();
     }
@@ -101,10 +105,13 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
       this.visitorTeam.image_url = change.game.currentValue.visitor_team.image_url;
     }
 
-    if (change.stats?.currentValue && change.stats.firstChange) {
+    if (change.stats?.currentValue) {
       this.homeTeam.players = change.stats.currentValue.filter(player => player.team.id === this.homeTeam.id_team);
       this.visitorTeam.players = change.stats.currentValue.filter(player => player.team.id === this.visitorTeam.id_team);
       this.teams = [this.homeTeam, this.visitorTeam];
+      setTimeout(() => {
+        this.searching = false;
+      }, 150);
     }
 
     if (this.myForm?.value) {
@@ -127,7 +134,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
   }
 
   public sortTeams(form) {
-    this.sortBy = form.sort;
+    this.sortBy = form.sort || this.sortBy;
     this.visitorTeam.players = this.descendent ? this._sort(this.visitorTeam.players) : this._sort(this.visitorTeam.players).reverse();
     this.visitorTeam.players = this.playersNoAction(this.visitorTeam.players);
     this.homeTeam.players = this.descendent ? this._sort(this.homeTeam.players) : this._sort(this.homeTeam.players).reverse();
@@ -155,6 +162,11 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
     this.statsContainer.nativeElement.classList.toggle('stats--dropdown');
   }
 
+  public onNewValueFilter(event) {
+    this.sortBy = event;
+    this.sortTeams(event)
+  }
+
   private playersNoAction(team: Array<any>): Array<any> {
     let playersAction = [];
     let playersNoAction = [];
@@ -168,7 +180,7 @@ export class ResultStatsComponent implements OnInit, OnChanges, AfterViewChecked
     if (this.statsContainer && !this._statsHeight && !this.pageStats) {
       this._statsHeight = this.statsContainer.nativeElement.clientHeight;
       this._changeValueHeight(this._statsHeight);
-      !this.showComplete ?  this.statsContainer.nativeElement.classList.add('stats--small') : this.statsContainer.nativeElement.classList.add('stats--small','stats--dropdown');
+      !this.showComplete ? this.statsContainer.nativeElement.classList.add('stats--small') : this.statsContainer.nativeElement.classList.add('stats--small', 'stats--dropdown');
     }
   }
 

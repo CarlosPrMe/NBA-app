@@ -15,10 +15,7 @@
                             <form class="stats__form form" [formGroup]="myForm" (change)="sortTeams(myForm.value)">
                                 <div class="form__group">
                                     <label for="" class="form__label">Ordenado por</label>
-                                    <select formControlName="sort" name="sort" id="" class="form__input">
-                                        <option *ngFor="let option of optionsFilter" class="{{option.class}}" value="{{option.value}}">
-                                            {{option.text}}</option>
-                                    </select>
+                                    <app-dropdown [reset]="searching" [optionsObj]="optionsFilter" [initialValue]="initialValue" (newValue)="onNewValueFilter($event)"></app-dropdown>
                                 </div>
                             </form>
                         </div>

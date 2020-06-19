@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { flatMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-filters',
@@ -51,5 +50,15 @@ export class FormFiltersComponent implements OnInit, OnChanges {
     this.myForm.get('season').setValue(season);
     this.myForm.get('per_page').setValue(perPage);
     this.myForm.get('postseason').setValue(postseason);
+  }
+
+  public onNewValueSeason(perPage) {
+    this.myForm.get('season').setValue(perPage);
+    this.changeParamFilters.emit(this.myForm.value);
+  }
+  
+  public onNewValuePage(season) {
+    this.myForm.get('per_page').setValue(season)
+    this.changeParamFilters.emit(this.myForm.value);
   }
 }

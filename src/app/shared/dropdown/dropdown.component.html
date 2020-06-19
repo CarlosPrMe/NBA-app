@@ -1,0 +1,11 @@
+<div class="dropdown" #content>
+    <span class="icon icon-circle-down" [ngClass]="{'icon--rotate':show}"></span>
+    <span *ngIf="options" class="dropdown__caption" (click)="showList()"> {{value}}</span>
+    <ul *ngIf="options" class="dropdown__list" #list [ngClass]="{'dropdown__list--show':show}">
+        <li *ngFor="let option of options" class="dropdown__item" (click)="changeValue(option)">{{option}}</li>
+    </ul>
+    <span *ngIf="optionsObj && !reset" class="dropdown__caption" (click)="showList()"> {{value.text}}</span>
+    <ul *ngIf="optionsObj" class="dropdown__list" #list [ngClass]="{'dropdown__list--show':show}">
+        <li *ngFor="let option of optionsObj" class="dropdown__item" (click)="changeValue(option)">{{option.text}}</li>
+    </ul>
+</div>

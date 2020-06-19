@@ -33,6 +33,7 @@ import { CardComponent } from './shared/card/card.component';
 import { PaginatorComponent } from './shared/paginator/paginator.component';
 import { FormFiltersComponent } from './shared/form-filters/form-filters.component';
 import { SearcherComponent } from './shared/searcher/searcher.component';
+import { DropdownComponent } from './shared/dropdown/dropdown.component';
 
 
 // Interceptors
@@ -69,7 +70,8 @@ import { AddHeadersRapidApiInterceptorService } from './interceptors/addHeadersR
     CardComponent,
     PaginatorComponent,
     FormFiltersComponent,
-    SearcherComponent
+    SearcherComponent,
+    DropdownComponent
   ],
   imports: [
     BrowserModule,
