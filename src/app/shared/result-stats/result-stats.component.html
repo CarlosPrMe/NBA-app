@@ -2,7 +2,7 @@
     <div class="stats__container">
         <div class="stats__date" *ngIf="currentGame">
             <div class="row row--center row--jc-end">
-                <div class="col-xs-12 col-sm-6 stats__data">
+                <div class="col-xs-12 col-sm-6" [ngClass]="{'stats__data': pageStats}">
                     <span class="icon icon-address-card"></span> Día del partido:
                     <span>{{currentGame.date | date}} </span>
                     <span> {{currentGame?.hourDate}}hs</span>
@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-6">
                     <div class="row row--center row--jc-end">
-                        <div class="col-xs-9 col-sm-8 col-md-4">
+                        <div class="col-xs-9 col-sm-8" [ngClass]="{'col-md-4': pageStats}">
                             <form class="stats__form form" [formGroup]="myForm" (change)="sortTeams(myForm.value)">
                                 <div class="form__group">
                                     <label for="" class="form__label">Ordenado por</label>
@@ -22,7 +22,7 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="col-xs-3 col-sm-4 col-md-2">
+                        <div class="col-xs-3 col-sm-4" [ngClass]="{'col-md-2': pageStats}">
                             <button type="button" class="btn btn--secondary btn--sort" (click)="changeOrder($event, myForm.value)"><span
                                     class="icon icon-sort"></span></button>
                         </div>
